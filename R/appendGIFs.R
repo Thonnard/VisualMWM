@@ -22,6 +22,9 @@ appendGIFs <- function(gif_1, gif_2, gif_3=NULL, vertical=FALSE){
      lift(image_join)(.) %>%
      image_write("appended_gif.gif")
 
+   # clear memory
+   gc()
+
    # Read and append gif_3 (optional)
    if(!is.null(gif_3)){
      map2(
