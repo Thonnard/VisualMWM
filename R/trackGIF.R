@@ -135,7 +135,7 @@ trackGIF <- function(data, id, day, trial,
     theme(plot.margin = margin(5.5, 40, 5.5, 5.5))
 
   #animate
-  writeLines("\n\nCreating distance to target gif...")
+  writeLines("Creating distance to target gif...")
   animate(p2, renderer = gifski_renderer(loop = F))   # no loop
   anim_save("distance_to_target.gif")
 
@@ -155,9 +155,9 @@ trackGIF <- function(data, id, day, trial,
     theme(plot.margin = margin(5.5, 40, 5.5, 5.5))
 
   #animate
-  writeLines("\n\nCreating velocity gif...")
+  writeLines("Creating velocity gif...")
   animate(p3, renderer = gifski_renderer(loop = F))   # no loop
   anim_save("velocity.gif")
 
-  writeLines("\nDone!")
+  writeLines("Done!")
 }
