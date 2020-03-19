@@ -1,6 +1,5 @@
-#' trackGIF creates a gif showing the track, distance to target and velocity of one specific trial
+#' trackGIF creates 3 GIFs: track, distance to target and velocity
 #'
-#' Output: 4 gifs (track, distance to target, velocity and all three combined)
 #' @param data Data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial".
 #' "x" and "y" represent the coordinates (position) of the animal at a certain timepoint ("Time") during the trial.
 #' @param id ID of the animal
@@ -20,8 +19,6 @@
 #' @importFrom gganimate animate anim_save transition_reveal gifski_renderer transition_time shadow_trail
 #' @import gifski
 #' @import ggforce
-#' @import magick
-#' @import purrr
 #' @import stats
 #' @import utils
 
@@ -61,7 +58,7 @@ trackGIF <- function(data, id, day, trial,
   data <- data[complete.cases(data[,c("x_scaled", "y_scaled")]),]
 
   # calculate distance, duration and swimspeed
-  writeLines("Calculating swim speed...")
+  writeLines("Calculating velocity...")
   data$Distance <- 0
   data$Duration <- 0
   data$Swimspeed <- 0
@@ -96,16 +93,6 @@ trackGIF <- function(data, id, day, trial,
   # remove swim speed outliers
   if(removeSwimspeedOutliers == TRUE) {data <- data[which(data$Swimspeed <= SwimspeedLimit),]}
 
-  # create dir for all output
-  wd <- getwd()
-  dir <- paste("trackGIF_", format(Sys.time(), "%F_%H-%M-%S"), sep="")
-  dir.create(dir)
-
-  # create and set dir for graphic output
-  setwd(dir)
-  dir.create("Plots")
-  setwd("Plots")
-
   # plot tracks
   p1 <- ggplot() +
     # plot circle
@@ -127,10 +114,10 @@ trackGIF <- function(data, id, day, trial,
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank()) +
     coord_fixed() # to ensure true circularity
 
-  # animate(p1)
-  writeLines("\nCreating track image...")
+  # animate
+  writeLines("\nCreating track gif...")
   animate(p1, renderer = gifski_renderer(loop = F))  # no loop
-  anim_save("p1.gif")
+  anim_save("track.gif")
 
   # plot distance to target
   p2 <- ggplot(data, aes(x=Time, y=DistanceToTarget, group=Trial)) +
@@ -147,10 +134,10 @@ trackGIF <- function(data, id, day, trial,
     theme_minimal() +
     theme(plot.margin = margin(5.5, 40, 5.5, 5.5))
 
-  #animate(p2)
-  writeLines("\n\nCreating distance to target image...")
+  #animate
+  writeLines("\n\nCreating distance to target gif...")
   animate(p2, renderer = gifski_renderer(loop = F))   # no loop
-  anim_save("p2.gif")
+  anim_save("distance_to_target.gif")
 
   # plot swim speed
   p3 <- ggplot(data, aes(x=Time, y=Swimspeed, group=Trial)) +
@@ -167,37 +154,10 @@ trackGIF <- function(data, id, day, trial,
     theme_minimal() +
     theme(plot.margin = margin(5.5, 40, 5.5, 5.5))
 
-  #animate(p3)
-  writeLines("\n\nCreating swim speed image...")
+  #animate
+  writeLines("\n\nCreating velocity gif...")
   animate(p3, renderer = gifski_renderer(loop = F))   # no loop
-  anim_save("p3.gif")
+  anim_save("velocity.gif")
 
-  # # Read the three plots and append together (in 2 steps)
-  # writeLines("\n\nAppending images...")
-  # filename <- paste(id, " day_", day, " trial_", trial, ".gif")
-  # map2(
-  #   "p1.gif" %>% image_read() %>% as.list(),
-  #   "p2.gif" %>% image_read() %>% as.list(),
-  #   ~image_append(c(.x, .y))
-  # ) %>%
-  #   lift(image_join)(.) %>%
-  #   image_write("p1_p2.gif")
-  #
-  # map2(
-  #   "p1_p2.gif" %>% image_read() %>% as.list(),
-  #   "p3.gif" %>% image_read() %>% as.list(),
-  #   ~image_append(c(.x, .y))
-  # ) %>%
-  #   lift(image_join)(.) %>%
-  #   image_write(filename)
-  # file.remove("p1_p2.gif")
-  #
-  #
-  #
-  # # show result
-  # invisible(capture.output(image_read(filename)))
-
-  # set original wd
-  setwd(wd)
   writeLines("\nDone!")
 }
