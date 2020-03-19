@@ -18,5 +18,8 @@ appendGIFs(gif_1, gif_2, gif_3 = NULL, vertical = FALSE)
 \description{
 appendGIFs reads two or three GIFs and appends into onee GIF
 }
+\examples{
+appendGIFs("../track.gif","../velocity.gif")
+}
 \keyword{GIFs}
 \keyword{append}
