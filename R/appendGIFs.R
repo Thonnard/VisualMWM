@@ -13,25 +13,28 @@ appendGIFs <- function(gif_1, gif_2, gif_3=NULL, vertical=FALSE){
   # Warning message
   writeLines("Appending GIFs... This might take a while!")
 
-  # Read and append gif_1 and gif_2
-  map2(
-    gif_1 %>% image_read() %>% as.list(),
-    gif_2 %>% image_read() %>% as.list(),
-    ~image_append(c(.x, .y),stack = vertical)
-  ) %>%
-    lift(image_join)(.) %>%
-    image_write("appended_gif.gif")
+   # Read and append gif_1 and gif_2
+   map2(
+     gif_1 %>% image_read() %>% as.list(),
+     gif_2 %>% image_read() %>% as.list(),
+     ~image_append(c(.x, .y),stack = vertical)
+   ) %>%
+     lift(image_join)(.) %>%
+     image_write("appended_gif.gif")
 
-  # Read and append gif_3 (optional)
-  if(!is.null(gif_3)){
-    map2(
-      "appended_gif.gif" %>% image_read() %>% as.list(),
-      gif_3 %>% image_read() %>% as.list(),
-      ~image_append(c(.x, .y), stack = vertical)
-    ) %>%
-      lift(image_join)(.) %>%
-      image_write("appended_gif.gif")
-  }
+   # Read and append gif_3 (optional)
+   if(!is.null(gif_3)){
+     map2(
+       "appended_gif.gif" %>% image_read() %>% as.list(),
+       gif_3 %>% image_read() %>% as.list(),
+       ~image_append(c(.x, .y), stack = vertical)
+     ) %>%
+       lift(image_join)(.) %>%
+       image_write("appended_gif.gif")
+   }
+
+   # clear memory
+   gc()
 
   # Done
   writeLines("Done!")
