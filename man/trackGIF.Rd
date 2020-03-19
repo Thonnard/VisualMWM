@@ -2,7 +2,7 @@
 % Please edit documentation in R/trackGIF.R
 \name{trackGIF}
 \alias{trackGIF}
-\title{trackGIF creates a gif showing the track, distance to target and velocity of one specific trial}
+\title{trackGIF creates 3 GIFs: track, distance to target and velocity}
 \usage{
 trackGIF(data, id, day, trial, centerx, centery, radius, platformx,
   platformy, platformradius, removeSwimspeedOutliers = TRUE,
@@ -35,7 +35,7 @@ trackGIF(data, id, day, trial, centerx, centery, radius, platformx,
 \item{SwimspeedLimit}{default = 50 (cm/s), only used when removeSwimspeedOutliers = TRUE}
 }
 \description{
-Output: 4 gifs (track, distance to target, velocity and all three combined)
+trackGIF creates 3 GIFs: track, distance to target and velocity
 }
 \keyword{distance}
 \keyword{gif}
