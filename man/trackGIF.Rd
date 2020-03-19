@@ -9,7 +9,8 @@ trackGIF(data, id, day, trial, centerx, centery, radius, platformx,
   SwimspeedLimit = 50)
 }
 \arguments{
-\item{data}{data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial"}
+\item{data}{Data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial".
+"x" and "y" represent the coordinates (position) of the animal at a certain timepoint ("Time") during the trial.}
 
 \item{id}{ID of the animal}
 
