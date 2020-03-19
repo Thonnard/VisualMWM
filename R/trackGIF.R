@@ -1,7 +1,8 @@
 #' trackGIF creates a gif showing the track, distance to target and velocity of one specific trial
 #'
 #' Output: 4 gifs (track, distance to target, velocity and all three combined)
-#' @param data data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial"
+#' @param data Data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial".
+#' "x" and "y" represent the coordinates (position) of the animal at a certain timepoint ("Time") during the trial.
 #' @param id ID of the animal
 #' @param day day number
 #' @param trial trial number
