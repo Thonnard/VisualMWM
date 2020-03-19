@@ -2,7 +2,7 @@
 % Please edit documentation in R/appendGIFs.R
 \name{appendGIFs}
 \alias{appendGIFs}
-\title{appendGIFs reads two or three GIFs and appends into onee GIF}
+\title{appendGIFs reads and appends two or three GIFs into one GIF}
 \usage{
 appendGIFs(gif_1, gif_2, gif_3 = NULL, vertical = FALSE)
 }
@@ -16,10 +16,7 @@ appendGIFs(gif_1, gif_2, gif_3 = NULL, vertical = FALSE)
 \item{vertical}{TRUE: GIFs top-to-bottom, FALSE: left-to-right (default)}
 }
 \description{
-appendGIFs reads two or three GIFs and appends into onee GIF
-}
-\examples{
-appendGIFs("../track.gif","../velocity.gif")
+appendGIFs reads and appends two or three GIFs into one GIF
 }
 \keyword{GIFs}
 \keyword{append}

@@ -1,4 +1,4 @@
-#' appendGIFs reads two or three GIFs and appends into onee GIF
+#' appendGIFs reads and appends two or three GIFs into one GIF
 #'
 #' @param gif_1 First GIF image
 #' @param gif_2 Second GIF image
