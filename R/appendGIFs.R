@@ -20,7 +20,7 @@ appendGIFs <- function(gif_1, gif_2, gif_3=NULL, vertical=FALSE){
      ~image_append(c(.x, .y),stack = vertical)
    ) %>%
      lift(image_join)(.) %>%
-     image_write("appended_gif.gif")
+     image_write("combined_gif.gif")
 
    # clear memory
    gc()
@@ -28,12 +28,12 @@ appendGIFs <- function(gif_1, gif_2, gif_3=NULL, vertical=FALSE){
    # Read and append gif_3 (optional)
    if(!is.null(gif_3)){
      map2(
-       "appended_gif.gif" %>% image_read() %>% as.list(),
+       "combined_gif.gif" %>% image_read() %>% as.list(),
        gif_3 %>% image_read() %>% as.list(),
        ~image_append(c(.x, .y), stack = vertical)
      ) %>%
        lift(image_join)(.) %>%
-       image_write("appended_gif.gif")
+       image_write("combined_gif.gif")
    }
 
    # clear memory
