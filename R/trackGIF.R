@@ -22,6 +22,8 @@
 #' @import stats
 #' @import utils
 
+# another test
+
 trackGIF <- function(data, id, day, trial,
                      centerx,centery,radius,platformx,platformy,platformradius,
                      removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50){
