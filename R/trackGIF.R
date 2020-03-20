@@ -22,7 +22,6 @@
 #' @import stats
 #' @import utils
 
-# another test PART 2
 
 trackGIF <- function(data, id, day, trial,
                      centerx,centery,radius,platformx,platformy,platformradius,
