@@ -4,7 +4,8 @@
 \name{track_data}
 \alias{track_data}
 \title{Track data of 4 trials in a Morris water maze experiment}
-\format{A data frame with 81889 rows and 7 columns.
+\format{
+A data frame with 81889 rows and 7 columns.
 \describe{
 \itemize{
   \item Time: Timestamp
@@ -15,7 +16,8 @@
   \item Trial: Trial number
   \item Group: Group information (NA)
 }
-}}
+}
+}
 \usage{
 data(track_data)
 }
