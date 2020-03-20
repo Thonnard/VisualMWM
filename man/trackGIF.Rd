@@ -4,9 +4,20 @@
 \alias{trackGIF}
 \title{trackGIF creates 3 GIFs: track, distance to target and velocity}
 \usage{
-trackGIF(data, id, day, trial, centerx, centery, radius, platformx,
-  platformy, platformradius, removeSwimspeedOutliers = TRUE,
-  SwimspeedLimit = 50)
+trackGIF(
+  data,
+  id,
+  day,
+  trial,
+  centerx,
+  centery,
+  radius,
+  platformx,
+  platformy,
+  platformradius,
+  removeSwimspeedOutliers = TRUE,
+  SwimspeedLimit = 50
+)
 }
 \arguments{
 \item{data}{Data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial".
