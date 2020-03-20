@@ -15,5 +15,5 @@ License: MIT + file LICENSE
 BugReports: https://github.com/Thonnard/VisualMWM/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1.9000
+RoxygenNote: 7.1.0
 Imports: data.table, ggplot2, ggforce, gganimate, magick, purrr, gifski, stats, utils
