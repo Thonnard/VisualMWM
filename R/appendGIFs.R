@@ -1,15 +1,14 @@
-#' appendGIFs reads and appends two or three GIFs into one GIF
+#' appendGIFs read and append two GIFs
 #'
 #' @param gif_1 First GIF image
 #' @param gif_2 Second GIF image
-#' @param gif_3 Third GIF image (optional)
 #' @param vertical TRUE: GIFs top-to-bottom, FALSE: left-to-right (default)
 #' @keywords append GIFs
 #' @export
 #' @import purrr
 #' @import magick
 
-appendGIFs <- function(gif_1, gif_2, gif_3=NULL, vertical=FALSE){
+appendGIFs <- function(gif_1, gif_2, vertical=FALSE){
   # Warning message
   writeLines("Appending GIFs... This might take a while!")
 
@@ -21,20 +20,6 @@ appendGIFs <- function(gif_1, gif_2, gif_3=NULL, vertical=FALSE){
    ) %>%
      lift(image_join)(.) %>%
      image_write("combined_gif.gif")
-
-   # clear memory
-   gc()
-
-   # Read and append gif_3 (optional)
-   if(!is.null(gif_3)){
-     map2(
-       "combined_gif.gif" %>% image_read() %>% as.list(),
-       gif_3 %>% image_read() %>% as.list(),
-       ~image_append(c(.x, .y), stack = vertical)
-     ) %>%
-       lift(image_join)(.) %>%
-       image_write("combined_gif.gif")
-   }
 
    # clear memory
    gc()
