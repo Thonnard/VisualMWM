@@ -2,21 +2,19 @@
 % Please edit documentation in R/appendGIFs.R
 \name{appendGIFs}
 \alias{appendGIFs}
-\title{appendGIFs reads and appends two or three GIFs into one GIF}
+\title{appendGIFs read and append two GIFs}
 \usage{
-appendGIFs(gif_1, gif_2, gif_3 = NULL, vertical = FALSE)
+appendGIFs(gif_1, gif_2, vertical = FALSE)
 }
 \arguments{
 \item{gif_1}{First GIF image}
 
 \item{gif_2}{Second GIF image}
 
-\item{gif_3}{Third GIF image (optional)}
-
 \item{vertical}{TRUE: GIFs top-to-bottom, FALSE: left-to-right (default)}
 }
 \description{
-appendGIFs reads and appends two or three GIFs into one GIF
+appendGIFs read and append two GIFs
 }
 \keyword{GIFs}
 \keyword{append}
