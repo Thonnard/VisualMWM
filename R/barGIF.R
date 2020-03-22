@@ -28,9 +28,6 @@
 #' @import ggforce
 #' @importFrom dplyr group_by summarize
 #' @import reshape2
-# @import stats
-# @import utils
-#'
 
 barGIF <- function(data, id, day, trial,
                      centerx,centery,radius,platformx,platformy,platformradius,
