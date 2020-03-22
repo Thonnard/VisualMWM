@@ -30,7 +30,7 @@
 #' @import reshape2
 
 barGIF <- function(data, id, day, trial,
-                     centerx,centery,radius,platformx,platformy,platformradius,
+                     centerx, centery, radius, platformx, platformy, platformradius,
                      removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50,
                      loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50){
 
@@ -175,7 +175,7 @@ barGIF <- function(data, id, day, trial,
     ease_aes('sine-in-out')
 
   # create animation
-  animate(p1, nframes = frames, fps = fps, width=width, height=height, renderer = gifski_renderer(loop = loop))
+  animate(p1, nframes = frames, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
 
   # save animation
   filename <- paste("barGIF_", id, "-day_", day, "-trial_", trial ,".gif", sep="")
