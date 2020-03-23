@@ -5,19 +5,19 @@
 #' @param id ID of the animal
 #' @param day day number
 #' @param trial trial number
-#' @param centerx x coordinate of the center of the morris water maze
-#' @param centery y coordinate of the center of the morris water maze
-#' @param radius radius of the morris water maze
-#' @param platformx x coordinate of the center of the platform
-#' @param platformy y coordinate of the center of the platform
-#' @param platformradius radius of the platform
+#' @param centerx x coordinate of the center of the morris water maze (cm)
+#' @param centery y coordinate of the center of the morris water maze (cl)
+#' @param radius radius of the morris water maze (cm), default = 75
+#' @param platformx x coordinate of the center of the platform (cm)
+#' @param platformy y coordinate of the center of the platform (cm)
+#' @param platformradius radius of the platform (cm), default = 7.5
 #' @param removeSwimspeedOutliers removes swim speed outliers (>= SwimspeedLimit), default = TRUE
 #' @param SwimspeedLimit default = 50 (cm/s), only used when removeSwimspeedOutliers = TRUE
 #' @param loop Loop the animation, default = FALSE
-#' @param width Width of the animation in pixels, default = 480
-#' @param height Height of the animation in pixels, default = 480
+#' @param width Width of the animation (px), default = 480
+#' @param height Height of the animation (px), default = 480
 #' @param fps Frames per second of the animation, default = 10
-#' @param duration Duration of the animation in seconds, default = 10
+#' @param duration Duration of the animation(s), default = 10
 #' @param frames Number of frames in the animation, default = 100
 #' @param time_bins Number of time-bins in the animation, default = 50
 #' @keywords bar graph quadrant time
@@ -30,7 +30,7 @@
 #' @import reshape2
 
 barGIF <- function(data, id, day, trial,
-                     centerx, centery, radius, platformx, platformy, platformradius,
+                     centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5,
                      removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50,
                      loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50){
 
