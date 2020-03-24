@@ -79,10 +79,10 @@ trackGIF <- function(data, id, day, trial,
     geom_segment(aes(x=-radius,xend=radius,y=0,yend=0),linetype=2) +
     geom_segment(aes(x=0,xend=0,y=-radius,yend=radius),linetype=2) +
     # plot rectangle
-    geom_hline(yintercept=-75) +
-    geom_hline(yintercept=75) +
-    geom_vline(xintercept=-75) +
-    geom_vline(xintercept=75) +
+    geom_hline(yintercept=-radius) +
+    geom_hline(yintercept=radius) +
+    geom_vline(xintercept=-radius) +
+    geom_vline(xintercept=radius) +
     # plot circle and platform
     geom_path(data=maze, aes(x, y), color="black") +
     geom_polygon(data=platform_circle, aes(x, y), color="black", fill="white", alpha=1) +  # get white background
@@ -97,7 +97,7 @@ trackGIF <- function(data, id, day, trial,
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank()) +
     coord_fixed()
 
-  # create animation
+  # update animation parameters
   animate(p1, nframes = frames, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
 
   # save animation
