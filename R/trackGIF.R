@@ -1,18 +1,30 @@
-#' trackGIF creates 3 GIFs: track, distance to target and velocity
+#' trackGIF creates a GIF showing the track of the animal for a specific trial
 #'
 #' @param data Data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial".
 #' "x" and "y" represent the coordinates (position) of the animal at a certain timepoint ("Time") during the trial.
 #' @param id ID of the animal
 #' @param day day number
 #' @param trial trial number
-#' @param centerx x coordinate of the center of the morris water maze
-#' @param centery y coordinate of the center of the morris water maze
-#' @param radius radius of the morris water maze
-#' @param platformx x coordinate of the center of the platform
-#' @param platformy y coordinate of the center of the platform
-#' @param platformradius radius of the platform
-#' @param removeSwimspeedOutliers removes swim speed outliers (>= SwimspeedLimit), default = TRUE
-#' @param SwimspeedLimit default = 50 (cm/s), only used when removeSwimspeedOutliers = TRUE
+#' @param centerx x coordinate of the center of the morris water maze (cm)
+#' @param centery y coordinate of the center of the morris water maze (cl)
+#' @param radius radius of the morris water maze (cm), default = 75
+#' @param platformx x coordinate of the center of the platform (cm)
+#' @param platformy y coordinate of the center of the platform (cm)
+#' @param platformradius radius of the platform (cm), default = 7.5
+#' @param ndata_circle Number of data points in the circle data set. Higher means smoother (more perfect) circle. Default = 100
+#' @param quadrant_colours Fill colours of quadrants. Order = top left, top right, bottom left, bottom right. Default = c("white","white","white","white")
+#' @param platform_colour Colour of the platform. Default = "grey"
+#' @param alpha_quadrants Alpha level for quadrants. Default = 0.2
+#' @param alpha_platform Alpha level for platform. Default = 1
+#' @param track_colour Colour of the track line. Default = orange
+#' @param alpha_track Alpha level for the track line. Default = 0.35
+#' @param loop Loop the animation, default = FALSE
+#' @param width Width of the animation (px), default = 480
+#' @param height Height of the animation (px), default = 480
+#' @param fps Frames per second of the animation, default = 10
+#' @param duration Duration of the animation(s), default = 10
+#' @param frames Number of frames in the animation, default = 100
+#' @param time_bins Number of time-bins in the animation, default = 50
 #' @keywords track velocity distance to target gif
 #' @export
 #' @import ggplot2
@@ -20,145 +32,75 @@
 #' @import gifski
 #' @import ggforce
 #' @import stats
-#' @import utils
-
 
 trackGIF <- function(data, id, day, trial,
-                     centerx,centery,radius,platformx,platformy,platformradius,
-                     removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50){
-
+                   centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
+                   quadrant_colours=c("white","white","white","white"), platform_colour="grey", alpha_quadrants=0.2, alpha_platform=1,
+                   track_colour="orange", alpha_track=0.35,
+                   loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50){
   # read data
   data <- as.data.frame(data)
 
   # select data
-  # select 1 trial from 1 mouse
   data <- data[which(data$Animal == id & data$Trial == trial),]
 
-  # rescale
-  centerx=centerx
-  centery=centery
-  data$x_scaled <- data$x - centerx
-  data$y_scaled <- data$y - centery
-  radius=radius
-  platformx=platformx
-  platformx_scaled <- platformx-centerx
-  platformy=platformy
-  platformy_scaled <- platformy-centery
-  platformradius=platformradius
+  # initiate vars
+  x <- NULL
+  y <- NULL
+  x_coord <- NULL
+  y_coord <- NULL
+  Time <- NULL
 
-  # circles data
-  circles <- data.frame(
-    circle <- c("arena", "platform"),
-    x0 <- c(0,platformx-centerx),
-    y0 <- c(0,platformy-centery),
-    r <- c(radius,platformradius),
-    alpha <- c(1, 0.2))
-  colnames(circles) <- c("circle","x0","y0","radius", "alpha")
+  # adjust coordinates
+  data$x_coord <- data$x - centerx
+  data$y_coord <- data$y - centery
+  platformx_coord <- platformx-centerx
+  platformy_coord <- platformy-centery
 
   # remove NA
-  data <- data[complete.cases(data[,c("x_scaled", "y_scaled")]),]
+  data <- data[complete.cases(data[,c("x_coord", "y_coord")]),]
 
-  # calculate distance, duration and swimspeed
-  writeLines("Calculating velocity...")
-  data$Distance <- 0
-  data$Duration <- 0
-  data$Swimspeed <- 0
-  split <- split(data, list(data$Animal, data$Day, data$Trial))
-  split <- lapply(split, function(x){
-    records <- length(x[, "Distance"])
-    for(i in 2:records){
-      x[, "Distance"][i] <- sqrt(sum((x[, "x_scaled"][i]-x[, "x_scaled"][i-1])^2, (x[, "y_scaled"][i]-x[, "y_scaled"][i-1])^2))
-      x[, "Duration"][i] <- x[, "Time"][i] - x[, "Time"][i-1]
-      x[, "Swimspeed"][i] <- x[, "Distance"][i]/x[, "Duration"][i]
-    }
-    x # return data frame
-  })
-  data <- do.call(rbind, split)
-  rownames(data) <- NULL
-
-  # add distance to target
-  writeLines("Calculating distance to target...")
-  data$DistanceToTarget <- 0
-  split <- split(data, list(data$Animal, data$Day, data$Trial))
-  split <- lapply(split, function(x){
-    records <- length(x[, "Distance"])
-    for(i in 1:records){
-      x[, "DistanceToTarget"][i] <- sqrt(sum((x[, "x_scaled"][i]-platformx_scaled)^2, (x[, "y_scaled"][i]-platformy_scaled)^2))-platformradius
-      if (x[, "DistanceToTarget"][i] < 0) {x[, "DistanceToTarget"][i] <- 0}
-    }
-    x # return data frame
-  })
-  data <- do.call(rbind, split)
-  rownames(data) <- NULL
-
-  # remove swim speed outliers
-  if(removeSwimspeedOutliers == TRUE) {data <- data[which(data$Swimspeed <= SwimspeedLimit),]}
+  # create circles and quadrant data
+  top_right_quadrant <- circle(x=0, y=0, radius=radius, nrow_data=ndata_circle, from=0, to=0.5, add_center=TRUE)
+  bottom_right_quadrant <- circle(x=0, y=0, radius=radius, nrow_data=ndata_circle, from=0, to=-0.5, add_center=TRUE)
+  top_left_quadrant <- -bottom_right_quadrant
+  bottom_left_quadrant <- -top_right_quadrant
+  maze <- circle(x=0, y=0, radius=radius, nrow_data=ndata_circle, from=0, to=2, add_center=FALSE)
+  platform_circle <- circle(x=platformx_coord, y=platformy_coord, radius=platformradius, nrow_data=ndata_circle, from=0, to=2, add_center=FALSE)
 
   # plot tracks
   p1 <- ggplot() +
-    # plot circle
-    geom_circle(data=circles, aes(x0=x0, y0=y0, r=r, fill=circle, alpha=circle), colour="black", size=1, show.legend=FALSE) +
-    scale_fill_manual(values=c("white","black"))+
-    scale_alpha_manual(values=alpha) +
-    # plot track
-    geom_point(data = data, aes(x=x_scaled, y=y_scaled), color="orange", alpha=0.35) +
+    # colour quadrants
+    geom_polygon(data=top_left_quadrant, aes(x,y), color=NA, fill=quadrant_colours[1], alpha=alpha_quadrants) +
+    geom_polygon(data=top_right_quadrant, aes(x,y), color=NA, fill=quadrant_colours[2], alpha=alpha_quadrants) +
+    geom_polygon(data=bottom_left_quadrant, aes(x,y), color=NA, fill=quadrant_colours[3], alpha=alpha_quadrants) +
+    geom_polygon(data=bottom_right_quadrant, aes(x,y), color=NA, fill=quadrant_colours[4], alpha=alpha_quadrants) +
+    # plot quadrant division
+    geom_segment(aes(x=-radius,xend=radius,y=0,yend=0),linetype=2) +
+    geom_segment(aes(x=0,xend=0,y=-radius,yend=radius),linetype=2) +
     # plot rectangle
-    geom_hline(yintercept=-radius) +
-    geom_hline(yintercept=radius) +
-    geom_vline(xintercept=-radius) +
-    geom_vline(xintercept=radius) +
+    geom_hline(yintercept=-75) +
+    geom_hline(yintercept=75) +
+    geom_vline(xintercept=-75) +
+    geom_vline(xintercept=75) +
+    # plot circle and platform
+    geom_path(data=maze, aes(x, y), color="black") +
+    geom_polygon(data=platform_circle, aes(x, y), color="black", fill="white", alpha=1) +  # get white background
+    geom_polygon(data=platform_circle, aes(x, y), color="black", fill=platform_colour, alpha=alpha_platform) +
+    # plot track
+    geom_point(data = data, aes(x=x_coord, y=y_coord), color=track_colour, alpha=alpha_track) +
     # transition
     transition_time(Time) +
-    shadow_trail(distance=0.01)+
-    # theme settings
+    shadow_trail(distance=0.01) +
+    # theme + fixed coord
     theme_bw() +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank()) +
-    coord_fixed() # to ensure true circularity
+    coord_fixed()
 
-  # animate
-  writeLines("\nCreating track gif...")
-  animate(p1, renderer = gifski_renderer(loop = F))  # no loop
-  anim_save("track.gif")
+  # create animation
+  animate(p1, nframes = frames, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
 
-  # plot distance to target
-  p2 <- ggplot(data, aes(x=Time, y=DistanceToTarget, group=Trial)) +
-    geom_line() +
-    geom_segment(aes(xend = max(Time), yend = DistanceToTarget), linetype = 2, colour = 'grey') +
-    geom_point(size = 2) +
-    geom_text(aes(x = max(Time)+1, label = paste("Trial",Trial)), hjust = 0) +
-    transition_reveal(along=Time) +
-    coord_cartesian(clip = 'off') +
-    ylim(0,150) +
-    geom_segment(aes(x = 0, y = mean(DistanceToTarget), xend = max(Time), yend = mean(DistanceToTarget)), linetype="dotted", size=1) +
-    annotate(geom="text", x=0, y=mean(data$DistanceToTarget)-2, label=paste(round(mean(data$DistanceToTarget),1)," cm"), hjust = 0) +
-    labs(title = paste('Animal ', data$Animal[1], ' - Distance to target'), y = 'Distance to target (cm)', x = 'Time (s)') +
-    theme_minimal() +
-    theme(plot.margin = margin(5.5, 40, 5.5, 5.5))
-
-  #animate
-  writeLines("Creating distance to target gif...")
-  animate(p2, renderer = gifski_renderer(loop = F))   # no loop
-  anim_save("distance_to_target.gif")
-
-  # plot swim speed
-  p3 <- ggplot(data, aes(x=Time, y=Swimspeed, group=Trial)) +
-    geom_line() +
-    geom_segment(aes(xend = max(Time), yend = Swimspeed), linetype = 2, colour = 'grey') +
-    geom_point(size = 2) +
-    geom_text(aes(x = max(Time)+1, label = paste("Trial",Trial)), hjust = 0) +
-    transition_reveal(along=Time) +
-    coord_cartesian(clip = 'off') +
-    ylim(0,50) +
-    geom_segment(aes(x = 0, y = mean(Swimspeed), xend = max(Time), yend = mean(Swimspeed)), linetype="dotted", size=1) +
-    annotate(geom="text", x=0, y=mean(data$Swimspeed)-1, label=paste(round(mean(data$Swimspeed),1)," cm/s"), hjust = 0) +
-    labs(title = paste('Animal ', data$Animal[1], ' - Swim speed'), y = 'Swim speed (cm/s)', x = 'Time (s)') +
-    theme_minimal() +
-    theme(plot.margin = margin(5.5, 40, 5.5, 5.5))
-
-  #animate
-  writeLines("Creating velocity gif...")
-  animate(p3, renderer = gifski_renderer(loop = F))   # no loop
-  anim_save("velocity.gif")
-
-  writeLines("Done!")
+  # save animation
+  filename <- paste("trackGIF_", id, "-day_", day, "-trial_", trial ,".gif", sep="")
+  anim_save(filename=filename)
 }
