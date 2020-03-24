@@ -12,11 +12,11 @@
 #' @param platformy y coordinate of the center of the platform (cm)
 #' @param platformradius radius of the platform (cm), default = 7.5
 #' @param ndata_circle Number of data points in the circle data set. Higher means smoother (more perfect) circle. Default = 100
-#' @param quadrant_colours Fill colours of quadrants. Order = top left, top right, bottom left, bottom right. Default = c("white","white","white","white")
-#' @param platform_colour Colour of the platform. Default = "grey"
+#' @param quadrant_colours Fill colours of quadrants. Order = top left, top right, bottom left, bottom right. Name or hexadecimal code (e.g.: #FF1020). Default = c("white","white","white","white")
+#' @param platform_colour Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"
 #' @param alpha_quadrants Alpha level for quadrants. Default = 0.2
 #' @param alpha_platform Alpha level for platform. Default = 1
-#' @param track_colour Colour of the track line. Default = orange
+#' @param track_colour Colour of the track line. Name or hexadecimal code (e.g.: #FF1020). Default = orange
 #' @param alpha_track Alpha level for the track line. Default = 0.35
 #' @param loop Loop the animation, default = FALSE
 #' @param width Width of the animation (px), default = 480

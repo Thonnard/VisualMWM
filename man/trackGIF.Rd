@@ -55,15 +55,15 @@ trackGIF(
 
 \item{ndata_circle}{Number of data points in the circle data set. Higher means smoother (more perfect) circle. Default = 100}
 
-\item{quadrant_colours}{Fill colours of quadrants. Order = top left, top right, bottom left, bottom right. Default = c("white","white","white","white")}
+\item{quadrant_colours}{Fill colours of quadrants. Order = top left, top right, bottom left, bottom right. Name or hexadecimal code (e.g.: #FF1020). Default = c("white","white","white","white")}
 
-\item{platform_colour}{Colour of the platform. Default = "grey"}
+\item{platform_colour}{Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"}
 
 \item{alpha_quadrants}{Alpha level for quadrants. Default = 0.2}
 
 \item{alpha_platform}{Alpha level for platform. Default = 1}
 
-\item{track_colour}{Colour of the track line. Default = orange}
+\item{track_colour}{Colour of the track line. Name or hexadecimal code (e.g.: #FF1020). Default = orange}
 
 \item{alpha_track}{Alpha level for the track line. Default = 0.35}
 
