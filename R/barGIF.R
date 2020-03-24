@@ -27,7 +27,7 @@
 #' @import gifski
 #' @import ggforce
 #' @importFrom dplyr group_by summarize
-#' @import reshape2
+#' @importFrom reshape2 melt
 
 barGIF <- function(data, id, day, trial,
                      centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5,
@@ -148,15 +148,15 @@ barGIF <- function(data, id, day, trial,
   data$AR[is.na(data$AR)] <- 0
 
   # reshape: wide to long
-  data_long <- melt(data, id.vars=c("Time"), measure.vars = c("TQ","OQ","AL","AR"), value.name = "Time_Quadrant", variable.name = "Quadrant")
+  data_long <- reshape2::melt(data, id.vars=c("Time"), measure.vars = c("TQ","OQ","AL","AR"), value.name = "Time_Quadrant", variable.name = "Quadrant")
 
   # create time bins
   data_long$Time_bin <- cut_number(data_long$Time, time_bins)
 
   # aggregate: one value per quadrant per time bin
   data_long_average <- data_long %>%
-    group_by(Time_bin,Quadrant) %>%
-    summarize(Mean_Time_Quadrant = mean(Time_Quadrant, na.rm = TRUE))
+    dplyr::group_by(Time_bin,Quadrant) %>%
+    dplyr::summarize(Mean_Time_Quadrant = mean(Time_Quadrant, na.rm = TRUE))
 
   # create plot
   p1 <- ggplot(data_long_average) +
