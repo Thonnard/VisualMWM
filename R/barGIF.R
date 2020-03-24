@@ -174,7 +174,7 @@ barGIF <- function(data, id, day, trial,
     transition_states(Time_bin, transition_length = 1) +
     ease_aes('sine-in-out')
 
-  # create animation
+  # update animation parameters
   animate(p1, nframes = frames, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
 
   # save animation
