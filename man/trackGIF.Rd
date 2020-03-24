@@ -2,7 +2,7 @@
 % Please edit documentation in R/trackGIF.R
 \name{trackGIF}
 \alias{trackGIF}
-\title{trackGIF creates 3 GIFs: track, distance to target and velocity}
+\title{trackGIF creates a GIF showing the track of the animal for a specific trial}
 \usage{
 trackGIF(
   data,
@@ -11,12 +11,24 @@ trackGIF(
   trial,
   centerx,
   centery,
-  radius,
+  radius = 75,
   platformx,
   platformy,
-  platformradius,
-  removeSwimspeedOutliers = TRUE,
-  SwimspeedLimit = 50
+  platformradius = 7.5,
+  ndata_circle = 100,
+  quadrant_colours = c("white", "white", "white", "white"),
+  platform_colour = "grey",
+  alpha_quadrants = 0.2,
+  alpha_platform = 1,
+  track_colour = "orange",
+  alpha_track = 0.35,
+  loop = FALSE,
+  width = 480,
+  height = 480,
+  fps = 10,
+  duration = 10,
+  frames = 100,
+  time_bins = 50
 )
 }
 \arguments{
@@ -29,24 +41,48 @@ trackGIF(
 
 \item{trial}{trial number}
 
-\item{centerx}{x coordinate of the center of the morris water maze}
+\item{centerx}{x coordinate of the center of the morris water maze (cm)}
 
-\item{centery}{y coordinate of the center of the morris water maze}
+\item{centery}{y coordinate of the center of the morris water maze (cl)}
 
-\item{radius}{radius of the morris water maze}
+\item{radius}{radius of the morris water maze (cm), default = 75}
 
-\item{platformx}{x coordinate of the center of the platform}
+\item{platformx}{x coordinate of the center of the platform (cm)}
 
-\item{platformy}{y coordinate of the center of the platform}
+\item{platformy}{y coordinate of the center of the platform (cm)}
 
-\item{platformradius}{radius of the platform}
+\item{platformradius}{radius of the platform (cm), default = 7.5}
 
-\item{removeSwimspeedOutliers}{removes swim speed outliers (>= SwimspeedLimit), default = TRUE}
+\item{ndata_circle}{Number of data points in the circle data set. Higher means smoother (more perfect) circle. Default = 100}
 
-\item{SwimspeedLimit}{default = 50 (cm/s), only used when removeSwimspeedOutliers = TRUE}
+\item{quadrant_colours}{Fill colours of quadrants. Order = top left, top right, bottom left, bottom right. Default = c("white","white","white","white")}
+
+\item{platform_colour}{Colour of the platform. Default = "grey"}
+
+\item{alpha_quadrants}{Alpha level for quadrants. Default = 0.2}
+
+\item{alpha_platform}{Alpha level for platform. Default = 1}
+
+\item{track_colour}{Colour of the track line. Default = orange}
+
+\item{alpha_track}{Alpha level for the track line. Default = 0.35}
+
+\item{loop}{Loop the animation, default = FALSE}
+
+\item{width}{Width of the animation (px), default = 480}
+
+\item{height}{Height of the animation (px), default = 480}
+
+\item{fps}{Frames per second of the animation, default = 10}
+
+\item{duration}{Duration of the animation(s), default = 10}
+
+\item{frames}{Number of frames in the animation, default = 100}
+
+\item{time_bins}{Number of time-bins in the animation, default = 50}
 }
 \description{
-trackGIF creates 3 GIFs: track, distance to target and velocity
+trackGIF creates a GIF showing the track of the animal for a specific trial
 }
 \keyword{distance}
 \keyword{gif}
