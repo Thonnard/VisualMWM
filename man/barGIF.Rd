@@ -2,7 +2,7 @@
 % Please edit documentation in R/barGIF.R
 \name{barGIF}
 \alias{barGIF}
-\title{barGIF creates a GIF showing the percentage of time spent per quadrant for one trial of one animal}
+\title{barGIF creates a GIF showing the percentage of time spent per quadrant for a specific trial of one animal}
 \usage{
 barGIF(
   data,
@@ -11,10 +11,10 @@ barGIF(
   trial,
   centerx,
   centery,
-  radius,
+  radius = 75,
   platformx,
   platformy,
-  platformradius,
+  platformradius = 7.5,
   removeSwimspeedOutliers = TRUE,
   SwimspeedLimit = 50,
   loop = FALSE,
@@ -36,17 +36,17 @@ barGIF(
 
 \item{trial}{trial number}
 
-\item{centerx}{x coordinate of the center of the morris water maze}
+\item{centerx}{x coordinate of the center of the morris water maze (cm)}
 
-\item{centery}{y coordinate of the center of the morris water maze}
+\item{centery}{y coordinate of the center of the morris water maze (cl)}
 
-\item{radius}{radius of the morris water maze}
+\item{radius}{radius of the morris water maze (cm), default = 75}
 
-\item{platformx}{x coordinate of the center of the platform}
+\item{platformx}{x coordinate of the center of the platform (cm)}
 
-\item{platformy}{y coordinate of the center of the platform}
+\item{platformy}{y coordinate of the center of the platform (cm)}
 
-\item{platformradius}{radius of the platform}
+\item{platformradius}{radius of the platform (cm), default = 7.5}
 
 \item{removeSwimspeedOutliers}{removes swim speed outliers (>= SwimspeedLimit), default = TRUE}
 
@@ -54,20 +54,20 @@ barGIF(
 
 \item{loop}{Loop the animation, default = FALSE}
 
-\item{width}{Width of the animation in pixels, default = 480}
+\item{width}{Width of the animation (px), default = 480}
 
-\item{height}{Height of the animation in pixels, default = 480}
+\item{height}{Height of the animation (px), default = 480}
 
 \item{fps}{Frames per second of the animation, default = 10}
 
-\item{duration}{Duration of the animation in seconds, default = 10}
+\item{duration}{Duration of the animation(s), default = 10}
 
 \item{frames}{Number of frames in the animation, default = 100}
 
 \item{time_bins}{Number of time-bins in the animation, default = 50}
 }
 \description{
-barGIF creates a GIF showing the percentage of time spent per quadrant for one trial of one animal
+barGIF creates a GIF showing the percentage of time spent per quadrant for a specific trial of one animal
 }
 \keyword{bar}
 \keyword{graph}
