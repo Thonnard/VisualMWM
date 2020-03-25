@@ -2,6 +2,7 @@
 
 export(appendGIFs)
 export(barGIF)
+export(circle)
 export(trackGIF)
 import(ggforce)
 import(ggplot2)

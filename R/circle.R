@@ -8,6 +8,7 @@
 #' @param from Start of sequence. Default = 0
 #' @param to End of sequence. E.g. End = 0.5 results in a quadrant polygon. Default = 2
 #' @param add_center Add the coordinate of the center (x,y) to the data set. Useful when creating quadrant polygons. Default = FALSE
+#' @export
 
 circle <- function(x = 0, y = 0, radius = 75, nrow_data = 100, from = 0, to = 2, add_center=FALSE) {
   temp <- seq(from*pi, to*pi, length.out=nrow_data)
