@@ -45,20 +45,16 @@ trackGIF <- function(data, id, day, trial,
   data <- data[which(data$Animal == id & data$Trial == trial),]
 
   # initiate vars
-  x <- NULL
-  y <- NULL
-  x_coord <- NULL
-  y_coord <- NULL
-  Time <- NULL
+  x <- NULL; y <- NULL; x_coord <- NULL; y_coord <- NULL; Time <- NULL
 
-  # adjust coordinates
-  data$x_coord <- data$x - centerx
-  data$y_coord <- data$y - centery
+  # update coordinates (rescale) and add quadrant information
+  data <- update(data=data,
+                 centerx=centerx, centery=centery, radius=radius,
+                 platformx=platformx, platformy=platformy, platformradius=platformradius, removeNA=TRUE)
+
+  # set platform coordinates
   platformx_coord <- platformx-centerx
   platformy_coord <- platformy-centery
-
-  # remove NA
-  data <- data[complete.cases(data[,c("x_coord", "y_coord")]),]
 
   # create circles and quadrant data
   top_right_quadrant <- circle(x=0, y=0, radius=radius, nrow_data=ndata_circle, from=0, to=0.5, add_center=TRUE)
