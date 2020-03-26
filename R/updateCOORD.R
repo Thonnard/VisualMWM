@@ -1,4 +1,4 @@
-#' update rescales x and y coordinates to center (0,0) and adds quadrant information to the data set
+#' updateCOORD rescales x and y coordinates to center (0,0) and adds quadrant information to the data set
 #' Adjacent Left is the quadrant to the left of the target quadrant when standing at the target quadrant and looking towards the platform
 #' Adjacent Right is the quadrant to the right of the target quadrant when standing at the target quadrant and looking towards the platform
 #'
@@ -13,7 +13,7 @@
 #' @param removeNA Remove NAs. Default=TRUE.
 #' @export
 
-update <- function (data, centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, removeNA=TRUE) {
+updateCOORD <- function (data, centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, removeNA=TRUE) {
   # load data
   data <- as.data.frame(data)
 
