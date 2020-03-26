@@ -14,10 +14,7 @@
 
 mergeCOORD <- function(startData, rowID, rowDay, rowTrial, rowGroup = "FOO"){
   # warning
-  writeLines("MAke sure your current working dir only contains MWM csv files containing the coordinates.
-        \nWarrning messages might indicate NA values were created.
-        This might happen when location info is not available (e.g. when tracking failed).
-        \nPlease wait... This might take several minutes...")
+  writeLines("Make sure your current working directory only contains raw MWM coordinates csv files.\nPlease wait... This might take a moment...")
 
   # get file names
   files <- list.files(full.names=TRUE)
@@ -55,11 +52,10 @@ mergeCOORD <- function(startData, rowID, rowDay, rowTrial, rowGroup = "FOO"){
   colnames(data) <- c("Time", "x", "y","Animal", "Day", "Trial", "Group")
 
   # transform data
-  data$Time <- as.numeric(as.character(data$Time))
-  data$x <- as.numeric(as.character(data$x))
-  data$y <- as.numeric(as.character(data$y))
+  data$x <- suppressWarnings(as.numeric(as.character(data$x)))
+  data$y <- suppressWarnings(as.numeric(as.character(data$y)))
 
   # save file
-  filename <- paste("data_merged (", Sys.Date(), ").csv", sep="")
+  filename <- paste("data coordinates (merged ", Sys.Date(), ").csv", sep="")
   write.csv(data, filename, row.names=FALSE)
 }
