@@ -11,7 +11,7 @@ Maintainer: David Thonnard <thonnard.david@gmail.com>
 Description: Visualize Morris water maze data
     GIFs,...
 Depends: R (>= 3.5.0)
-License: MIT + file LICENSE
+License: GPL-3 + file LICENSE
 BugReports: https://github.com/Thonnard/VisualMWM/issues
 Encoding: UTF-8
 LazyData: true
