@@ -40,57 +40,10 @@ barGIF <- function(data, id, day, trial,
   # select data
   data <- data[which(data$Animal == id & data$Trial == trial),]
 
-  # rescale
-  centerx=centerx
-  centery=centery
-  data$x_scaled <- data$x - centerx
-  data$y_scaled <- data$y - centery
-  radius=radius
-  platformx=platformx
-  platformx_scaled <- platformx-centerx
-  platformy=platformy
-  platformy_scaled <- platformy-centery
-  platformradius=platformradius
-
-  # remove NA
-  data <- data[complete.cases(data[,c("x_scaled", "y_scaled")]),]
-
-  # set platform quadrant position
-  if(platformx_scaled<0 & platformy_scaled>0) {
-    platform_position <- "top_left"
-  } else if (platformx_scaled>0 & platformy_scaled>0) {
-    platform_position <- "top_right"
-  } else if (platformx_scaled<0 & platformy_scaled<0) {
-    platform_position <- "bottom_left"
-  } else {
-    platform_position <- "bottom_right"
-  }
-
-  # set quadrants
-  if (platform_position=="top_left") {
-    data$Quadrant[data$x_scaled<0 & data$y_scaled>0] <- "Target"
-    data$Quadrant[data$x_scaled>0 & data$y_scaled>0] <- "Adjacent Left"
-    data$Quadrant[data$x_scaled<0 & data$y_scaled<0] <- "Adjacent Right"
-    data$Quadrant[data$x_scaled>0 & data$y_scaled<0] <- "Opposite"
-  } else if (platform_position=="top_right"){
-    data$Quadrant[data$x_scaled<0 & data$y_scaled>0] <- "Adjacent Right"
-    data$Quadrant[data$x_scaled>0 & data$y_scaled>0] <- "Target"
-    data$Quadrant[data$x_scaled<0 & data$y_scaled<0] <- "Opposite"
-    data$Quadrant[data$x_scaled>0 & data$y_scaled<0] <- "Adjacent Left"
-  } else if (platform_position=="bottom_left"){
-    data$Quadrant[data$x_scaled<0 & data$y_scaled>0] <- "Adjacent Left"
-    data$Quadrant[data$x_scaled>0 & data$y_scaled>0] <- "Opposite"
-    data$Quadrant[data$x_scaled<0 & data$y_scaled<0] <- "Target"
-    data$Quadrant[data$x_scaled>0 & data$y_scaled<0] <- "Adjacent Right"
-  } else if (platform_position=="bottom_right"){
-    data$Quadrant[data$x_scaled<0 & data$y_scaled>0] <- "Opposite"
-    data$Quadrant[data$x_scaled>0 & data$y_scaled>0] <- "Adjacent Right"
-    data$Quadrant[data$x_scaled<0 & data$y_scaled<0] <- "Adjacent Left"
-    data$Quadrant[data$x_scaled>0 & data$y_scaled<0] <- "Target"
-  } else {data$Quadrant = NA}
-
-  # remove NA (when x=0 and y=0, very unlikely)
-  data <- data[complete.cases(data[,c("Quadrant")]),]
+  # update coordinates (rescale) and add quadrant information
+  data <- update(data=data,
+                 centerx=centerx, centery=centery, radius=radius,
+                 platformx=platformx, platformy=platformy, platformradius=platformradius, removeNA=TRUE)
 
   # calculate duration
   data$Duration <- 0
