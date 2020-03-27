@@ -25,6 +25,7 @@
 #' @param duration Duration of the animation(s), default = 10
 #' @param frames Number of frames in the animation, default = 100
 #' @param time_bins Number of time-bins in the animation, default = 50
+#' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @keywords track velocity distance to target gif
 #' @export
 #' @import ggplot2
@@ -37,7 +38,8 @@ trackGIF <- function(data, id, day, trial,
                    centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
                    quadrant_colours=c("white","white","white","white"), platform_colour="grey", alpha_quadrants=0.2, alpha_platform=1,
                    track_colour="orange", alpha_track=0.35,
-                   loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50){
+                   loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
+                   theme_settings = NULL){
   # read data
   data <- as.data.frame(data)
 
@@ -90,7 +92,9 @@ trackGIF <- function(data, id, day, trial,
     shadow_trail(distance=0.01) +
     # theme + fixed coord
     theme_bw() +
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank()) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+          axis.title.x=element_blank(),axis.title.y=element_blank()) +
+    if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
     coord_fixed()
 
   # update animation parameters
