@@ -15,10 +15,16 @@
 #        removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50,
 #        loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50)
 #
+# barGIF(data=track_data, id="1w", day=1, trial=1,
+#        centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5,
+#        removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50,
+#        loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
+#        theme_settings =list(axis.text.x = element_text(face="bold", color="#993333", size=16)))
+#
 # ## simple circle
 # circle(x=0, y=0, radius=75, nrow_data=100, from=0, to=2, add_center=FALSE)
 #
-# ## trackGIF coloured
+# ## trackGIF
 # trackGIF(data=track_data, id="1w", day=1, trial=1,
 #          centerx=19.4, centery=-1.49, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
 #          quadrant_colours=c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"), platform_colour="black" , alpha_quadrants=0.3, alpha_platform=1,
@@ -27,9 +33,11 @@
 #
 # trackGIF(data=track_data, id="1w", day=1, trial=1,
 #          centerx=19.4, centery=-1.49, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
-#          quadrant_colours=c("white","white","white","white"), platform_colour="grey", alpha_quadrants=1, alpha_platform=1,
-#          track_colour="blue", alpha_track=0.35,
-#          loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50)
+#          quadrant_colours=c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"), platform_colour="black" , alpha_quadrants=0.3, alpha_platform=1,
+#          track_colour="orange", alpha_track=0.35,
+#          loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
+#          theme_settings =list(axis.text.x = element_text(face="bold", color="#993333", size=16),
+#                               axis.text.y = element_text(face="bold", color="blue", size=16)))
 #
 # ## play around with circles and quadrants
 # # parameter
