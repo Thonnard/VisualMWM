@@ -87,6 +87,9 @@ trackGIF <- function(data, id, day, trial,
     geom_polygon(data=platform_circle, aes(x, y), color="black", fill=platform_colour, alpha=alpha_platform) +
     # plot track
     geom_point(data = data, aes(x=x_coord, y=y_coord), color=track_colour, alpha=alpha_track) +
+    # set scales
+    scale_x_continuous(breaks = c(-radius,0,radius)) +
+    scale_y_continuous(breaks = c(-radius,0,radius)) +
     # transition
     transition_time(Time) +
     shadow_trail(distance=0.01) +
