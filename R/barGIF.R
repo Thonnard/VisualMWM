@@ -115,20 +115,25 @@ barGIF <- function(data, id, day, trial,
 
   # create plot
   p1 <- ggplot(data_long_average) +
+    # bar graph
     geom_bar(stat="identity", aes(x=Quadrant, y=Mean_Time_Quadrant, fill=Quadrant)) +
+    # text labels above bars
     geom_text(aes(x=Quadrant, label = round(Mean_Time_Quadrant), y = Mean_Time_Quadrant, color=Quadrant),
               position = position_dodge(0.9), vjust = -1, size=4, fontface="bold") +
+    # 25% chance level
     geom_hline(yintercept=25, linetype="dashed", size=0.2) +
+    # adjust titles
     labs(title = "Time-bin: {closest_state}") +
     # scale_fill_manual(values = c("grey", "black", "yellow", "red")) +
     scale_x_discrete(name="Quadrant", breaks=c("TQ","OQ","AL","AR"), labels=c("Target", "Opposite", "Adjacent\nLeft", "Adjacent\nRight")) +
     ylab("Time in quadrant (%)") +
+    # transition
+    transition_states(Time_bin, transition_length = 1) +
+    ease_aes('sine-in-out') +
     theme_classic() +
     theme(legend.position = "none", axis.text = element_text(size=12, face = "bold", colour = "black"),
           axis.title = element_text(size=16, face="bold", colour="black"),  plot.title = element_text(face="bold")) +
     if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
-    transition_states(Time_bin, transition_length = 1) +
-    ease_aes('sine-in-out')
 
   # update animation parameters
   animate(p1, nframes = frames, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
