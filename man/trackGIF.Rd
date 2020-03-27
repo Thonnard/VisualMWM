@@ -28,7 +28,8 @@ trackGIF(
   fps = 10,
   duration = 10,
   frames = 100,
-  time_bins = 50
+  time_bins = 50,
+  theme_settings = NULL
 )
 }
 \arguments{
@@ -80,6 +81,8 @@ trackGIF(
 \item{frames}{Number of frames in the animation, default = 100}
 
 \item{time_bins}{Number of time-bins in the animation, default = 50}
+
+\item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
 }
 \description{
 trackGIF creates a GIF showing the track of the animal for a specific trial
