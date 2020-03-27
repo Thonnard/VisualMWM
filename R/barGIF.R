@@ -41,7 +41,7 @@ barGIF <- function(data, id, day, trial,
   data <- data[which(data$Animal == id & data$Trial == trial),]
 
   # update coordinates (rescale) and add quadrant information
-  data <- update(data=data,
+  data <- updateCOORD(data=data,
                  centerx=centerx, centery=centery, radius=radius,
                  platformx=platformx, platformy=platformy, platformradius=platformradius, removeNA=TRUE)
 
