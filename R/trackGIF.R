@@ -48,7 +48,7 @@ trackGIF <- function(data, id, day, trial,
   x <- NULL; y <- NULL; x_coord <- NULL; y_coord <- NULL; Time <- NULL
 
   # update coordinates (rescale) and add quadrant information
-  data <- update(data=data,
+  data <- updateCOORD(data=data,
                  centerx=centerx, centery=centery, radius=radius,
                  platformx=platformx, platformy=platformy, platformradius=platformradius, removeNA=TRUE)
 
