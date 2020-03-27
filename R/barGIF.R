@@ -129,7 +129,7 @@ barGIF <- function(data, id, day, trial,
     ylab("Time in quadrant (%)") +
     # transition
     gganimate::transition_states(Time_bin, transition_length = 1) +
-    #ease_aes('sine-in-out') +
+    gganimate::ease_aes('sine-in-out') +
     theme_classic() +
     theme(legend.position = "none", axis.text = element_text(size=12, face = "bold", colour = "black"),
           axis.title = element_text(size=16, face="bold", colour="black"),  plot.title = element_text(face="bold")) +
