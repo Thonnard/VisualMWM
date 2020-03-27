@@ -29,7 +29,7 @@
 #' @keywords track velocity distance to target gif
 #' @export
 #' @import ggplot2
-#' @importFrom gganimate animate anim_save transition_reveal gifski_renderer transition_time shadow_trail
+#' @importFrom gganimate animate anim_save gifski_renderer transition_time shadow_trail
 #' @import gifski
 #' @import ggforce
 #' @import stats
