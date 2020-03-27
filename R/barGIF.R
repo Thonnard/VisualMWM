@@ -20,6 +20,7 @@
 #' @param duration Duration of the animation(s), default = 10
 #' @param frames Number of frames in the animation, default = 100
 #' @param time_bins Number of time-bins in the animation, default = 50
+#' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @keywords bar graph quadrant time
 #' @export
 #' @import ggplot2
@@ -32,7 +33,8 @@
 barGIF <- function(data, id, day, trial,
                      centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5,
                      removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50,
-                     loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50){
+                     loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
+                     theme_settings = NULL){
 
   # read data
   data <- as.data.frame(data)
@@ -124,6 +126,7 @@ barGIF <- function(data, id, day, trial,
     theme_classic() +
     theme(legend.position = "none", axis.text = element_text(size=12, face = "bold", colour = "black"),
           axis.title = element_text(size=16, face="bold", colour="black"),  plot.title = element_text(face="bold")) +
+    if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
     transition_states(Time_bin, transition_length = 1) +
     ease_aes('sine-in-out')
 
