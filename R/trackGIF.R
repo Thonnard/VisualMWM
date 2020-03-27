@@ -97,7 +97,7 @@ trackGIF <- function(data, id, day, trial,
     theme_bw() +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
           axis.title.x=element_blank(),axis.title.y=element_blank()) +
-    if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
+    if(!is.null(theme_settings)) {do.call(ggplot2::theme,theme_settings)}
     coord_fixed()
 
   # update animation parameters
