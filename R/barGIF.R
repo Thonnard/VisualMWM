@@ -11,8 +11,6 @@
 #' @param platformx x coordinate of the center of the platform (cm)
 #' @param platformy y coordinate of the center of the platform (cm)
 #' @param platformradius radius of the platform (cm), default = 7.5
-#' @param removeSwimspeedOutliers removes swim speed outliers (>= SwimspeedLimit), default = TRUE
-#' @param SwimspeedLimit default = 50 (cm/s), only used when removeSwimspeedOutliers = TRUE
 #' @param loop Loop the animation, default = FALSE
 #' @param width Width of the animation (px), default = 480
 #' @param height Height of the animation (px), default = 480
@@ -32,7 +30,6 @@
 
 barGIF <- function(data, id, day, trial,
                      centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5,
-                     removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50,
                      loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
                      theme_settings = NULL){
 

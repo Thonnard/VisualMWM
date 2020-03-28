@@ -15,8 +15,6 @@ barGIF(
   platformx,
   platformy,
   platformradius = 7.5,
-  removeSwimspeedOutliers = TRUE,
-  SwimspeedLimit = 50,
   loop = FALSE,
   width = 480,
   height = 480,
@@ -48,10 +46,6 @@ barGIF(
 \item{platformy}{y coordinate of the center of the platform (cm)}
 
 \item{platformradius}{radius of the platform (cm), default = 7.5}
-
-\item{removeSwimspeedOutliers}{removes swim speed outliers (>= SwimspeedLimit), default = TRUE}
-
-\item{SwimspeedLimit}{default = 50 (cm/s), only used when removeSwimspeedOutliers = TRUE}
 
 \item{loop}{Loop the animation, default = FALSE}
 
