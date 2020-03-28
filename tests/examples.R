@@ -9,6 +9,17 @@ setwd("tests/CSV_merge")
 mergeCOORD(startData=39,rowID=34, rowDay=35, rowTrial=32)
 mergeCOORD(startData=38,rowID=33, rowDay=32, rowTrial=34, rowGroup=22)
 
+##
+areaQuadrantTime(data=track_data, id="1w", day=1, trial=1,
+                 centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5,
+                 device="tiff", width=18, height=12, dpi=300, units="cm", viridis_color_palette = "D")
+
+areaQuadrantTime(data=track_data, id="1w", day=1, trial=4,
+                 centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5,
+                 width=18, height=12, dpi=300, units="cm", viridis_color_palette = "E",
+                 theme_settings =list(axis.text = element_text(face="bold", color="#993333", size=12),
+                                      axis.title = element_text(face="bold", color="black",size=14),
+                                      legend.position="none"))
 ## barGIF
 barGIF(data=track_data, id="1w", day=1, trial=1,
        centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5,
