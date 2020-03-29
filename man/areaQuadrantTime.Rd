@@ -2,7 +2,7 @@
 % Please edit documentation in R/areaQuadrantTime.R
 \name{areaQuadrantTime}
 \alias{areaQuadrantTime}
-\title{areaQuadrantTime creates a plot showing the percentage of time spent per quadrant for a specific trial of one animal, visualized in a stacked area plot}
+\title{Area chart for percentage of quadrant time}
 \usage{
 areaQuadrantTime(
   data,
@@ -61,7 +61,8 @@ areaQuadrantTime(
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
 }
 \description{
-areaQuadrantTime creates a plot showing the percentage of time spent per quadrant for a specific trial of one animal, visualized in a stacked area plot
+areaQuadrantTime creates a plot showing the percentage of time spent per quadrant for a specific trial of one animal, visualized in a stacked area plot.
+This function returns the graph as a ggplot object and saves the image (default = jpeg).
 }
 \keyword{area}
 \keyword{graph}
