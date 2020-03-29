@@ -2,7 +2,7 @@
 % Please edit documentation in R/barGIF.R
 \name{barGIF}
 \alias{barGIF}
-\title{barGIF creates a GIF showing the percentage of time spent per quadrant for a specific trial of one animal}
+\title{Bar chart for percentage of quadrant time}
 \usage{
 barGIF(
   data,
@@ -64,7 +64,7 @@ barGIF(
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
 }
 \description{
-barGIF creates a GIF showing the percentage of time spent per quadrant for a specific trial of one animal
+The barGIF function creates a GIF showing the percentage of time spent per quadrant for a specific trial of one animal.
 }
 \keyword{bar}
 \keyword{graph}

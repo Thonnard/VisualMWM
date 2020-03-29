@@ -2,8 +2,7 @@
 % Please edit documentation in R/circle.R
 \name{circle}
 \alias{circle}
-\title{circle creates a data set with x and y values that can be used as coordinates to plot a circle.
-The arguments 'from' and 'to' can be adjust to output different quadrants of the circle.}
+\title{Create data set for plotting circles}
 \usage{
 circle(
   x = 0,
@@ -31,6 +30,6 @@ circle(
 \item{add_center}{Add the coordinate of the center (x,y) to the data set. Useful when creating quadrant polygons. Default = FALSE}
 }
 \description{
-circle creates a data set with x and y values that can be used as coordinates to plot a circle.
+The circle function creates a data set with x and y values that can be used as coordinates to plot a circle.
 The arguments 'from' and 'to' can be adjust to output different quadrants of the circle.
 }

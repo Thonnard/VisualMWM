@@ -1,6 +1,8 @@
-#' updateCOORD rescales x and y coordinates to center (0,0) and adds quadrant information to the data set
-#' Adjacent Left is the quadrant to the left of the target quadrant when standing at the target quadrant and looking towards the platform
-#' Adjacent Right is the quadrant to the right of the target quadrant when standing at the target quadrant and looking towards the platform
+#' @title Preprocess coordinates data
+#'
+#' @description The updateCOORD function rescales x and y coordinates to center (0,0) and adds quadrant information to the data set.
+#' Adjacent Left is the quadrant to the left of the target quadrant when standing at the target quadrant and looking towards the platform.
+#' Adjacent Right is the quadrant to the right of the target quadrant when standing at the target quadrant and looking towards the platform.
 #'
 #' @param data Data set containing at following columns: "x", "y".
 #' "x" and "y" represent the coordinates (position) of the animal at a certain timepoint during a trial.

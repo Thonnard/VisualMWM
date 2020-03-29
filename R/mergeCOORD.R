@@ -1,4 +1,6 @@
-#' mergeCOORD reads all csv files in a specific folder and creates a single output data file ("data_merged (current date).csv")
+#' @title Merge coordinates data sets
+#'
+#' @description The mergeCOORD function reads all csv files in a specific folder and creates a single output data file ("data_merged (current date).csv").
 #' Input: csv files created with Ethovision: Analysis > Export > Raw data...(export settings: File type: ANSI text, delimiter: ",").
 #' The output file contains a data set with time, x and y coordinates, animal id, trial info and group (when available)
 #'

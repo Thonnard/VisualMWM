@@ -1,4 +1,6 @@
-#' barGIF creates a GIF showing the percentage of time spent per quadrant for a specific trial of one animal
+#' @title Bar chart for percentage of quadrant time
+#'
+#' @description The barGIF function creates a GIF showing the percentage of time spent per quadrant for a specific trial of one animal.
 #'
 #' @param data Data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial".
 #' "x" and "y" represent the coordinates (position) of the animal at a certain timepoint ("Time") during the trial.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/trackGIF.R
 \name{trackGIF}
 \alias{trackGIF}
-\title{trackGIF creates a GIF showing the track of the animal for a specific trial}
+\title{Morris water maze track data GIF}
 \usage{
 trackGIF(
   data,
@@ -85,7 +85,7 @@ trackGIF(
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
 }
 \description{
-trackGIF creates a GIF showing the track of the animal for a specific trial
+The trackGIF function creates a GIF showing the track of the animal for a specific trial.
 }
 \keyword{distance}
 \keyword{gif}

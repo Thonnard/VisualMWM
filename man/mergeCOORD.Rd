@@ -2,9 +2,7 @@
 % Please edit documentation in R/mergeCOORD.R
 \name{mergeCOORD}
 \alias{mergeCOORD}
-\title{mergeCOORD reads all csv files in a specific folder and creates a single output data file ("data_merged (current date).csv")
-Input: csv files created with Ethovision: Analysis > Export > Raw data...(export settings: File type: ANSI text, delimiter: ",").
-The output file contains a data set with time, x and y coordinates, animal id, trial info and group (when available)}
+\title{Merge coordinates data sets}
 \usage{
 mergeCOORD(startData, rowID, rowDay, rowTrial, rowGroup = "FOO")
 }
@@ -20,5 +18,9 @@ mergeCOORD(startData, rowID, rowDay, rowTrial, rowGroup = "FOO")
 \item{rowGroup}{row number in the csv files that contains the animal's group (optional)}
 }
 \description{
-WARNING: depending on the number of CSV files, this might take several minutes.
+The mergeCOORD function reads all csv files in a specific folder and creates a single output data file ("data_merged (current date).csv").
+Input: csv files created with Ethovision: Analysis > Export > Raw data...(export settings: File type: ANSI text, delimiter: ",").
+The output file contains a data set with time, x and y coordinates, animal id, trial info and group (when available)
+
+ WARNING: depending on the number of CSV files, this might take several minutes.
 }

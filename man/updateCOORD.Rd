@@ -2,9 +2,7 @@
 % Please edit documentation in R/updateCOORD.R
 \name{updateCOORD}
 \alias{updateCOORD}
-\title{updateCOORD rescales x and y coordinates to center (0,0) and adds quadrant information to the data set
-Adjacent Left is the quadrant to the left of the target quadrant when standing at the target quadrant and looking towards the platform
-Adjacent Right is the quadrant to the right of the target quadrant when standing at the target quadrant and looking towards the platform}
+\title{Preprocess coordinates data}
 \usage{
 updateCOORD(
   data,
@@ -36,7 +34,7 @@ updateCOORD(
 \item{removeNA}{Remove NAs. Default=TRUE.}
 }
 \description{
-updateCOORD rescales x and y coordinates to center (0,0) and adds quadrant information to the data set
-Adjacent Left is the quadrant to the left of the target quadrant when standing at the target quadrant and looking towards the platform
-Adjacent Right is the quadrant to the right of the target quadrant when standing at the target quadrant and looking towards the platform
+The updateCOORD function rescales x and y coordinates to center (0,0) and adds quadrant information to the data set.
+Adjacent Left is the quadrant to the left of the target quadrant when standing at the target quadrant and looking towards the platform.
+Adjacent Right is the quadrant to the right of the target quadrant when standing at the target quadrant and looking towards the platform.
 }

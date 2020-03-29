@@ -1,4 +1,6 @@
-#' appendGIFs read and append two GIFs
+#' @title Append two GIFs
+#'
+#' @description The appendGIFs function reads and appends two GIFs, and saves the appended gif in your wd.
 #'
 #' @param gif_1 First GIF image
 #' @param gif_2 Second GIF image

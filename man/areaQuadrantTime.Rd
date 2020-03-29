@@ -61,7 +61,7 @@ areaQuadrantTime(
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
 }
 \description{
-areaQuadrantTime creates a plot showing the percentage of time spent per quadrant for a specific trial of one animal, visualized in a stacked area plot.
+areaQuadrantTime creates a geom_area plot showing the percentage of time spent per quadrant for a specific trial of one animal, visualized in a stacked area plot.
 This function returns the graph as a ggplot object and saves the image (default = jpeg).
 }
 \keyword{area}

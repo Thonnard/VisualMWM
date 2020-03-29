@@ -1,4 +1,6 @@
-#' circle creates a data set with x and y values that can be used as coordinates to plot a circle.
+#' @title Create data set for plotting circles
+#'
+#' @description The circle function creates a data set with x and y values that can be used as coordinates to plot a circle.
 #' The arguments 'from' and 'to' can be adjust to output different quadrants of the circle.
 #'
 #' @param x The x coordinate of the center of the circle.
