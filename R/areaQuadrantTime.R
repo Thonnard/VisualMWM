@@ -1,4 +1,4 @@
-#' Area chart for percentage of quadrant time
+#' @title Area chart for percentage of quadrant time
 #'
 #' @description areaQuadrantTime creates a plot showing the percentage of time spent per quadrant for a specific trial of one animal, visualized in a stacked area plot
 #' This function returns the graph as a ggplot object and saves the image (default = jpeg).
