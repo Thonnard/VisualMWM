@@ -1,4 +1,5 @@
 #' areaQuadrantTime creates a plot showing the percentage of time spent per quadrant for a specific trial of one animal, visualized in a stacked area plot
+#' This function returns the graph as a ggplot object and saves the image (default = jpeg).
 #'
 #' @param data Data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial".
 #' "x" and "y" represent the coordinates (position) of the animal at a certain timepoint ("Time") during the trial.
@@ -122,5 +123,6 @@ areaQuadrantTime<- function(data, id, day, trial,
   filename <- paste("areaQuadrantTime_", id, "-day_", day, "-trial_", trial , ".", device, sep="")
   ggsave(plot = p1, filename = filename, device = device, width = width, height = height, dpi = dpi, units = units)
 
+  # return ggplot object
   return(p1)
 }
