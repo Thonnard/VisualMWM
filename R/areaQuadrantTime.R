@@ -108,7 +108,7 @@ areaQuadrantTime<- function(data, id, day, trial,
     dplyr::summarize(Mean_Time_Quadrant = mean(Time_Quadrant, na.rm = TRUE))
 
   # create plot
-  ggplot(data = data_long, aes(x=Time, y=Time_Quadrant, fill=Quadrant, color=Quadrant)) +
+  p1 <- ggplot(data = data_long, aes(x=Time, y=Time_Quadrant, fill=Quadrant, color=Quadrant)) +
     geom_area() +
     ggtitle(paste("Trial ", trial, sep="")) +
     xlab("Trial duration (s)") +
@@ -120,5 +120,7 @@ areaQuadrantTime<- function(data, id, day, trial,
 
   # save plot
   filename <- paste("areaQuadrantTime_", id, "-day_", day, "-trial_", trial , ".", device, sep="")
-  ggsave(filename, device = device, width = width, height = height, dpi = dpi, units = units)
+  ggsave(plot = p1, filename = filename, device = device, width = width, height = height, dpi = dpi, units = units)
+
+  return(p1)
 }
