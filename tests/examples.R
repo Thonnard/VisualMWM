@@ -1,6 +1,12 @@
 ## load some data
 load("track_data.RData")
 
+## groupCOURD
+groupCOORD(data=track_data, by="Group")
+groupCOORD(data=track_data, by=c("Group", "Day"))
+groupCOORD(data=track_data, by=c("Group", "Day", "Trial"))
+groupCOORD(data=track_data, by=c("Day", "Trial"))
+
 ## updatecOORD
 data <- updateCOORD(data=track_data, centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, removeNA=TRUE)
 
