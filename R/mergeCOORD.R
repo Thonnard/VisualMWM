@@ -1,47 +1,60 @@
 #' @title Merge coordinates data sets
 #'
-#' @description The mergeCOORD function reads all csv files in a specific folder and creates a single output data file ("data_merged (current date).csv").
-#' Input: csv files created with Ethovision: Analysis > Export > Raw data...(export settings: File type: ANSI text, delimiter: ",").
+#' @description The mergeCOORD function reads all xlsx/csv files in a specific folder and creates a single output data file ("data_merged (current date).csv").
+#' Input: xlsx files or csv files created with Ethovision: Analysis > Export > Raw data...(export settings for csv: File type: ANSI text, delimiter: ",").
 #' The output file contains a data set with time, x and y coordinates, animal id, trial info and group (when available)
 #'
-#'  WARNING: depending on the number of CSV files, this might take several minutes.
+#'  WARNING: depending on the number of xlsx/CSV files, this might take several minutes.
 #'
-#' @param startData row number in the csv files where the data starts (the values, not the headers)
-#' @param rowID row number in the csv files that contains the animal's ID
-#' @param rowDay row number in the csv files that contains day information
-#' @param rowTrial row number in the csv files that contains trial information
-#' @param rowGroup row number in the csv files that contains the animal's group (optional)
-#' @importFrom utils read.csv write.csv
+#' @param startData row number in the xlsx/csv files where the data starts (the values, not the headers)
+#' @param rowID row number in the xlsx/csv files that contains the animal's ID
+#' @param rowDay row number in the xlsx/csv files that contains day information
+#' @param rowTrial row number in the xlsx/csv files that contains trial information
+#' @param rowGroup row number in the xlsx/csv files that contains the animal's group (optional)
+#' @param filetype Filetype of data files. "xlsx" or "csv". Default: "xlsx".
+#' @importFrom utils write.csv
+#' @importFrom tibble add_column
+#' @importFrom readxl read_xlsx
+#' @importFrom readr read_csv
+#' @importFrom dplyr pull
 #' @export
 
-mergeCOORD <- function(startData, rowID, rowDay, rowTrial, rowGroup = "FOO"){
+mergeCOORD <- function(startData, rowID, rowDay, rowTrial, rowGroup = "FOO", filetype="xlsx"){
   # warning
-  writeLines("Make sure your current working directory only contains raw MWM coordinates csv files.\nPlease wait... This might take a moment...")
+  writeLines('Make sure your current working directory only contains raw MWM coordinates "xlsx" or "csv" files.\nPlease wait... This might take a moment...')
 
   # get file names
   files <- list.files(full.names=TRUE)
 
-  # read data
-  read <- lapply(files, function(i){read.csv(i, header=FALSE, skip=startData-1, stringsAsFactors=FALSE)})
+  # xslx or csv
+  if (filetype == "xlsx") {
+    # read data
+    read <- suppressWarnings(suppressMessages(lapply(files, function(i){readxl::read_xlsx(path=i, col_names=FALSE, skip=startData-1, sheet=1)})))
+    # read id, group, day and trial info
+    id <- suppressWarnings(suppressMessages(lapply(files, function(i){readxl::read_xlsx(path=i, col_names=FALSE, sheet=1)[rowID,2]})))
+    group <- suppressWarnings(suppressMessages(lapply(files, function(i){readxl::read_xlsx(path=i, col_names=FALSE, sheet=1)[rowGroup,2]})))
+    day <- suppressWarnings(suppressMessages(lapply(files, function(i){readxl::read_xlsx(path=i, col_names=FALSE, sheet=1)[rowDay,2]})))
+    trial <- suppressWarnings(suppressMessages(lapply(files, function(i){readxl::read_xlsx(path=i, col_names=FALSE, sheet=1)[rowTrial,2]})))
+  } else if (filetype == "csv") {
+    # read data
+    read <- suppressWarnings(suppressMessages(lapply(files, function(i){readr::read_csv(i, col_names = FALSE, skip=startData-1)})))
+    # read id, group, day and trial info
+    id <- suppressWarnings(suppressMessages(lapply(files, function(i){readr::read_csv(i, col_names=FALSE)[rowID,2]})))
+    group <- suppressWarnings(suppressMessages(lapply(files, function(i){readr::read_csv(i, col_names=FALSE)[rowGroup,2]})))
+    day <- suppressWarnings(suppressMessages(lapply(files, function(i){readr::read_csv(i, col_names=FALSE)[rowDay,2]})))
+    trial <- suppressWarnings(suppressMessages(lapply(files, function(i){readr::read_csv(i, col_names=FALSE)[rowTrial,2]})))
+  } else stop('Please select folder with only "xlsx" or "csv" files')
 
-  # id
-  id <- lapply(files, function(i){read.csv(i, header=FALSE)[rowID,2]})
+  # change colnames
+  colnames <- paste0("V", seq_len(ncol(read[[1]])))
+  read <- lapply(read, setNames, colnames)
 
-  # group
-  group <- lapply(files, function(i){read.csv(i, header=FALSE)[rowGroup,2]})
-
-  # day
-  day <- lapply(files, function(i){read.csv(i, header=FALSE)[rowDay,2]})
-
-  # trial
-  trial <- lapply(files, function(i){read.csv(i, header=FALSE)[rowTrial,2]})
-
-  # add id, trial, day and group (optional) information
+  # add id, group, day and trial info to data set
   for(i in 1:length(files)) {
-    read[[i]]$Animal <- id[[i]]
-    read[[i]]$Day <- day[[i]]
-    read[[i]]$Trial <- trial[[i]]
-    if(rowGroup != "FOO") read[[i]]$Group <- group[[i]] else read[[i]]$Group <- "NA"
+    read[[i]] <- read[[i]] %>% tibble::add_column(Animal = pull(id[[i]]))
+    read[[i]] <-   read[[i]] %>% tibble::add_column(Day = pull(day[[i]]))
+    read[[i]] <-   read[[i]] %>% tibble::add_column(Trial = pull(trial[[i]]))
+    if(rowGroup != "FOO")   read[[i]] <- read[[i]] %>% tibble::add_column(Group = pull(group[[i]])) else   read[[i]] <- read[[i]] %>% add_column(Group = "NA")
   }
 
   # create dataset

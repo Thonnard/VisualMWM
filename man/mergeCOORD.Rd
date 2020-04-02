@@ -4,23 +4,32 @@
 \alias{mergeCOORD}
 \title{Merge coordinates data sets}
 \usage{
-mergeCOORD(startData, rowID, rowDay, rowTrial, rowGroup = "FOO")
+mergeCOORD(
+  startData,
+  rowID,
+  rowDay,
+  rowTrial,
+  rowGroup = "FOO",
+  filetype = "xlsx"
+)
 }
 \arguments{
-\item{startData}{row number in the csv files where the data starts (the values, not the headers)}
+\item{startData}{row number in the xlsx/csv files where the data starts (the values, not the headers)}
 
-\item{rowID}{row number in the csv files that contains the animal's ID}
+\item{rowID}{row number in the xlsx/csv files that contains the animal's ID}
 
-\item{rowDay}{row number in the csv files that contains day information}
+\item{rowDay}{row number in the xlsx/csv files that contains day information}
 
-\item{rowTrial}{row number in the csv files that contains trial information}
+\item{rowTrial}{row number in the xlsx/csv files that contains trial information}
 
-\item{rowGroup}{row number in the csv files that contains the animal's group (optional)}
+\item{rowGroup}{row number in the xlsx/csv files that contains the animal's group (optional)}
+
+\item{filetype}{Filetype of data files. "xlsx" or "csv". Default: "xlsx".}
 }
 \description{
-The mergeCOORD function reads all csv files in a specific folder and creates a single output data file ("data_merged (current date).csv").
-Input: csv files created with Ethovision: Analysis > Export > Raw data...(export settings: File type: ANSI text, delimiter: ",").
+The mergeCOORD function reads all xlsx/csv files in a specific folder and creates a single output data file ("data_merged (current date).csv").
+Input: xlsx files or csv files created with Ethovision: Analysis > Export > Raw data...(export settings for csv: File type: ANSI text, delimiter: ",").
 The output file contains a data set with time, x and y coordinates, animal id, trial info and group (when available)
 
- WARNING: depending on the number of CSV files, this might take several minutes.
+ WARNING: depending on the number of xlsx/CSV files, this might take several minutes.
 }
