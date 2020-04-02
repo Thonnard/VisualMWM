@@ -12,8 +12,8 @@ data <- updateCOORD(data=track_data, centerx=19.4, centery=-1.4, radius=75, plat
 
 ## mergeCOORD
 setwd("tests/CSV_merge")
-mergeCOORD(startData=39,rowID=34, rowDay=35, rowTrial=32)
-mergeCOORD(startData=38,rowID=33, rowDay=32, rowTrial=34, rowGroup=22)
+mergeCOORD(startData=39,rowID=34, rowDay=35, rowTrial=32, rowGroup="FOO", filetype = "xlsx")
+mergeCOORD(startData=39,rowID=34, rowDay=35, rowTrial=32, rowGroup="FOO", filetype = "csv")
 
 ##
 areaQuadrantTime(data=track_data, id="1w", day=1, trial=1,
