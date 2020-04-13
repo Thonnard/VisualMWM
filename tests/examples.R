@@ -1,6 +1,23 @@
 ## load some data
 load("track_data.RData")
 
+## heatmapGIF
+heatmapGIF(data=track_data, id="1w", day=1, trial=1,
+           centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
+           platform_colour="grey", alpha_platform=1, platform_linetype="solid", platform_line_colour="black",
+           heatmap_low = "yellow" , heatmap_high = "red",
+           loop = FALSE, width = 480, height = 480, duration = 10, frames = 100, resolution = 80,
+           theme_settings = NULL)
+
+heatmapGIF(data=track_data, id="1w", day=1, trial=1,
+           centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
+           platform_colour="grey", alpha_platform=1, platform_linetype="solid", platform_line_colour="black",
+           heatmap_low = "green" , heatmap_high = "blue",
+           loop = FALSE, width = 480, height = 480, duration = 5, frames = 50, resolution = 80,
+           theme_settings =list(axis.text = element_text(face="bold", color="#993333", size=12),
+                                axis.title = element_text(face="bold", color="black",size=14),
+                                legend.position="none"))
+
 ## groupCOURD
 groupCOORD(data=track_data, by="Group")
 groupCOORD(data=track_data, by=c("Group", "Day"))
