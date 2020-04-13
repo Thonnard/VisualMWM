@@ -15,7 +15,7 @@ setwd("tests/CSV_merge")
 mergeCOORD(startData=39,rowID=34, rowDay=35, rowTrial=32, rowGroup="FOO", filetype = "xlsx")
 mergeCOORD(startData=39,rowID=34, rowDay=35, rowTrial=32, rowGroup="FOO", filetype = "csv")
 
-##
+## areaQuadrantTime
 areaQuadrantTime(data=track_data, id="1w", day=1, trial=1,
                  centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5,
                  device="tiff", width=18, height=12, dpi=300, units="cm", viridis_color_palette = "D")
