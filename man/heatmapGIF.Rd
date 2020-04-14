@@ -2,7 +2,7 @@
 % Please edit documentation in R/heatmapGIF.R
 \name{heatmapGIF}
 \alias{heatmapGIF}
-\title{Morris water maze track data GIF}
+\title{Morris water maze heatmap GIF}
 \usage{
 heatmapGIF(
   data,
@@ -98,7 +98,7 @@ When TRUE, colour scale is set by heatmap_low and heatmap_high. Default = FALSE}
 
 \item{height}{Height of the animation (px), default = 480}
 
-\item{duration}{Duration of the animation(s), default = 10}
+\item{duration}{Duration of the animation (s), default = 10}
 
 \item{frames}{Number of frames in the animation, default = 100}
 
@@ -107,7 +107,7 @@ When TRUE, colour scale is set by heatmap_low and heatmap_high. Default = FALSE}
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
 }
 \description{
-The trackGIF function creates a GIF showing the track of the animal for a specific trial.
+The heatmapGIF function creates a raster or contour heatmap GIF of the animal for a specific trial.
 }
 \keyword{distance}
 \keyword{gif}

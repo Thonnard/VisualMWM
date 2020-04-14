@@ -1,6 +1,6 @@
-#' @title Morris water maze track data GIF
+#' @title Morris water maze heatmap GIF
 #'
-#' @description The trackGIF function creates a GIF showing the track of the animal for a specific trial.
+#' @description The heatmapGIF function creates a raster or contour heatmap GIF of the animal for a specific trial.
 #'
 #' @param data Data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial".
 #' "x" and "y" represent the coordinates (position) of the animal at a certain timepoint ("Time") during the trial.
