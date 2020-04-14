@@ -32,7 +32,7 @@
 #' @param loop Loop the animation, default = FALSE
 #' @param width Width of the animation (px), default = 480
 #' @param height Height of the animation (px), default = 480
-#' @param duration Duration of the animation(s), default = 10
+#' @param duration Duration of the animation (s), default = 10
 #' @param frames Number of frames in the animation, default = 100
 #' @param resolution Resolution of GIF, passed to gifski. Default = 80
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
