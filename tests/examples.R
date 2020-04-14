@@ -17,7 +17,7 @@ heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            platform_colour=NA, platform_alpha=1, platform_linetype="dotted", platform_line_colour="black", platform_line_size=1,
            heatmap_low = "lightblue" , heatmap_high = "darkblue",
            type="contour", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
-           contour_colour_filled = NA,
+           contour_colour_filled = "white",
            loop = FALSE, width = 480, height = 480, duration = 5, frames = 50, resolution = 80,
            theme_settings =list(axis.text = element_text(face="bold", color="#993333", size=12),
                                 legend.position="none"))
