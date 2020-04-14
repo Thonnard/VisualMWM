@@ -2,20 +2,24 @@
 load("track_data.RData")
 
 ## heatmapGIF
-heatmapGIF(data=track_data, id="1w", day=1, trial=1,
+heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
-           platform_colour="grey", alpha_platform=1, platform_linetype="solid", platform_line_colour="black",
+           remove_data_outside_maze=TRUE,
+           platform_colour=NA, alpha_platform=1, platform_linetype="dotted", platform_line_colour="black", platform_line_size=1,
            heatmap_low = "yellow" , heatmap_high = "red",
+           type="raster", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
            loop = FALSE, width = 480, height = 480, duration = 10, frames = 100, resolution = 80,
            theme_settings = NULL)
 
-heatmapGIF(data=track_data, id="1w", day=1, trial=1,
+heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
-           platform_colour="grey", alpha_platform=1, platform_linetype="solid", platform_line_colour="black",
-           heatmap_low = "green" , heatmap_high = "blue",
+           remove_data_outside_maze=TRUE,
+           platform_colour=NA, alpha_platform=1, platform_linetype="dotted", platform_line_colour="black", platform_line_size=1,
+           heatmap_low = "lightblue" , heatmap_high = "darkblue",
+           type="contour", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
+           contour_colour_filled = NA,
            loop = FALSE, width = 480, height = 480, duration = 5, frames = 50, resolution = 80,
            theme_settings =list(axis.text = element_text(face="bold", color="#993333", size=12),
-                                axis.title = element_text(face="bold", color="black",size=14),
                                 legend.position="none"))
 
 ## groupCOURD
