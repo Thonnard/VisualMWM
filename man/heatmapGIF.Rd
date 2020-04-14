@@ -16,12 +16,20 @@ heatmapGIF(
   platformy,
   platformradius = 7.5,
   ndata_circle = 100,
-  platform_colour = "grey",
-  alpha_platform = 1,
-  platform_linetype = "solid",
+  remove_data_outside_maze = TRUE,
+  platform_colour = NA,
+  platform_alpha = 1,
+  platform_linetype = "dotted",
   platform_line_colour = "black",
+  platform_line_size = 1,
   heatmap_low = "yellow",
   heatmap_high = "red",
+  type = "raster",
+  interpolate = TRUE,
+  contour_filled = TRUE,
+  contour_colour_scaled = FALSE,
+  contour_colour_filled = NA,
+  contour_colour = "blue",
   loop = FALSE,
   width = 480,
   height = 480,
@@ -55,17 +63,34 @@ heatmapGIF(
 
 \item{ndata_circle}{Number of data points in the circle data set. Higher means smoother (more perfect) circle. Default = 100}
 
-\item{platform_colour}{Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"}
+\item{remove_data_outside_maze}{Remove datapoints that lie outside the water maze. Default = TRUE}
 
-\item{alpha_platform}{Alpha level for platform. Default = 1}
+\item{platform_colour}{Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = NA}
 
-\item{platform_linetype}{Linetype for platform. Derived from ggplot2. Default = "solid"}
+\item{platform_alpha}{Alpha level for platform. Default = 1}
+
+\item{platform_linetype}{Linetype for platform. Derived from ggplot2. Default = "dotted"}
 
 \item{platform_line_colour}{Colour of platform circle. Default = "black"}
+
+\item{platform_line_size}{Size of platform line. Default = 1}
 
 \item{heatmap_low}{Low range colour heatmap. Default = "yellow"}
 
 \item{heatmap_high}{High range colour heatmap. Default = "red"}
+
+\item{type}{Type of heatmap. Options are "raster" or "contour". Default = "raster"}
+
+\item{interpolate}{Interpolate raster heatmaps? Ignored for contour heatmaps. Default = TRUE}
+
+\item{contour_filled}{Fill contour heatmaps? Ignored for raster heatmaps. Default = TRUE}
+
+\item{contour_colour_scaled}{Colour scale for contour heatmaps. When false, colour of contour lines is set by contour_colour.
+When TRUE, colour scale is set by heatmap_low and heatmap_high. Default = FALSE}
+
+\item{contour_colour_filled}{Colour of contour lines in filled contour heatmap. Default = NA}
+
+\item{contour_colour}{Colour of contour lines in empty contour heatmap. Default = "blue"}
 
 \item{loop}{Loop the animation, default = FALSE}
 

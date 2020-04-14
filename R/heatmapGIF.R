@@ -14,12 +14,21 @@
 #' @param platformy y coordinate of the center of the platform (cm)
 #' @param platformradius radius of the platform (cm), default = 7.5
 #' @param ndata_circle Number of data points in the circle data set. Higher means smoother (more perfect) circle. Default = 100
-#' @param platform_colour Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"
-#' @param alpha_platform Alpha level for platform. Default = 1
-#' @param platform_linetype Linetype for platform. Derived from ggplot2. Default = "solid"
+#' @param remove_data_outside_maze Remove datapoints that lie outside the water maze. Default = TRUE
+#' @param platform_colour Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = NA
+#' @param platform_alpha Alpha level for platform. Default = 1
+#' @param platform_linetype Linetype for platform. Derived from ggplot2. Default = "dotted"
 #' @param platform_line_colour Colour of platform circle. Default = "black"
+#' @param platform_line_size Size of platform line. Default = 1
 #' @param heatmap_low Low range colour heatmap. Default = "yellow"
 #' @param heatmap_high High range colour heatmap. Default = "red"
+#' @param type Type of heatmap. Options are "raster" or "contour". Default = "raster"
+#' @param interpolate Interpolate raster heatmaps? Ignored for contour heatmaps. Default = TRUE
+#' @param contour_filled Fill contour heatmaps? Ignored for raster heatmaps. Default = TRUE
+#' @param contour_colour_scaled Colour scale for contour heatmaps. When false, colour of contour lines is set by contour_colour.
+#' When TRUE, colour scale is set by heatmap_low and heatmap_high. Default = FALSE
+#' @param contour_colour_filled Colour of contour lines in filled contour heatmap. Default = NA
+#' @param contour_colour Colour of contour lines in empty contour heatmap. Default = "blue"
 #' @param loop Loop the animation, default = FALSE
 #' @param width Width of the animation (px), default = 480
 #' @param height Height of the animation (px), default = 480
@@ -34,8 +43,11 @@
 
 heatmapGIF <- function(data, id, day, trial,
                    centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
-                   platform_colour="grey", alpha_platform=1, platform_linetype="solid", platform_line_colour="black",
+                   remove_data_outside_maze=TRUE,
+                   platform_colour=NA, platform_alpha=1, platform_linetype="dotted", platform_line_colour="black", platform_line_size=1,
                    heatmap_low = "yellow" , heatmap_high = "red",
+                   type="raster", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
+                   contour_colour_filled = NA, contour_colour = "blue",
                    loop = FALSE, width = 480, height = 480, duration = 10, frames = 100, resolution = 80,
                    theme_settings = NULL){
   # read data
@@ -45,7 +57,8 @@ heatmapGIF <- function(data, id, day, trial,
   data <- data[which(data$Animal == id & data$Trial == trial),]
 
   # initiate vars
-  nlevel <- NULL
+  ..level.. <- NULL
+  ..density.. <- NULL
 
   # initiate vars
   x <- NULL; y <- NULL; x_coord <- NULL; y_coord <- NULL; Time <- NULL
@@ -59,11 +72,7 @@ heatmapGIF <- function(data, id, day, trial,
   platformx_coord <- platformx-centerx
   platformy_coord <- platformy-centery
 
-  # create circles and quadrant data
-  top_right_quadrant <- circle(x=0, y=0, radius=radius, nrow_data=ndata_circle, from=0, to=0.5, add_center=TRUE)
-  bottom_right_quadrant <- circle(x=0, y=0, radius=radius, nrow_data=ndata_circle, from=0, to=-0.5, add_center=TRUE)
-  top_left_quadrant <- -bottom_right_quadrant
-  bottom_left_quadrant <- -top_right_quadrant
+  # create maze and platform circles
   maze <- circle(x=0, y=0, radius=radius, nrow_data=ndata_circle, from=0, to=2, add_center=FALSE)
   platform_circle <- circle(x=platformx_coord, y=platformy_coord, radius=platformradius, nrow_data=ndata_circle, from=0, to=2, add_center=FALSE)
 
@@ -74,15 +83,16 @@ heatmapGIF <- function(data, id, day, trial,
   outside_all <- rbind(maze,df)
 
   # remove datapoints outside maze
-  data <- data[which(abs(data$x) <= radius & abs(data$y) <= radius),]
+  if (isTRUE(remove_data_outside_maze)) {
+    data <- data[which(abs(data$x) <= radius & abs(data$y) <= radius),]} else {data <- data}
 
   # parameters
   nframes <- frames
   duration <- duration
   mydelay <- (1/nframes)*duration
 
-  # create plots
-  makeplot <- function(){
+  # create raster plots
+  makeRASTER <- function(){
     # create sequence list
     maxtime <- max(data$Time)
     myseq <- seq(from=1, to=maxtime, length.out = nframes)
@@ -93,13 +103,14 @@ heatmapGIF <- function(data, id, day, trial,
     }
     # create plots
     lapply(mylist, function(mydata){
-      plot <- ggplot() +
-        # plot heatmap
-        stat_density_2d(data=mydata, aes(x = x, y = y, fill = stat(nlevel)), geom = "polygon", na.rm=TRUE) +
+      plot <- ggplot(data=mydata, aes(x=x, y=y)) +
+        # heatmap
+        stat_density_2d(aes(fill = ..density..), geom = "raster", contour = FALSE, interpolate = interpolate) +
         # plot outside_all, cave: set color=NA or otherwise you see the closing line through the circle
         geom_polygon(data=outside_all, aes(x,y), color=NA, fill="white", alpha=1) +
-        # plot empty circle
-        geom_polygon(data=maze, aes(x,y), color="black", fill=NA, alpha=1) +
+        # scales
+        scale_x_continuous(breaks = c(-radius,0,radius)) +
+        scale_y_continuous(breaks = c(-radius,0,radius)) +
         # plot quadrant division
         geom_segment(aes(x=-radius,xend=radius,y=0,yend=0),linetype=2) +
         geom_segment(aes(x=0,xend=0,y=-radius,yend=radius),linetype=2) +
@@ -108,26 +119,170 @@ heatmapGIF <- function(data, id, day, trial,
         geom_hline(yintercept=radius) +
         geom_vline(xintercept=-radius) +
         geom_vline(xintercept=radius) +
-        # plot circle and platform
-        geom_path(data=maze, aes(x, y), color="black") +
-        geom_polygon(data=platform_circle, aes(x, y), color="black", fill="white", alpha=1) +  # get white background
-        geom_polygon(data=platform_circle, aes(x, y), color=platform_line_colour, fill=platform_colour, alpha=alpha_platform, linetype=platform_linetype) +
-        # set scales
-        scale_x_continuous(breaks = c(-radius,0,radius)) +
-        scale_y_continuous(breaks = c(-radius,0,radius)) +
-        # scale
+        # maze
+        #geom_path(data=maze, aes(x, y), color="black") +
+        # platform
+        geom_polygon(data=platform_circle, aes(x, y), color=platform_line_colour, fill=platform_colour, alpha=platform_alpha, linetype=platform_linetype, size=platform_line_size) +
+        # colours
         scale_fill_gradient("Density", low=heatmap_low, high=heatmap_high) +
-        # theme + fixed coord
+        # theme + coord
         theme_bw() +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
               legend.position = "none") +
-        if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
-        coord_fixed()
-      print(plot)
+        coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+      if(!is.null(theme_settings)) {
+        plot_adj <- plot + do.call(theme,theme_settings)
+        print(plot_adj)} else {print(plot)}
     })
   }
 
-  # create gif
+  # create filled contour plots
+  makeCONTOUR_filled <- function(){
+    # create sequence list
+    maxtime <- max(data$Time)
+    myseq <- seq(from=1, to=maxtime, length.out = nframes)
+    # create list with data frames
+    mylist <- list()
+    for(i in 1:nframes){
+      mylist[[i]] <- data[which(data$Time <= myseq[i]),]
+    }
+    # create plots
+    lapply(mylist, function(mydata){
+      plot <- ggplot(data=mydata, aes(x=x, y=y)) +
+        # heatmap
+        stat_density_2d(aes(fill = ..level..), geom = "polygon", colour=contour_colour_filled) +
+        # plot outside_all, cave: set color=NA or otherwise you see the closing line through the circle
+        geom_polygon(data=outside_all, aes(x,y), color=NA, fill="white", alpha=1) +
+        # scales
+        scale_x_continuous(breaks = c(-radius,0,radius)) +
+        scale_y_continuous(breaks = c(-radius,0,radius)) +
+        # plot quadrant division
+        geom_segment(aes(x=-radius,xend=radius,y=0,yend=0),linetype=2) +
+        geom_segment(aes(x=0,xend=0,y=-radius,yend=radius),linetype=2) +
+        # plot rectangle
+        geom_hline(yintercept=-radius) +
+        geom_hline(yintercept=radius) +
+        geom_vline(xintercept=-radius) +
+        geom_vline(xintercept=radius) +
+        # maze
+        geom_path(data=maze, aes(x, y), color="black") +
+        # platform
+        geom_polygon(data=platform_circle, aes(x, y), color=platform_line_colour, fill=platform_colour, alpha=platform_alpha, linetype=platform_linetype, size=platform_line_size) +
+        # colours
+        scale_fill_gradient("Density", low=heatmap_low, high=heatmap_high) +
+        # theme + coord
+        theme_bw() +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
+              legend.position = "none") +
+        coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+      if(!is.null(theme_settings)) {
+        plot_adj <- plot + do.call(theme,theme_settings)
+        print(plot_adj)} else {print(plot)}
+    })
+  }
+
+  # create empty contour plots
+  makeCONTOUR_empty <- function(){
+    # create sequence list
+    maxtime <- max(data$Time)
+    myseq <- seq(from=1, to=maxtime, length.out = nframes)
+    # create list with data frames
+    mylist <- list()
+    for(i in 1:nframes){
+      mylist[[i]] <- data[which(data$Time <= myseq[i]),]
+    }
+    # create plots
+    lapply(mylist, function(mydata){
+      plot <- ggplot(data=mydata, aes(x=x, y=y)) +
+        # heatmap
+        geom_density_2d(colour=contour_colour) +
+        # plot outside_all, cave: set color=NA or otherwise you see the closing line through the circle
+        geom_polygon(data=outside_all, aes(x,y), color=NA, fill="white", alpha=1) +
+        # scales
+        scale_x_continuous(breaks = c(-radius,0,radius)) +
+        scale_y_continuous(breaks = c(-radius,0,radius)) +
+        # plot quadrant division
+        geom_segment(aes(x=-radius,xend=radius,y=0,yend=0),linetype=2) +
+        geom_segment(aes(x=0,xend=0,y=-radius,yend=radius),linetype=2) +
+        # plot rectangle
+        geom_hline(yintercept=-radius) +
+        geom_hline(yintercept=radius) +
+        geom_vline(xintercept=-radius) +
+        geom_vline(xintercept=radius) +
+        # maze
+        geom_path(data=maze, aes(x, y), color="black") +
+        # platform
+        geom_polygon(data=platform_circle, aes(x, y), color=platform_line_colour, fill=platform_colour, alpha=platform_alpha, linetype=platform_linetype, size=platform_line_size) +
+        # theme + coord
+        theme_bw() +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
+              legend.position = "none") +
+        coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+      if(!is.null(theme_settings)) {
+        plot_adj <- plot + do.call(theme,theme_settings)
+        print(plot_adj)} else {print(plot)}
+    })
+  }
+
+  # create empty contour plots with low-high colours
+  makeCONTOUR_empty_scale <- function(){
+    # create sequence list
+    maxtime <- max(data$Time)
+    myseq <- seq(from=1, to=maxtime, length.out = nframes)
+    # create list with data frames
+    mylist <- list()
+    for(i in 1:nframes){
+      mylist[[i]] <- data[which(data$Time <= myseq[i]),]
+    }
+    # create plots
+    lapply(mylist, function(mydata){
+      plot <- ggplot(data=mydata, aes(x=x, y=y)) +
+        # heatmap
+        geom_density_2d(aes(colour=..level..)) +
+        # plot outside_all, cave: set color=NA or otherwise you see the closing line through the circle
+        geom_polygon(data=outside_all, aes(x,y), color=NA, fill="white", alpha=1) +
+        # scales
+        scale_x_continuous(breaks = c(-radius,0,radius)) +
+        scale_y_continuous(breaks = c(-radius,0,radius)) +
+        # plot quadrant division
+        geom_segment(aes(x=-radius,xend=radius,y=0,yend=0),linetype=2) +
+        geom_segment(aes(x=0,xend=0,y=-radius,yend=radius),linetype=2) +
+        # plot rectangle
+        geom_hline(yintercept=-radius) +
+        geom_hline(yintercept=radius) +
+        geom_vline(xintercept=-radius) +
+        geom_vline(xintercept=radius) +
+        # maze
+        geom_path(data=maze, aes(x, y), color="black") +
+        # platform
+        geom_polygon(data=platform_circle, aes(x, y), color=platform_line_colour, fill=platform_colour, alpha=platform_alpha, linetype=platform_linetype, size=platform_line_size) +
+        # colours
+        scale_colour_gradient("Density", low=heatmap_low, high=heatmap_high) +
+        # theme + coord
+        theme_bw() +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
+              legend.position = "none") +
+        coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+      if(!is.null(theme_settings)) {
+        plot_adj <- plot + do.call(theme,theme_settings)
+        print(plot_adj)} else {print(plot)}
+    })
+  }
+
+  # create filename
   filename  <- paste("heatmapGIF_", id, "-day_", day, "-trial_", trial ,".gif", sep="")
-  gifski::save_gif(makeplot(), gif_file = filename, res = resolution,  width = width, height = height, delay = mydelay, loop = loop)
+
+  # create gif
+  writeLines("This might take a while...")
+  if(type=="raster") {
+    gifski::save_gif(makeRASTER(), gif_file = filename, res = resolution,  width = width, height = height, delay = mydelay, loop = loop)
+  } else if (type=="contour"){
+    if(isTRUE(contour_filled)) {
+      gifski::save_gif(makeCONTOUR_filled(), gif_file = filename, res = resolution,  width = width, height = height, delay = mydelay, loop = loop)
+    } else {
+      if(isTRUE(contour_colour_scaled)) {
+        gifski::save_gif(makeCONTOUR_empty_scale(), gif_file = filename, res = resolution,  width = width, height = height, delay = mydelay, loop = loop)
+      } else {gifski::save_gif(makeCONTOUR_empty(), gif_file = filename, res = resolution,  width = width, height = height, delay = mydelay, loop = loop)}
+    }
+  } else {stop("Set type as 'raster' or 'contour'.")}
 }
