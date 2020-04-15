@@ -31,13 +31,13 @@
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @param title Add title to GIF. Default = NA
 #' @param plot_original_platform Plot the original platform (for reversal trials). Default = FALSE
-#' @param original_platformx x coordinate of the center of the original platform (cm)
-#' @param original_platformy y coordinate of the center of the original platform (cm)
-#' @param original_platform_colour Colour of the original platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"
-#' @param original_platform_alpha Alpha level for original platform. Default = 0.4
-#' @param original_platform_linetype Linetype of original platform circle. Default = "dotted"
-#' @param original_platform_line_size Size of original platform circle. Default = 0.5
-#' @param original_platform_line_colour Colour of original platform circle line. Default = "black"
+#' @param original_platformx x coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE
+#' @param original_platformy y coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE
+#' @param original_platform_colour Colour of the original platform. Name or hexadecimal code (e.g.: #FF1020). Ignored if plot_original_platform = FALSE. Default = "grey"
+#' @param original_platform_alpha Alpha level for original platform. Ignored if plot_original_platform = FALSE. Default = 0.4
+#' @param original_platform_linetype Linetype of original platform circle. Ignored if plot_original_platform = FALSE. Default = "dotted"
+#' @param original_platform_line_size Size of original platform circle. Ignored if plot_original_platform = FALSE. Default = 0.5
+#' @param original_platform_line_colour Colour of original platform circle line. Ignored if plot_original_platform = FALSE. Default = "black"
 #' @keywords track morris water maze gif reversal
 #' @export
 #' @import ggplot2
@@ -45,9 +45,6 @@
 #' @import gifski
 #' @import ggforce
 #' @import stats
-
-
-# add original platform location if missing
 
 trackGIF <- function(data, id, day, trial,
                      centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,

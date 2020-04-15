@@ -17,9 +17,9 @@
 #' @param remove_data_outside_maze Remove datapoints that lie outside the water maze. Default = TRUE
 #' @param platform_colour Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = NA
 #' @param platform_alpha Alpha level for platform. Default = 1
-#' @param platform_linetype Linetype for platform. Derived from ggplot2. Default = "dotted"
+#' @param platform_linetype Linetype for platform. Derived from ggplot2. Default = "solid"
 #' @param platform_line_colour Colour of platform circle. Default = "black"
-#' @param platform_line_size Size of platform line. Default = 1
+#' @param platform_line_size Size of platform line. Default = 0.8
 #' @param heatmap_low Low range colour heatmap. Default = "yellow"
 #' @param heatmap_high High range colour heatmap. Default = "red"
 #' @param type Type of heatmap. Options are "raster" or "contour". Default = "raster"
@@ -53,7 +53,7 @@
 heatmapGIF <- function(data, id, day, trial,
                        centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
                        remove_data_outside_maze=TRUE,
-                       platform_colour=NA, platform_alpha=1, platform_linetype="dotted", platform_line_colour="black", platform_line_size=1,
+                       platform_colour=NA, platform_alpha=1, platform_linetype="solid", platform_line_colour="black", platform_line_size=0.8,
                        heatmap_low = "yellow" , heatmap_high = "red",
                        type="raster", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
                        contour_colour_filled = NA, contour_colour = "blue",

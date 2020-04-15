@@ -19,9 +19,9 @@ heatmapGIF(
   remove_data_outside_maze = TRUE,
   platform_colour = NA,
   platform_alpha = 1,
-  platform_linetype = "dotted",
+  platform_linetype = "solid",
   platform_line_colour = "black",
-  platform_line_size = 1,
+  platform_line_size = 0.8,
   heatmap_low = "yellow",
   heatmap_high = "red",
   type = "raster",
@@ -78,11 +78,11 @@ heatmapGIF(
 
 \item{platform_alpha}{Alpha level for platform. Default = 1}
 
-\item{platform_linetype}{Linetype for platform. Derived from ggplot2. Default = "dotted"}
+\item{platform_linetype}{Linetype for platform. Derived from ggplot2. Default = "solid"}
 
 \item{platform_line_colour}{Colour of platform circle. Default = "black"}
 
-\item{platform_line_size}{Size of platform line. Default = 1}
+\item{platform_line_size}{Size of platform line. Default = 0.8}
 
 \item{heatmap_low}{Low range colour heatmap. Default = "yellow"}
 
