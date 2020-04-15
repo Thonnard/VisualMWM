@@ -37,7 +37,15 @@
 #' @param resolution Resolution of GIF, passed to gifski. Default = 80
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @param title Add title to GIF. Default = NA
-#' @keywords track velocity distance to target gif
+#' @param plot_original_platform Plot the original platform (for reversal trials). Default = FALSE
+#' @param original_platformx x coordinate of the center of the original platform (cm)
+#' @param original_platformy y coordinate of the center of the original platform (cm)
+#' @param original_platform_colour Colour of the original platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"
+#' @param original_platform_alpha Alpha level for original platform. Default = 0.4
+#' @param original_platform_linetype Linetype of original platform circle. Default = "dotted"
+#' @param original_platform_line_size Size of original platform circle. Default = 0.5
+#' @param original_platform_line_colour Colour of original platform circle line. Default = "black"
+#' @keywords heatmap contour raster morris water maze reversal gif
 #' @export
 #' @import ggplot2
 #' @import gifski
@@ -50,7 +58,10 @@ heatmapGIF <- function(data, id, day, trial,
                        type="raster", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
                        contour_colour_filled = NA, contour_colour = "blue",
                        loop = FALSE, width = 480, height = 480, duration = 10, frames = 100, resolution = 80,
-                       theme_settings = NULL, title = NA){
+                       theme_settings = NULL, title = NA,
+                       plot_original_platform = FALSE, original_platformx=NULL, original_platformy=NULL,
+                       original_platform_colour="grey", original_platform_alpha=0.4, original_platform_linetype="dotted",
+                       original_platform_line_size=0.5, original_platform_line_colour="black"){
   # read data
   data <- as.data.frame(data)
 
@@ -73,10 +84,24 @@ heatmapGIF <- function(data, id, day, trial,
   platformx_coord <- platformx-centerx
   platformy_coord <- platformy-centery
 
+  # set original platform coordinates (optional)
+  if(isTRUE(plot_original_platform)) {
+    if(is_null(original_platformx) | is_null(original_platformy)) {
+      original_platformx_coord <- -platformx_coord
+      original_platformy_coord <- -platformy_coord
+    } else {
+      original_platformx_coord <- original_platformx-centerx
+      original_platformy_coord <- original_platformy-centery}
+  }
+
   # create maze and platform circles
   maze <- circle(x=0, y=0, radius=radius, nrow_data=ndata_circle, from=0, to=2, add_center=FALSE)
   platform_circle <- circle(x=platformx_coord, y=platformy_coord, radius=platformradius, nrow_data=ndata_circle, from=0, to=2, add_center=FALSE)
 
+  # create circle original platform (optional)
+  if(isTRUE(plot_original_platform)) {
+    original_platform_circle <- circle(x=original_platformx_coord, y=original_platformy_coord, radius=platformradius, nrow_data=ndata_circle, from=0, to=2, add_center=FALSE)
+  }
 
   # outside circle data
   df <- data.frame(x=c(-radius,-radius-radius/10,-radius-radius/10,radius+radius/10,radius+radius/10,-radius-radius/10,-radius-radius/10,-radius),
@@ -132,10 +157,17 @@ heatmapGIF <- function(data, id, day, trial,
               legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
 
+      # add original platform (optional)
+      if(isTRUE(plot_original_platform)) {
+        plot <- plot + geom_polygon(data=original_platform_circle, aes(x, y), color=original_platform_line_colour, fill=original_platform_colour, alpha=original_platform_alpha, linetype=original_platform_linetype, size=original_platform_line_size)
+      }
+
+      # add title (optional)
       if(!is.na(title)) {
         plot <- plot + ggtitle(title)
       }
 
+      # update theme settings (optional)
       if(!is.null(theme_settings)) {
         plot_adj <- plot + do.call(theme,theme_settings)
         print(plot_adj)} else {print(plot)}
@@ -182,10 +214,17 @@ heatmapGIF <- function(data, id, day, trial,
               legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
 
+      # add original platform (optional)
+      if(isTRUE(plot_original_platform)) {
+        plot <- plot + geom_polygon(data=original_platform_circle, aes(x, y), color=original_platform_line_colour, fill=original_platform_colour, alpha=original_platform_alpha, linetype=original_platform_linetype, size=original_platform_line_size)
+      }
+
+      # add title (optional)
       if(!is.na(title)) {
         plot <- plot + ggtitle(title)
       }
 
+      # update theme settings (optional)
       if(!is.null(theme_settings)) {
         plot_adj <- plot + do.call(theme,theme_settings)
         print(plot_adj)} else {print(plot)}
@@ -230,10 +269,17 @@ heatmapGIF <- function(data, id, day, trial,
               legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
 
+      # add original platform (optional)
+      if(isTRUE(plot_original_platform)) {
+        plot <- plot + geom_polygon(data=original_platform_circle, aes(x, y), color=original_platform_line_colour, fill=original_platform_colour, alpha=original_platform_alpha, linetype=original_platform_linetype, size=original_platform_line_size)
+      }
+
+      # add title (optional)
       if(!is.na(title)) {
         plot <- plot + ggtitle(title)
       }
 
+      # update theme settings (optional)
       if(!is.null(theme_settings)) {
         plot_adj <- plot + do.call(theme,theme_settings)
         print(plot_adj)} else {print(plot)}
@@ -280,14 +326,20 @@ heatmapGIF <- function(data, id, day, trial,
               legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
 
+      # add original platform (optional)
+      if(isTRUE(plot_original_platform)) {
+        plot <- plot + geom_polygon(data=original_platform_circle, aes(x, y), color=original_platform_line_colour, fill=original_platform_colour, alpha=original_platform_alpha, linetype=original_platform_linetype, size=original_platform_line_size)
+      }
+
+      # add title (optional)
       if(!is.na(title)) {
         plot <- plot + ggtitle(title)
       }
 
+      # update theme settings (optional)
       if(!is.null(theme_settings)) {
         plot_adj <- plot + do.call(theme,theme_settings)
-        print(plot_adj)
-      } else {print(plot)}
+        print(plot_adj)} else {print(plot)}
     })
   }
 
