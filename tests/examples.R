@@ -66,15 +66,26 @@ circle(x=0, y=0, radius=75, nrow_data=100, from=0, to=2, add_center=FALSE)
 ## trackGIF
 trackGIF(data=track_data, id="1w", day=1, trial=1,
          centerx=19.4, centery=-1.49, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
-         quadrant_colours=c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"), platform_colour="black" , quadrants_alpha=0.3, platform_alpha=1,
+         quadrant_colours=c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"), quadrants_alpha=0.3,
+         platform_alpha=1, platform_colour="black", platform_size=0.5, platform_linetype="solid", platform_line_colour="black",
          track_colour="orange", track_alpha=0.35,
-         loop = FALSE, width = 480, height = 480, fps = 10, duration = 10)
+         loop = FALSE, width = 480, height = 480, fps = 10, duration = 10,
+         theme_settings =list(axis.text.x = element_text(face="bold", color="#993333", size=16),
+                              axis.text.y = element_text(face="bold", color="blue", size=16), plot.title = element_text(hjust=0.5)),
+         title="My track GIF",
+         plot_original_platform = TRUE, original_platformx=-12.15, original_platformy=28.82,
+         original_platform_colour="grey", original_platform_alpha=0.4, original_platform_linetype="dotted",
+         original_platform_size=0.5, original_platform_line_colour="black")
+
+trackGIF(data=track_data, id="1w", day=1, trial=1, centerx=19.4, centery=-1.49, platformx=50.60, platformy=-33.34,
+         plot_original_platform = TRUE)
 
 trackGIF(data=track_data, id="1w", day=1, trial=1,
          centerx=19.4, centery=-1.49, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
-         quadrant_colours=c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"), platform_colour="black" , quadrants_alpha=0.3, platform_alpha=1,
+         quadrant_colours=c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"), quadrants_alpha=0.3,
+         platform_alpha=1, platform_colour="black", platform_size=0.5, platform_linetype="solid", platform_line_colour="black",
          track_colour="orange", track_alpha=0.35,
-         loop = FALSE, width = 480, height = 480, fps = 10, duration = 10,
+         loop = TRUE, width = 480, height = 480, fps = 10, duration = 10,
          theme_settings =list(axis.text.x = element_text(face="bold", color="#993333", size=16),
                               axis.text.y = element_text(face="bold", color="blue", size=16), plot.title = element_text(hjust=0.5)),
          title="My track GIF")
