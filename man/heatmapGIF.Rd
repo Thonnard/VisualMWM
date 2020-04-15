@@ -21,7 +21,7 @@ heatmapGIF(
   platform_alpha = 1,
   platform_linetype = "solid",
   platform_line_colour = "black",
-  platform_line_size = 0.8,
+  platform_line_size = 0.5,
   heatmap_low = "yellow",
   heatmap_high = "red",
   type = "raster",
@@ -82,7 +82,7 @@ heatmapGIF(
 
 \item{platform_line_colour}{Colour of platform circle. Default = "black"}
 
-\item{platform_line_size}{Size of platform line. Default = 0.8}
+\item{platform_line_size}{Size of platform line. Default = 0.5}
 
 \item{heatmap_low}{Low range colour heatmap. Default = "yellow"}
 
@@ -119,19 +119,19 @@ When TRUE, colour scale is set by heatmap_low and heatmap_high. Default = FALSE}
 
 \item{plot_original_platform}{Plot the original platform (for reversal trials). Default = FALSE}
 
-\item{original_platformx}{x coordinate of the center of the original platform (cm)}
+\item{original_platformx}{x coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE}
 
-\item{original_platformy}{y coordinate of the center of the original platform (cm)}
+\item{original_platformy}{y coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE}
 
-\item{original_platform_colour}{Colour of the original platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"}
+\item{original_platform_colour}{Colour of the original platform. Name or hexadecimal code (e.g.: #FF1020). Ignored if plot_original_platform = FALSE. Default = "grey"}
 
-\item{original_platform_alpha}{Alpha level for original platform. Default = 0.4}
+\item{original_platform_alpha}{Alpha level for original platform. Ignored if plot_original_platform = FALSE. Default = 0.4}
 
-\item{original_platform_linetype}{Linetype of original platform circle. Default = "dotted"}
+\item{original_platform_linetype}{Linetype of original platform circle. Ignored if plot_original_platform = FALSE. Default = "dotted"}
 
-\item{original_platform_line_size}{Size of original platform circle. Default = 0.5}
+\item{original_platform_line_size}{Size of original platform circle. Ignored if plot_original_platform = FALSE. Default = 0.5}
 
-\item{original_platform_line_colour}{Colour of original platform circle line. Default = "black"}
+\item{original_platform_line_colour}{Colour of original platform circle line. Ignored if plot_original_platform = FALSE. Default = "black"}
 }
 \description{
 The heatmapGIF function creates a raster or contour heatmap GIF of the animal for a specific trial.

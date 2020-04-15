@@ -19,7 +19,7 @@
 #' @param platform_alpha Alpha level for platform. Default = 1
 #' @param platform_linetype Linetype for platform. Derived from ggplot2. Default = "solid"
 #' @param platform_line_colour Colour of platform circle. Default = "black"
-#' @param platform_line_size Size of platform line. Default = 0.8
+#' @param platform_line_size Size of platform line. Default = 0.5
 #' @param heatmap_low Low range colour heatmap. Default = "yellow"
 #' @param heatmap_high High range colour heatmap. Default = "red"
 #' @param type Type of heatmap. Options are "raster" or "contour". Default = "raster"
@@ -38,13 +38,13 @@
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @param title Add title to GIF. Default = NA
 #' @param plot_original_platform Plot the original platform (for reversal trials). Default = FALSE
-#' @param original_platformx x coordinate of the center of the original platform (cm)
-#' @param original_platformy y coordinate of the center of the original platform (cm)
-#' @param original_platform_colour Colour of the original platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"
-#' @param original_platform_alpha Alpha level for original platform. Default = 0.4
-#' @param original_platform_linetype Linetype of original platform circle. Default = "dotted"
-#' @param original_platform_line_size Size of original platform circle. Default = 0.5
-#' @param original_platform_line_colour Colour of original platform circle line. Default = "black"
+#' @param original_platformx x coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE
+#' @param original_platformy y coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE
+#' @param original_platform_colour Colour of the original platform. Name or hexadecimal code (e.g.: #FF1020). Ignored if plot_original_platform = FALSE. Default = "grey"
+#' @param original_platform_alpha Alpha level for original platform. Ignored if plot_original_platform = FALSE. Default = 0.4
+#' @param original_platform_linetype Linetype of original platform circle. Ignored if plot_original_platform = FALSE. Default = "dotted"
+#' @param original_platform_line_size Size of original platform circle. Ignored if plot_original_platform = FALSE. Default = 0.5
+#' @param original_platform_line_colour Colour of original platform circle line. Ignored if plot_original_platform = FALSE. Default = "black"
 #' @keywords heatmap contour raster morris water maze reversal gif
 #' @export
 #' @import ggplot2
@@ -53,7 +53,7 @@
 heatmapGIF <- function(data, id, day, trial,
                        centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
                        remove_data_outside_maze=TRUE,
-                       platform_colour=NA, platform_alpha=1, platform_linetype="solid", platform_line_colour="black", platform_line_size=0.8,
+                       platform_colour=NA, platform_alpha=1, platform_linetype="solid", platform_line_colour="black", platform_line_size=0.5,
                        heatmap_low = "yellow" , heatmap_high = "red",
                        type="raster", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
                        contour_colour_filled = NA, contour_colour = "blue",
