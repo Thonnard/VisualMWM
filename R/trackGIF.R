@@ -18,7 +18,7 @@
 #' @param quadrants_alpha Alpha level for quadrants. Default = 0.2
 #' @param platform_alpha Alpha level for platform. Default = 1
 #' @param platform_colour Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "black"
-#' @param platform_size Size of platform circle. Default = 0.5
+#' @param platform_line_size Size of platform circle. Default = 0.5
 #' @param platform_linetype Linetype of platform circle. Default = "solid"
 #' @param platform_line_colour Colour of platform circle line. Default = "black"
 #' @param track_colour Colour of the track line. Name or hexadecimal code (e.g.: #FF1020). Default = orange
@@ -36,7 +36,7 @@
 #' @param original_platform_colour Colour of the original platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"
 #' @param original_platform_alpha Alpha level for original platform. Default = 0.4
 #' @param original_platform_linetype Linetype of original platform circle. Default = "dotted"
-#' @param original_platform_size Size of original platform circle. Default = 0.5
+#' @param original_platform_line_size Size of original platform circle. Default = 0.5
 #' @param original_platform_line_colour Colour of original platform circle line. Default = "black"
 #' @keywords track morris water maze gif reversal
 #' @export
@@ -52,13 +52,13 @@
 trackGIF <- function(data, id, day, trial,
                      centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
                      quadrant_colours=c("white","white","white","white"), quadrants_alpha=0.2,
-                     platform_alpha=1,  platform_colour="black", platform_size=0.5, platform_linetype="solid", platform_line_colour="black",
+                     platform_alpha=1,  platform_colour="black", platform_line_size=0.5, platform_linetype="solid", platform_line_colour="black",
                      track_colour="orange", track_alpha=0.35,
                      loop = FALSE, width = 480, height = 480, fps = 10, duration = 10,
                      theme_settings = NULL, title = NA,
                      plot_original_platform = FALSE, original_platformx=NULL, original_platformy=NULL,
                      original_platform_colour="grey", original_platform_alpha=0.4, original_platform_linetype="dotted",
-                     original_platform_size=0.5, original_platform_line_colour="black"
+                     original_platform_line_size=0.5, original_platform_line_colour="black"
 ){
   # read data
   data <- as.data.frame(data)
@@ -121,7 +121,7 @@ trackGIF <- function(data, id, day, trial,
     # plot platform template
     geom_polygon(data=platform_circle, aes(x, y), color="white", fill="white", alpha=1) +  # get white background
     # plot platform
-    geom_polygon(data=platform_circle, aes(x, y), color=platform_line_colour, fill=platform_colour, alpha=platform_alpha, linetype=platform_linetype, size=platform_size) +
+    geom_polygon(data=platform_circle, aes(x, y), color=platform_line_colour, fill=platform_colour, alpha=platform_alpha, linetype=platform_linetype, size=platform_line_size) +
     # plot track
     geom_point(data = data, aes(x=x_coord, y=y_coord), color=track_colour, alpha=track_alpha) +
     # set scales
@@ -136,11 +136,12 @@ trackGIF <- function(data, id, day, trial,
           axis.title.x=element_blank(),axis.title.y=element_blank(), plot.title = element_text(face="bold", colour="black", size="14")) +
     coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
 
+  # add original platform (optional)
   if(isTRUE(plot_original_platform)) {
     # plot original platform template
     p1 <- p1 + geom_polygon(data=original_platform_circle, aes(x, y), color="white", fill="white", alpha=1)  # get white background
     # plot original platform
-    p1 <- p1 + geom_polygon(data=original_platform_circle, aes(x, y), color=original_platform_line_colour, fill=original_platform_colour, alpha=original_platform_alpha, linetype=original_platform_linetype, size=original_platform_size)
+    p1 <- p1 + geom_polygon(data=original_platform_circle, aes(x, y), color=original_platform_line_colour, fill=original_platform_colour, alpha=original_platform_alpha, linetype=original_platform_linetype, size=original_platform_line_size)
     # plot track (again, to plot over template)
     p1 <- p1 + geom_point(data = data, aes(x=x_coord, y=y_coord), color=track_colour, alpha=track_alpha)
   }

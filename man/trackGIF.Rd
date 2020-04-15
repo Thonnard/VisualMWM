@@ -20,7 +20,7 @@ trackGIF(
   quadrants_alpha = 0.2,
   platform_alpha = 1,
   platform_colour = "black",
-  platform_size = 0.5,
+  platform_line_size = 0.5,
   platform_linetype = "solid",
   platform_line_colour = "black",
   track_colour = "orange",
@@ -38,7 +38,7 @@ trackGIF(
   original_platform_colour = "grey",
   original_platform_alpha = 0.4,
   original_platform_linetype = "dotted",
-  original_platform_size = 0.5,
+  original_platform_line_size = 0.5,
   original_platform_line_colour = "black"
 )
 }
@@ -74,7 +74,7 @@ trackGIF(
 
 \item{platform_colour}{Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "black"}
 
-\item{platform_size}{Size of platform circle. Default = 0.5}
+\item{platform_line_size}{Size of platform circle. Default = 0.5}
 
 \item{platform_linetype}{Linetype of platform circle. Default = "solid"}
 
@@ -110,7 +110,7 @@ trackGIF(
 
 \item{original_platform_linetype}{Linetype of original platform circle. Default = "dotted"}
 
-\item{original_platform_size}{Size of original platform circle. Default = 0.5}
+\item{original_platform_line_size}{Size of original platform circle. Default = 0.5}
 
 \item{original_platform_line_colour}{Colour of original platform circle line. Default = "black"}
 }
