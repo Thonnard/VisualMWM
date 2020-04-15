@@ -17,9 +17,12 @@ trackGIF(
   platformradius = 7.5,
   ndata_circle = 100,
   quadrant_colours = c("white", "white", "white", "white"),
-  platform_colour = "grey",
   quadrants_alpha = 0.2,
   platform_alpha = 1,
+  platform_colour = "black",
+  platform_size = 0.5,
+  platform_linetype = "solid",
+  platform_line_colour = "black",
   track_colour = "orange",
   track_alpha = 0.35,
   loop = FALSE,
@@ -28,7 +31,15 @@ trackGIF(
   fps = 10,
   duration = 10,
   theme_settings = NULL,
-  title = NA
+  title = NA,
+  plot_original_platform = FALSE,
+  original_platformx = NULL,
+  original_platformy = NULL,
+  original_platform_colour = "grey",
+  original_platform_alpha = 0.4,
+  original_platform_linetype = "dotted",
+  original_platform_size = 0.5,
+  original_platform_line_colour = "black"
 )
 }
 \arguments{
@@ -57,11 +68,17 @@ trackGIF(
 
 \item{quadrant_colours}{Fill colours of quadrants. Order = top left, top right, bottom left, bottom right. Name or hexadecimal code (e.g.: #FF1020). Default = c("white","white","white","white")}
 
-\item{platform_colour}{Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"}
-
 \item{quadrants_alpha}{Alpha level for quadrants. Default = 0.2}
 
 \item{platform_alpha}{Alpha level for platform. Default = 1}
+
+\item{platform_colour}{Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "black"}
+
+\item{platform_size}{Size of platform circle. Default = 0.5}
+
+\item{platform_linetype}{Linetype of platform circle. Default = "solid"}
+
+\item{platform_line_colour}{Colour of platform circle line. Default = "black"}
 
 \item{track_colour}{Colour of the track line. Name or hexadecimal code (e.g.: #FF1020). Default = orange}
 
@@ -80,13 +97,29 @@ trackGIF(
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
 
 \item{title}{Add title to GIF. Default = NA}
+
+\item{plot_original_platform}{Plot the original platform (for reversal trials). Default = FALSE}
+
+\item{original_platformx}{x coordinate of the center of the original platform (cm)}
+
+\item{original_platformy}{y coordinate of the center of the original platform (cm)}
+
+\item{original_platform_colour}{Colour of the original platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"}
+
+\item{original_platform_alpha}{Alpha level for original platform. Default = 0.4}
+
+\item{original_platform_linetype}{Linetype of original platform circle. Default = "dotted"}
+
+\item{original_platform_size}{Size of original platform circle. Default = 0.5}
+
+\item{original_platform_line_colour}{Colour of original platform circle line. Default = "black"}
 }
 \description{
 The trackGIF function creates a GIF showing the track of the animal for a specific trial.
 }
-\keyword{distance}
 \keyword{gif}
-\keyword{target}
-\keyword{to}
+\keyword{maze}
+\keyword{morris}
+\keyword{reversal}
 \keyword{track}
-\keyword{velocity}
+\keyword{water}
