@@ -23,11 +23,10 @@
 #' @param loop Loop the animation, default = FALSE
 #' @param width Width of the animation (px), default = 480
 #' @param height Height of the animation (px), default = 480
-#' @param fps Frames per second of the animation, default = 10
+#' @param fps Frames per second of the animation. Minimum 100 frames per GIF. default = 10
 #' @param duration Duration of the animation(s), default = 10
-#' @param frames Number of frames in the animation, default = 100
-#' @param time_bins Number of time-bins in the animation, default = 50
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
+#' @param title Add title to GIF. Default = NA
 #' @keywords track velocity distance to target gif
 #' @export
 #' @import ggplot2
@@ -37,11 +36,11 @@
 #' @import stats
 
 trackGIF <- function(data, id, day, trial,
-                   centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
-                   quadrant_colours=c("white","white","white","white"), platform_colour="grey", alpha_quadrants=0.2, alpha_platform=1,
-                   track_colour="orange", alpha_track=0.35,
-                   loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
-                   theme_settings = NULL){
+                     centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
+                     quadrant_colours=c("white","white","white","white"), platform_colour="grey", alpha_quadrants=0.2, alpha_platform=1,
+                     track_colour="orange", alpha_track=0.35,
+                     loop = FALSE, width = 480, height = 480, fps = 10, duration = 10,
+                     theme_settings = NULL, title = NA){
   # read data
   data <- as.data.frame(data)
 
@@ -53,8 +52,8 @@ trackGIF <- function(data, id, day, trial,
 
   # update coordinates (rescale) and add quadrant information
   data <- updateCOORD(data=data,
-                 centerx=centerx, centery=centery, radius=radius,
-                 platformx=platformx, platformy=platformy, platformradius=platformradius, removeNA=TRUE)
+                      centerx=centerx, centery=centery, radius=radius,
+                      platformx=platformx, platformy=platformy, platformradius=platformradius, removeNA=TRUE)
 
   # set platform coordinates
   platformx_coord <- platformx-centerx
@@ -83,8 +82,9 @@ trackGIF <- function(data, id, day, trial,
     geom_hline(yintercept=radius) +
     geom_vline(xintercept=-radius) +
     geom_vline(xintercept=radius) +
-    # plot circle and platform
+    # plot maze
     geom_path(data=maze, aes(x, y), color="black") +
+    # plot platform
     geom_polygon(data=platform_circle, aes(x, y), color="black", fill="white", alpha=1) +  # get white background
     geom_polygon(data=platform_circle, aes(x, y), color="black", fill=platform_colour, alpha=alpha_platform) +
     # plot track
@@ -98,12 +98,16 @@ trackGIF <- function(data, id, day, trial,
     # theme + fixed coord
     theme_bw() +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-          axis.title.x=element_blank(),axis.title.y=element_blank()) +
-    if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
-    coord_fixed()
+          axis.title.x=element_blank(),axis.title.y=element_blank(), plot.title = element_text(face="bold", colour="black", size="14")) +
+    coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+
+  if(!is.na(title)) {p1 <- p1 + ggtitle(title)}
+
+  if(!is.null(theme_settings)) {
+    p1 <- p1 + do.call(theme,theme_settings)}
 
   # update animation parameters
-  animate(p1, nframes = frames, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
+  animate(p1, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
 
   # save animation
   filename <- paste("trackGIF_", id, "-day_", day, "-trial_", trial ,".gif", sep="")

@@ -27,9 +27,8 @@ trackGIF(
   height = 480,
   fps = 10,
   duration = 10,
-  frames = 100,
-  time_bins = 50,
-  theme_settings = NULL
+  theme_settings = NULL,
+  title = NA
 )
 }
 \arguments{
@@ -74,15 +73,13 @@ trackGIF(
 
 \item{height}{Height of the animation (px), default = 480}
 
-\item{fps}{Frames per second of the animation, default = 10}
+\item{fps}{Frames per second of the animation. Minimum 100 frames per GIF. default = 10}
 
 \item{duration}{Duration of the animation(s), default = 10}
 
-\item{frames}{Number of frames in the animation, default = 100}
-
-\item{time_bins}{Number of time-bins in the animation, default = 50}
-
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
+
+\item{title}{Add title to GIF. Default = NA}
 }
 \description{
 The trackGIF function creates a GIF showing the track of the animal for a specific trial.
