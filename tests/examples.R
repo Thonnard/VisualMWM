@@ -21,7 +21,13 @@ heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            loop = FALSE, width = 480, height = 480, duration = 5, frames = 50, resolution = 80,
            theme_settings =list(axis.text = element_text(face="bold", color="#993333", size=12),
                                 legend.position="none", plot.title = element_text(hjust = 0.5)),
-           title="My heatmap")
+           title="My heatmap", plot_original_platform = TRUE)
+
+heatmapGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
+           plot_original_platform = TRUE)
+
+heatmapGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
+           type="contour", plot_original_platform = TRUE, heatmap_low = "lightblue", heatmap_high = "darkblue")
 
 ## groupCOURD
 groupCOORD(data=track_data, by="Group")
