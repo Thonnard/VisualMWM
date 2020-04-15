@@ -18,10 +18,10 @@ trackGIF(
   ndata_circle = 100,
   quadrant_colours = c("white", "white", "white", "white"),
   platform_colour = "grey",
-  alpha_quadrants = 0.2,
-  alpha_platform = 1,
+  quadrants_alpha = 0.2,
+  platform_alpha = 1,
   track_colour = "orange",
-  alpha_track = 0.35,
+  track_alpha = 0.35,
   loop = FALSE,
   width = 480,
   height = 480,
@@ -59,13 +59,13 @@ trackGIF(
 
 \item{platform_colour}{Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"}
 
-\item{alpha_quadrants}{Alpha level for quadrants. Default = 0.2}
+\item{quadrants_alpha}{Alpha level for quadrants. Default = 0.2}
 
-\item{alpha_platform}{Alpha level for platform. Default = 1}
+\item{platform_alpha}{Alpha level for platform. Default = 1}
 
 \item{track_colour}{Colour of the track line. Name or hexadecimal code (e.g.: #FF1020). Default = orange}
 
-\item{alpha_track}{Alpha level for the track line. Default = 0.35}
+\item{track_alpha}{Alpha level for the track line. Default = 0.35}
 
 \item{loop}{Loop the animation, default = FALSE}
 

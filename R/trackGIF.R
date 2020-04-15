@@ -16,10 +16,10 @@
 #' @param ndata_circle Number of data points in the circle data set. Higher means smoother (more perfect) circle. Default = 100
 #' @param quadrant_colours Fill colours of quadrants. Order = top left, top right, bottom left, bottom right. Name or hexadecimal code (e.g.: #FF1020). Default = c("white","white","white","white")
 #' @param platform_colour Colour of the platform. Name or hexadecimal code (e.g.: #FF1020). Default = "grey"
-#' @param alpha_quadrants Alpha level for quadrants. Default = 0.2
-#' @param alpha_platform Alpha level for platform. Default = 1
+#' @param quadrants_alpha Alpha level for quadrants. Default = 0.2
+#' @param platform_alpha Alpha level for platform. Default = 1
 #' @param track_colour Colour of the track line. Name or hexadecimal code (e.g.: #FF1020). Default = orange
-#' @param alpha_track Alpha level for the track line. Default = 0.35
+#' @param track_alpha Alpha level for the track line. Default = 0.35
 #' @param loop Loop the animation, default = FALSE
 #' @param width Width of the animation (px), default = 480
 #' @param height Height of the animation (px), default = 480
@@ -37,8 +37,8 @@
 
 trackGIF <- function(data, id, day, trial,
                      centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
-                     quadrant_colours=c("white","white","white","white"), platform_colour="grey", alpha_quadrants=0.2, alpha_platform=1,
-                     track_colour="orange", alpha_track=0.35,
+                     quadrant_colours=c("white","white","white","white"), platform_colour="grey", quadrants_alpha=0.2, platform_alpha=1,
+                     track_colour="orange", track_alpha=0.35,
                      loop = FALSE, width = 480, height = 480, fps = 10, duration = 10,
                      theme_settings = NULL, title = NA){
   # read data
@@ -70,10 +70,10 @@ trackGIF <- function(data, id, day, trial,
   # plot tracks
   p1 <- ggplot() +
     # colour quadrants
-    geom_polygon(data=top_left_quadrant, aes(x,y), color=NA, fill=quadrant_colours[1], alpha=alpha_quadrants) +
-    geom_polygon(data=top_right_quadrant, aes(x,y), color=NA, fill=quadrant_colours[2], alpha=alpha_quadrants) +
-    geom_polygon(data=bottom_left_quadrant, aes(x,y), color=NA, fill=quadrant_colours[3], alpha=alpha_quadrants) +
-    geom_polygon(data=bottom_right_quadrant, aes(x,y), color=NA, fill=quadrant_colours[4], alpha=alpha_quadrants) +
+    geom_polygon(data=top_left_quadrant, aes(x,y), color=NA, fill=quadrant_colours[1], alpha=quadrants_alpha) +
+    geom_polygon(data=top_right_quadrant, aes(x,y), color=NA, fill=quadrant_colours[2], alpha=quadrants_alpha) +
+    geom_polygon(data=bottom_left_quadrant, aes(x,y), color=NA, fill=quadrant_colours[3], alpha=quadrants_alpha) +
+    geom_polygon(data=bottom_right_quadrant, aes(x,y), color=NA, fill=quadrant_colours[4], alpha=quadrants_alpha) +
     # plot quadrant division
     geom_segment(aes(x=-radius,xend=radius,y=0,yend=0),linetype=2) +
     geom_segment(aes(x=0,xend=0,y=-radius,yend=radius),linetype=2) +
@@ -86,9 +86,9 @@ trackGIF <- function(data, id, day, trial,
     geom_path(data=maze, aes(x, y), color="black") +
     # plot platform
     geom_polygon(data=platform_circle, aes(x, y), color="black", fill="white", alpha=1) +  # get white background
-    geom_polygon(data=platform_circle, aes(x, y), color="black", fill=platform_colour, alpha=alpha_platform) +
+    geom_polygon(data=platform_circle, aes(x, y), color="black", fill=platform_colour, alpha=platform_alpha) +
     # plot track
-    geom_point(data = data, aes(x=x_coord, y=y_coord), color=track_colour, alpha=alpha_track) +
+    geom_point(data = data, aes(x=x_coord, y=y_coord), color=track_colour, alpha=track_alpha) +
     # set scales
     scale_x_continuous(breaks = c(-radius,0,radius)) +
     scale_y_continuous(breaks = c(-radius,0,radius)) +
