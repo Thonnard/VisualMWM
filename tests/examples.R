@@ -68,15 +68,16 @@ trackGIF(data=track_data, id="1w", day=1, trial=1,
          centerx=19.4, centery=-1.49, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
          quadrant_colours=c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"), platform_colour="black" , alpha_quadrants=0.3, alpha_platform=1,
          track_colour="orange", alpha_track=0.35,
-         loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50)
+         loop = FALSE, width = 480, height = 480, fps = 10, duration = 10)
 
 trackGIF(data=track_data, id="1w", day=1, trial=1,
          centerx=19.4, centery=-1.49, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
          quadrant_colours=c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"), platform_colour="black" , alpha_quadrants=0.3, alpha_platform=1,
          track_colour="orange", alpha_track=0.35,
-         loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
+         loop = FALSE, width = 480, height = 480, fps = 10, duration = 10,
          theme_settings =list(axis.text.x = element_text(face="bold", color="#993333", size=16),
-                              axis.text.y = element_text(face="bold", color="blue", size=16)))
+                              axis.text.y = element_text(face="bold", color="blue", size=16), plot.title = element_text(hjust=0.5)),
+         title="My track GIF")
 
 ## play around with circles and quadrants
 # parameter
