@@ -93,8 +93,8 @@ trackGIF <- function(data, id, day, trial,
     scale_x_continuous(breaks = c(-radius,0,radius)) +
     scale_y_continuous(breaks = c(-radius,0,radius)) +
     # transition
-    transition_time(Time) +
-    shadow_trail(distance=0.01) +
+    gganimate::transition_time(Time) +
+    gganimate::shadow_trail(distance=0.01) +
     # theme + fixed coord
     theme_bw() +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -107,9 +107,9 @@ trackGIF <- function(data, id, day, trial,
     p1 <- p1 + do.call(theme,theme_settings)}
 
   # update animation parameters
-  animate(p1, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
+  gganimate::animate(p1, fps = fps, duration = duration, width=width, height=height, renderer = gganimate::gifski_renderer(loop = loop))
 
   # save animation
   filename <- paste("trackGIF_", id, "-day_", day, "-trial_", trial ,".gif", sep="")
-  anim_save(filename=filename)
+  gganimate::anim_save(filename=filename)
 }
