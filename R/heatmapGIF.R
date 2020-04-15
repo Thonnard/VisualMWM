@@ -36,20 +36,21 @@
 #' @param frames Number of frames in the animation, default = 100
 #' @param resolution Resolution of GIF, passed to gifski. Default = 80
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
+#' @param title Add title to GIF. Default = NA
 #' @keywords track velocity distance to target gif
 #' @export
 #' @import ggplot2
 #' @import gifski
 
 heatmapGIF <- function(data, id, day, trial,
-                   centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
-                   remove_data_outside_maze=TRUE,
-                   platform_colour=NA, platform_alpha=1, platform_linetype="dotted", platform_line_colour="black", platform_line_size=1,
-                   heatmap_low = "yellow" , heatmap_high = "red",
-                   type="raster", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
-                   contour_colour_filled = NA, contour_colour = "blue",
-                   loop = FALSE, width = 480, height = 480, duration = 10, frames = 100, resolution = 80,
-                   theme_settings = NULL){
+                       centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5, ndata_circle=100,
+                       remove_data_outside_maze=TRUE,
+                       platform_colour=NA, platform_alpha=1, platform_linetype="dotted", platform_line_colour="black", platform_line_size=1,
+                       heatmap_low = "yellow" , heatmap_high = "red",
+                       type="raster", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
+                       contour_colour_filled = NA, contour_colour = "blue",
+                       loop = FALSE, width = 480, height = 480, duration = 10, frames = 100, resolution = 80,
+                       theme_settings = NULL, title = NA){
   # read data
   data <- as.data.frame(data)
 
@@ -65,8 +66,8 @@ heatmapGIF <- function(data, id, day, trial,
 
   # update coordinates (rescale) and add quadrant information
   data <- updateCOORD(data=data,
-                 centerx=centerx, centery=centery, radius=radius,
-                 platformx=platformx, platformy=platformy, platformradius=platformradius, removeNA=TRUE)
+                      centerx=centerx, centery=centery, radius=radius,
+                      platformx=platformx, platformy=platformy, platformradius=platformradius, removeNA=TRUE)
 
   # set platform coordinates
   platformx_coord <- platformx-centerx
@@ -128,8 +129,13 @@ heatmapGIF <- function(data, id, day, trial,
         # theme + coord
         theme_bw() +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
-              legend.position = "none") +
+              legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+
+      if(!is.na(title)) {
+        plot <- plot + ggtitle(title)
+      }
+
       if(!is.null(theme_settings)) {
         plot_adj <- plot + do.call(theme,theme_settings)
         print(plot_adj)} else {print(plot)}
@@ -173,8 +179,13 @@ heatmapGIF <- function(data, id, day, trial,
         # theme + coord
         theme_bw() +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
-              legend.position = "none") +
+              legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+
+      if(!is.na(title)) {
+        plot <- plot + ggtitle(title)
+      }
+
       if(!is.null(theme_settings)) {
         plot_adj <- plot + do.call(theme,theme_settings)
         print(plot_adj)} else {print(plot)}
@@ -216,8 +227,13 @@ heatmapGIF <- function(data, id, day, trial,
         # theme + coord
         theme_bw() +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
-              legend.position = "none") +
+              legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+
+      if(!is.na(title)) {
+        plot <- plot + ggtitle(title)
+      }
+
       if(!is.null(theme_settings)) {
         plot_adj <- plot + do.call(theme,theme_settings)
         print(plot_adj)} else {print(plot)}
@@ -261,11 +277,17 @@ heatmapGIF <- function(data, id, day, trial,
         # theme + coord
         theme_bw() +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
-              legend.position = "none") +
+              legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+
+      if(!is.na(title)) {
+        plot <- plot + ggtitle(title)
+      }
+
       if(!is.null(theme_settings)) {
         plot_adj <- plot + do.call(theme,theme_settings)
-        print(plot_adj)} else {print(plot)}
+        print(plot_adj)
+      } else {print(plot)}
     })
   }
 

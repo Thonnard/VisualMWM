@@ -36,7 +36,8 @@ heatmapGIF(
   duration = 10,
   frames = 100,
   resolution = 80,
-  theme_settings = NULL
+  theme_settings = NULL,
+  title = NA
 )
 }
 \arguments{
@@ -105,6 +106,8 @@ When TRUE, colour scale is set by heatmap_low and heatmap_high. Default = FALSE}
 \item{resolution}{Resolution of GIF, passed to gifski. Default = 80}
 
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
+
+\item{title}{Add title to GIF. Default = NA}
 }
 \description{
 The heatmapGIF function creates a raster or contour heatmap GIF of the animal for a specific trial.
