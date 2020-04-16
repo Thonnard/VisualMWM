@@ -18,14 +18,15 @@ library(VisualMWM)
 ```
 
 ## Here we go...
-```{r, eval = TRUE}
+```{r, eval = TRUE, include=FALSE}
 # load some data
 load("data/track_data.RData")
-
+```
+```{r, eval = TRUE}
 # check data
 head(track_data)
 ```
 
 <b>Looks good! What can we do with this... Everything!</b>
 
-## Not necessary
+## What else...

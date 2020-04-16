@@ -20,9 +20,6 @@ library(VisualMWM)
 ## Here we go…
 
 ``` r
-# load some data
-load("data/track_data.RData")
-
 # check data
 head(track_data)
 ```
@@ -37,4 +34,4 @@ head(track_data)
 
 <b>Looks good\! What can we do with this… Everything\!</b>
 
-## Not necessary
+## What else…
