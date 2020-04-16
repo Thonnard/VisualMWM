@@ -1,9 +1,23 @@
-VisualMWM
-================
-David Thonnard
-4/16/2020
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# VisualMWM <img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" align="right" width="160"/>
+
+This R package provides tools to visualise Morris water maze date
+motion-wise\!
+
+<br><br>
+
+## Installation
+
+``` r
+# install
+devtools::install_github("Thonnard/VisualMWM")
+# load
+library(VisualMWM)
+```
+
+## Here we go…
 
 ``` r
 # load some data
@@ -19,6 +33,3 @@ head(track_data)
 #> 5 0.16 95.5266 12.0585     1w   1     1     A
 #> 6 0.20 95.5048 12.1942     1w   1     1     A
 ```
-
-My title
-<img src="man/figures/targetdistance_1w-day_1-trial_1_1.gif" width = 300>

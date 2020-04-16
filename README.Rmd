@@ -1,7 +1,4 @@
 ---
-title: "VisualMWM"
-author: "David Thonnard"
-date: "4/16/2020"
 output: github_document
 ---
 
@@ -15,6 +12,20 @@ knitr::opts_chunk$set(
 )
 ```
 
+# VisualMWM <img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" align="right" width="160"/>
+This R package provides tools to visualise Morris water maze date motion-wise!
+
+<br><br>
+
+## Installation
+```{r, eval = FALSE}
+# install
+devtools::install_github("Thonnard/VisualMWM")
+# load
+library(VisualMWM)
+```
+
+## Here we go...
 ```{r, eval = TRUE}
 # load some data
 load("data/track_data.RData")
@@ -23,4 +34,4 @@ load("data/track_data.RData")
 head(track_data)
 ```
 
-My title <img src="man/figures/targetdistance_1w-day_1-trial_1_1.gif" width = 300>
+## Not necessary
