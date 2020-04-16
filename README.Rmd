@@ -1,0 +1,24 @@
+---
+title: "VisualMWM"
+author: "David Thonnard"
+date: "4/16/2020"
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+
+```{r, eval = TRUE}
+# load some data
+load("data/track_data.RData")
+
+# check data
+head(track_data)
+```
