@@ -52,7 +52,7 @@ barGIF(
 
 \item{bar_colours}{Colours of the four bars. Default = c("#F8766D","#7CAE00", "#00BFC4", "#C77CFF")}
 
-\item{show_time}{Show time-bins. Default = FALSE}
+\item{show_time}{Show time-bins (s) as subtitle (ggplot). Default = FALSE}
 
 \item{loop}{Loop the animation, default = FALSE}
 

@@ -78,7 +78,7 @@ velocityGIF(
 
 \item{duration}{Duration of the animation (s), default = 10}
 
-\item{show_time}{Shows trial time (s). Default = FALSE}
+\item{show_time}{Shows trial time (s) as subtitle (ggplot). Default = FALSE}
 
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
 

@@ -70,7 +70,7 @@ targetdistanceGIF(
 
 \item{target_point_colour}{Colour of the point. Default = "black"}
 
-\item{show_time}{Shows trial time (s). Default = FALSE}
+\item{show_time}{Shows trial time (s) as subtitle (ggplot). Default = FALSE}
 
 \item{plot_original_target}{Plots the distance to the original target (e.g. for reversal trials). Default = FALSE}
 

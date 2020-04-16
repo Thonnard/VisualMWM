@@ -99,7 +99,7 @@ trackGIF(
 
 \item{title}{Add title to GIF. Default = NA}
 
-\item{show_time}{Shows trial time (s). Default = FALSE}
+\item{show_time}{Shows trial time (s) as subtitle (ggplot). Default = FALSE}
 
 \item{plot_original_platform}{Plot the original platform (for reversal trials). Default = FALSE}
 
