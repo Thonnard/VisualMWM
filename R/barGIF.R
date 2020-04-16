@@ -48,16 +48,9 @@ barGIF <- function(data, id, day, trial,
 
   # calculate duration
   data$Duration <- 0
-  split <- split(data, list(data$Animal, data$Day, data$Trial))
-  split <- lapply(split, function(x){
-    records <- length(x[, "Duration"])
-    for(i in 2:records){
-      x[, "Duration"][i] <- x[, "Time"][i] - x[, "Time"][i-1]
-    }
-    x # return data frame
-  })
-  data <- do.call(rbind, split)
-  rownames(data) <- NULL
+  for(i in 2:nrow(data)){
+    data$Duration[i] <- data$Time[i] - data$Time[i-1]
+  }
 
   # add cumulative time in quadrant
   data$CumQuadrantTime <- ave(data$Duration, data$Quadrant, FUN=cumsum)
