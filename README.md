@@ -3,10 +3,10 @@
 
 # VisualMWM <img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" align="right" width="160"/>
 
-This R package provides tools to visualise Morris water maze data
+This R package provides tools to visualize Morris water maze data
 motion-wise\!
 
-<br><br>
+<br>
 
 ## Installation
 
