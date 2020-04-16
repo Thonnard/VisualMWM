@@ -268,7 +268,7 @@ heatmapGIF <- function(data, id, day, trial,
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
               legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE) +
-        labs(subtitle = paste("Time: ", mydata$Time[1]))
+        labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
 
       # add original platform (optional)
       if(isTRUE(plot_original_platform)) {
