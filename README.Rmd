@@ -22,3 +22,5 @@ load("data/track_data.RData")
 # check data
 head(track_data)
 ```
+
+My title <img src="man/figures/targetdistance_1w-day_1-trial_1_1.gif" width = 300>
