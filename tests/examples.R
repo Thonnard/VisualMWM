@@ -47,7 +47,7 @@ targetdistanceGIF(data=track_data, id="1w", day=1, trial=1,
                   original_target_line_colour="black", original_target_alpha=0.5, original_target_point_colour="black",
                   theme_settings = list(plot.subtitle = element_text(face="bold", size="12", vjust=-10, hjust=0.05),
                                         plot.title = element_text(vjust=-6, colour="blue")),
-                  title = paste("Animal:", id, " Day:", day, " Trial:", trial))
+                  title = paste("Animal: 1w - Day: 1 - Trial: 1"))
 
 ## groupCOURD
 groupCOORD(data=track_data, by="Group")
