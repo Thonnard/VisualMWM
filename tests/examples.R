@@ -116,7 +116,7 @@ trackGIF(data=track_data, id="1w", day=1, trial=1,
          original_platform_line_size=0.5, original_platform_line_colour="black")
 
 trackGIF(data=track_data, id="1w", day=1, trial=1, centerx=19.4, centery=-1.49, platformx=50.60, platformy=-33.34,
-         plot_original_platform = TRUE)
+         plot_original_platform = TRUE, show_time = TRUE)
 
 trackGIF(data=track_data, id="1w", day=1, trial=1,
          centerx=19.4, centery=-1.49, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
