@@ -25,7 +25,7 @@
 #' @param height Height of the animation (px), default = 480
 #' @param fps Frames per second of the animation. Minimum 100 frames per GIF. default = 10
 #' @param duration Duration of the animation (s), default = 10
-#' @param show_time Shows trial time (s). Default = FALSE
+#' @param show_time Shows trial time (s) as subtitle (ggplot). Default = FALSE
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @param title Add title to GIF. Default = NA
 #' @keywords velocity morris water maze reversal gif

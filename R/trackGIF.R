@@ -30,7 +30,7 @@
 #' @param duration Duration of the animation(s), default = 10
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @param title Add title to GIF. Default = NA
-#' @param show_time Shows trial time (s). Default = FALSE
+#' @param show_time Shows trial time (s) as subtitle (ggplot). Default = FALSE
 #' @param plot_original_platform Plot the original platform (for reversal trials). Default = FALSE
 #' @param original_platformx x coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE
 #' @param original_platformy y coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE

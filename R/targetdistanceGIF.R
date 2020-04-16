@@ -18,7 +18,7 @@
 #' @param target_line_colour Colour of the line. Default = "black"
 #' @param target_alpha Alpha of the area. Default = 0.5
 #' @param target_point_colour Colour of the point. Default = "black"
-#' @param show_time Shows trial time (s). Default = FALSE
+#' @param show_time Shows trial time (s) as subtitle (ggplot). Default = FALSE
 #' @param plot_original_target Plots the distance to the original target (e.g. for reversal trials). Default = FALSE
 #' @param original_platformx x coordinate of the center of the original platform (cm). Ignored if plot_original_target = FALSE
 #' @param original_platformy y coordinate of the center of the original platform (cm). Ignored if plot_original_target = FALSE

@@ -14,7 +14,7 @@
 #' @param platformy y coordinate of the center of the platform (cm)
 #' @param platformradius radius of the platform (cm), default = 7.5
 #' @param bar_colours Colours of the four bars. Default = c("#F8766D","#7CAE00", "#00BFC4", "#C77CFF")
-#' @param show_time Show time-bins. Default = FALSE
+#' @param show_time Show time-bins (s) as subtitle (ggplot). Default = FALSE
 #' @param loop Loop the animation, default = FALSE
 #' @param width Width of the animation (px), default = 480
 #' @param height Height of the animation (px), default = 480
