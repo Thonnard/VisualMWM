@@ -1,6 +1,6 @@
 #' @title Morris water maze distance to target GIF
 #'
-#' @description The targetdistanceGIF function creates GIF showing the distance to target of time.
+#' @description The targetdistanceGIF function creates GIF showing the distance to target over time.
 #'
 #' @param data Data set containing at least following columns: "Time", "x", "y", "Animal", "Day", "Trial".
 #' "x" and "y" represent the coordinates (position) of the animal at a certain timepoint ("Time") during the trial.
@@ -34,12 +34,12 @@
 #' @param duration Duration of the animation (s), default = 10
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @param title Add title to GIF. Default = NA
-#' @keywords heatmap contour raster morris water maze reversal gif
+#' @keywords distance to target morris water maze reversal gif
 #' @export
 #' @import ggplot2
 #' @importFrom gganimate animate anim_save gifski_renderer transition_reveal
 #' @import gifski
-#'
+
 targetdistanceGIF <- function(data, id, day, trial,
                               centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5,
                               target_colour = "#CDB99C", target_linetype = "solid", target_line_colour="black", target_alpha=0.5, target_point_colour="black",
@@ -101,22 +101,24 @@ targetdistanceGIF <- function(data, id, day, trial,
     geom_segment(aes(x=Time, y=DistanceToTarget, xend = max(Time), yend = DistanceToTarget), linetype = 2, colour = 'grey') +
     geom_point(aes(x=Time, y=DistanceToTarget), size = 2, colour=target_point_colour) +
     geom_area(aes(x=Time, y=DistanceToTarget), fill=target_colour, linetype=target_linetype, color=target_line_colour, alpha=target_alpha) +
-    geom_text(aes(y=DistanceToTarget, x = max(Time)+1, label = paste("Target\n", round(DistanceToTarget,1), ' cm')), hjust = 0)
+    geom_text(aes(y=DistanceToTarget, x = max(Time)+1, label = paste("Target\n", round(DistanceToTarget,1), ' cm')), hjust = 0, fontface=2)
 
   # plot distance to original platform (optional)
   if(isTRUE(plot_original_target)) {
     p <- p + geom_segment(aes(x=Time, y=DistanceToOriginalTarget, xend = max(Time), yend = DistanceToOriginalTarget), linetype = 2, colour = 'grey') +
       geom_point(aes(x=Time, y=DistanceToOriginalTarget), size = 2, colour=original_target_point_colour) +
       geom_area(aes(x=Time, y=DistanceToOriginalTarget), fill=original_target_colour, linetype=original_target_linetype, color=original_target_line_colour, alpha=original_target_alpha) +
-      geom_text(aes(y=DistanceToOriginalTarget, x = max(Time)+1, label = paste("Original\n target\n", round(DistanceToOriginalTarget,1), ' cm')), hjust = 0) +
-      geom_segment(aes(x = 0, y = mean(DistanceToOriginalTarget), xend = max(Time), yend = mean(DistanceToOriginalTarget)), linetype="dashed", size=1) +
-      annotate(geom="text", x=0.5, y=mean(data$DistanceToOriginalTarget)-3, label=paste("Distance to original target (mean):", round(mean(data$DistanceToOriginalTarget),1)," cm"), hjust = 0)
+      geom_text(aes(y=DistanceToOriginalTarget, x = max(Time)+1, label = paste("Original\n target\n", round(DistanceToOriginalTarget,1), ' cm')), hjust = 0, fontface=2) +
+      geom_segment(aes(x = 0, y = mean(DistanceToOriginalTarget), xend = max(Time), yend = mean(DistanceToOriginalTarget)), linetype="dashed", size=0.5) +
+      annotate(geom="text", x=0.5, y=mean(data$DistanceToOriginalTarget)-3,
+               label=paste("Distance to original target (mean):", round(mean(data$DistanceToOriginalTarget),1)," cm"), hjust = 0, fontface=2)
   }
 
   # display mean distance to target (always on top)
   p <- p +
-    geom_segment(aes(x = 0, y = mean(DistanceToTarget), xend = max(Time), yend = mean(DistanceToTarget)), linetype="solid", size=1) +
-    annotate(geom="text", x=0.5, y=mean(data$DistanceToTarget)-3, label=paste("Distance to target (mean):", round(mean(data$DistanceToTarget),1)," cm"), hjust = 0)
+    geom_segment(aes(x = 0, y = mean(DistanceToTarget), xend = max(Time), yend = mean(DistanceToTarget)), linetype="solid", size=0.5) +
+    annotate(geom="text", x=0.5, y=mean(data$DistanceToTarget)-3,
+             label=paste("Distance to target (mean):", round(mean(data$DistanceToTarget),1)," cm"), hjust = 0, fontface=2)
 
   # animate and settings
   p <- p +
@@ -125,6 +127,8 @@ targetdistanceGIF <- function(data, id, day, trial,
     # settings
     coord_cartesian(clip = 'off') +
     ylim(0,150) +
+    ylab("Distance to target (cm)") +
+    xlab("Time (s)") +
     theme_classic() +
     theme(legend.position = "none", axis.text = element_text(size=12, face = "bold", colour = "black"),
           axis.title = element_text(size=16, face="bold", colour="black"),  plot.title = element_text(face="bold"),

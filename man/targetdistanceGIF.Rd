@@ -103,13 +103,13 @@ targetdistanceGIF(
 \item{title}{Add title to GIF. Default = NA}
 }
 \description{
-The targetdistanceGIF function creates GIF showing the distance to target of time.
+The targetdistanceGIF function creates GIF showing the distance to target over time.
 }
-\keyword{contour}
+\keyword{distance}
 \keyword{gif}
-\keyword{heatmap}
 \keyword{maze}
 \keyword{morris}
-\keyword{raster}
 \keyword{reversal}
+\keyword{target}
+\keyword{to}
 \keyword{water}
