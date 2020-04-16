@@ -26,7 +26,7 @@
 #' @param loop Loop the animation, default = FALSE
 #' @param width Width of the animation (px), default = 480
 #' @param height Height of the animation (px), default = 480
-#' @param fps Frames per second of the animation. Minimum 100 frames per GIF. default = 10
+#' @param fps Frames per second of the animation. default = 10
 #' @param duration Duration of the animation(s), default = 10
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @param title Add title to GIF. Default = NA

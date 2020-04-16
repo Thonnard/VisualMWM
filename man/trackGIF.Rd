@@ -90,7 +90,7 @@ trackGIF(
 
 \item{height}{Height of the animation (px), default = 480}
 
-\item{fps}{Frames per second of the animation. Minimum 100 frames per GIF. default = 10}
+\item{fps}{Frames per second of the animation. default = 10}
 
 \item{duration}{Duration of the animation(s), default = 10}
 
