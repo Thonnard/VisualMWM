@@ -2,6 +2,12 @@
 load("track_data.RData")
 
 ## heatmapGIF
+heatmapGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
+           plot_original_platform = TRUE)
+
+heatmapGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
+           type="contour", plot_original_platform = TRUE, heatmap_low = "lightblue", heatmap_high = "darkblue")
+
 heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,
            remove_data_outside_maze=TRUE,
@@ -23,11 +29,25 @@ heatmapGIF(data=track_data, id="2b", day=1, trial=1,
                                 legend.position="none", plot.title = element_text(hjust = 0.5)),
            title="My heatmap", plot_original_platform = TRUE)
 
-heatmapGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
-           plot_original_platform = TRUE)
+## targetdistanceGIF
+targetdistanceGIF(data=track_data, id="1w", day=1, trial=1, centerx=19.4, centery=-1.49, platformx=50.60, platformy=-33.34)
 
-heatmapGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
-           type="contour", plot_original_platform = TRUE, heatmap_low = "lightblue", heatmap_high = "darkblue")
+targetdistanceGIF(data=track_data, id="1w", day=1, trial=1, centerx=19.4, centery=-1.49, platformx=50.60, platformy=-33.34,
+                  target_colour=NA)
+
+targetdistanceGIF(data=track_data, id="1w", day=1, trial=1, centerx=19.4, centery=-1.49, platformx=50.60, platformy=-33.34,
+                  show_time = TRUE, plot_original_target = TRUE, title="Distance to target (reversal)")
+
+# subtitle time in graph
+targetdistanceGIF(data=track_data, id="1w", day=1, trial=1,
+                  centerx=19.4, centery=-1.49, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5,
+                  target_colour = "#CDB99C", target_linetype = "solid", target_line_colour="black", target_alpha=0.5, target_point_colour="black",
+                  show_time = TRUE, plot_original_target = TRUE, original_platformx=NULL, original_platformy=NULL,
+                  original_target_colour = "#ffcccb", original_target_linetype = "dashed",
+                  original_target_line_colour="black", original_target_alpha=0.5, original_target_point_colour="black",
+                  theme_settings = list(plot.subtitle = element_text(face="bold", size="12", vjust=-10, hjust=0.05),
+                                        plot.title = element_text(vjust=-6, colour="blue")),
+                  title = paste("Animal:", id, " Day:", day, " Trial:", trial))
 
 ## groupCOURD
 groupCOORD(data=track_data, by="Group")
