@@ -49,6 +49,14 @@ targetdistanceGIF(data=track_data, id="1w", day=1, trial=1,
                                         plot.title = element_text(vjust=-6, colour="blue")),
                   title = paste("Animal: 1w - Day: 1 - Trial: 1"))
 
+## velocity
+velocityGIF(data=track_data, id="2b", day=1, trial=1,
+            centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5,
+            target_colour = "#008000", target_linetype = "solid", target_line_colour=NA, target_alpha=0.5, target_point_colour="#008000",
+            removeVelocityOutliers = TRUE, SwimspeedLimit = 50,
+            loop = FALSE, width = 480, height = 480, fps = 10, duration = 10,
+            show_time = TRUE, theme_settings = NULL, title = NA)
+
 ## groupCOURD
 groupCOORD(data=track_data, by="Group")
 groupCOORD(data=track_data, by=c("Group", "Day"))
