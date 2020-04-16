@@ -90,12 +90,10 @@ areaQuadrantTime(data=track_data, id="1w", day=1, trial=4,
 ## barGIF
 barGIF(data=track_data, id="1w", day=1, trial=1,
        centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5,
-       removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50,
        loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50)
 
 barGIF(data=track_data, id="1w", day=1, trial=1,
        centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5,
-       removeSwimspeedOutliers = TRUE, SwimspeedLimit = 50,
        loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
        theme_settings =list(axis.text.x = element_text(face="bold", color="#993333", size=16)))
 
