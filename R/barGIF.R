@@ -114,12 +114,13 @@ barGIF <- function(data, id, day, trial,
     # bar graph
     geom_bar(stat="identity", aes(x=Quadrant, y=Mean_Time_Quadrant, fill=Quadrant)) +
     # text labels above bars
-    geom_text(aes(x=Quadrant, label = round(Mean_Time_Quadrant), y = Mean_Time_Quadrant, colour=bar_colours),
+    geom_text(aes(x=Quadrant, label = round(Mean_Time_Quadrant), y = Mean_Time_Quadrant, colour=Quadrant),
               position = position_dodge(0.9), vjust = -1, size=4, fontface="bold") +
     # 25% chance level
     geom_hline(yintercept=25, linetype="dashed", size=0.2) +
-    # adjust bar colours
+    # adjust bar and text colours
     scale_fill_manual(values = bar_colours) +
+    scale_colour_manual(values = bar_colours) +
     # adjust titles
     scale_x_discrete(name="Quadrant", breaks=c("TQ","OQ","AL","AR"), labels=c("Target", "Opposite", "Adjacent\nLeft", "Adjacent\nRight")) +
     ylab("Time in quadrant (%)") +
