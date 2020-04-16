@@ -24,7 +24,8 @@ barGIF(
   duration = 10,
   frames = 100,
   time_bins = 50,
-  theme_settings = NULL
+  theme_settings = NULL,
+  title = NA
 )
 }
 \arguments{
@@ -68,6 +69,8 @@ barGIF(
 \item{time_bins}{Number of time-bins in the animation, default = 50}
 
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
+
+\item{title}{Add title to GIF. Default = NA}
 }
 \description{
 The barGIF function creates a GIF showing the percentage of time spent per quadrant for a specific trial of one animal.

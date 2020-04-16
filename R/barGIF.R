@@ -23,6 +23,7 @@
 #' @param frames Number of frames in the animation, default = 100
 #' @param time_bins Number of time-bins in the animation, default = 50
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
+#' @param title Add title to GIF. Default = NA
 #' @keywords bar graph quadrant time
 #' @export
 #' @import ggplot2
@@ -36,7 +37,7 @@ barGIF <- function(data, id, day, trial,
                      centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5,
                      bar_colours=c("#F8766D","#7CAE00", "#00BFC4", "#C77CFF"), show_time=FALSE,
                      loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
-                     theme_settings = NULL){
+                     theme_settings = NULL, title=NA){
 
   # read data
   data <- as.data.frame(data)
@@ -113,7 +114,7 @@ barGIF <- function(data, id, day, trial,
     # bar graph
     geom_bar(stat="identity", aes(x=Quadrant, y=Mean_Time_Quadrant, fill=Quadrant)) +
     # text labels above bars
-    geom_text(aes(x=Quadrant, label = round(Mean_Time_Quadrant), y = Mean_Time_Quadrant, color=Quadrant),
+    geom_text(aes(x=Quadrant, label = round(Mean_Time_Quadrant), y = Mean_Time_Quadrant, colour=bar_colours),
               position = position_dodge(0.9), vjust = -1, size=4, fontface="bold") +
     # 25% chance level
     geom_hline(yintercept=25, linetype="dashed", size=0.2) +
@@ -127,11 +128,17 @@ barGIF <- function(data, id, day, trial,
     gganimate::ease_aes('sine-in-out') +
     theme_classic() +
     theme(legend.position = "none", axis.text = element_text(size=12, face = "bold", colour = "black"),
-          axis.title = element_text(size=16, face="bold", colour="black"),  plot.subtitle = element_text(face="bold")) +
-    if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
+          axis.title = element_text(size=16, face="bold", colour="black"),  plot.subtitle = element_text(face="bold"))
 
   # show time (optional)
   if(isTRUE(show_time)) {p1 <- p1 + labs(subtitle = "Time-bin: {closest_state}")}
+
+  # show title (optional)
+  if(!is.na(title)) {p1 <- p1 + ggtitle(title)}
+
+  # update theme settings (optional)
+  if(!is.null(theme_settings)) {
+    p1 <- p1 + do.call(theme,theme_settings)}
 
   # update animation parameters
   animate(p1, nframes = frames, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
