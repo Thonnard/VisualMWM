@@ -6,7 +6,11 @@ heatmapGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4,
            plot_original_platform = TRUE)
 
 heatmapGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
-           type="contour", plot_original_platform = TRUE, heatmap_low = "lightblue", heatmap_high = "darkblue")
+           type="contour", plot_original_platform = TRUE, heatmap_low = "lightblue", heatmap_high = "darkblue", show_time=TRUE)
+
+heatmapGIF(data=track_data, id="1w", day=1, trial=1, centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
+           type="contour", plot_original_platform = TRUE, heatmap_low = "lightblue", heatmap_high = "darkblue",
+           contour_filled=FALSE, contour_colour_scaled=FALSE)
 
 heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5, ndata_circle=100,

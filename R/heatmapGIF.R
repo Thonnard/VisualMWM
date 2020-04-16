@@ -37,6 +37,7 @@
 #' @param resolution Resolution of GIF, passed to gifski. Default = 80
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @param title Add title to GIF. Default = NA
+#' @param show_time Shows trial time (s). Default = FALSE
 #' @param plot_original_platform Plot the original platform (for reversal trials). Default = FALSE
 #' @param original_platformx x coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE
 #' @param original_platformy y coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE
@@ -58,7 +59,7 @@ heatmapGIF <- function(data, id, day, trial,
                        type="raster", interpolate=TRUE, contour_filled=TRUE, contour_colour_scaled=FALSE,
                        contour_colour_filled = NA, contour_colour = "blue",
                        loop = FALSE, width = 480, height = 480, duration = 10, frames = 100, resolution = 80,
-                       theme_settings = NULL, title = NA,
+                       theme_settings = NULL, title = NA, show_time = FALSE,
                        plot_original_platform = FALSE, original_platformx=NULL, original_platformy=NULL,
                        original_platform_colour="grey", original_platform_alpha=0.4, original_platform_linetype="dotted",
                        original_platform_line_size=0.5, original_platform_line_colour="black"){
@@ -157,6 +158,11 @@ heatmapGIF <- function(data, id, day, trial,
               legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
 
+      # show time (optional)
+      if(isTRUE(show_time)) {
+        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
+      }
+
       # add original platform (optional)
       if(isTRUE(plot_original_platform)) {
         plot <- plot + geom_polygon(data=original_platform_circle, aes(x, y), color=original_platform_line_colour, fill=original_platform_colour, alpha=original_platform_alpha, linetype=original_platform_linetype, size=original_platform_line_size)
@@ -214,6 +220,11 @@ heatmapGIF <- function(data, id, day, trial,
               legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
 
+      # show time (optional)
+      if(isTRUE(show_time)) {
+        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
+      }
+
       # add original platform (optional)
       if(isTRUE(plot_original_platform)) {
         plot <- plot + geom_polygon(data=original_platform_circle, aes(x, y), color=original_platform_line_colour, fill=original_platform_colour, alpha=original_platform_alpha, linetype=original_platform_linetype, size=original_platform_line_size)
@@ -267,8 +278,12 @@ heatmapGIF <- function(data, id, day, trial,
         theme_bw() +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
               legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
-        coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE) +
-        labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
+        coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+
+      # show time (optional)
+      if(isTRUE(show_time)) {
+        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
+      }
 
       # add original platform (optional)
       if(isTRUE(plot_original_platform)) {
@@ -326,6 +341,11 @@ heatmapGIF <- function(data, id, day, trial,
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.title.x=element_blank(),axis.title.y=element_blank(),
               legend.position = "none", plot.title = element_text(face="bold", colour="black", size="14")) +
         coord_fixed(xlim = c(-radius,radius), ylim = c(-radius,radius), expand=TRUE)
+
+      # show time (optional)
+      if(isTRUE(show_time)) {
+        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
+      }
 
       # add original platform (optional)
       if(isTRUE(plot_original_platform)) {
