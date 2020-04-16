@@ -15,6 +15,8 @@ barGIF(
   platformx,
   platformy,
   platformradius = 7.5,
+  bar_colours = c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"),
+  show_time = FALSE,
   loop = FALSE,
   width = 480,
   height = 480,
@@ -46,6 +48,10 @@ barGIF(
 \item{platformy}{y coordinate of the center of the platform (cm)}
 
 \item{platformradius}{radius of the platform (cm), default = 7.5}
+
+\item{bar_colours}{Colours of the four bars. Default = c("#F8766D","#7CAE00", "#00BFC4", "#C77CFF")}
+
+\item{show_time}{Show time-bins. Default = FALSE}
 
 \item{loop}{Loop the animation, default = FALSE}
 

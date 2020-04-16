@@ -13,6 +13,8 @@
 #' @param platformx x coordinate of the center of the platform (cm)
 #' @param platformy y coordinate of the center of the platform (cm)
 #' @param platformradius radius of the platform (cm), default = 7.5
+#' @param bar_colours Colours of the four bars. Default = c("#F8766D","#7CAE00", "#00BFC4", "#C77CFF")
+#' @param show_time Show time-bins. Default = FALSE
 #' @param loop Loop the animation, default = FALSE
 #' @param width Width of the animation (px), default = 480
 #' @param height Height of the animation (px), default = 480
@@ -32,6 +34,7 @@
 
 barGIF <- function(data, id, day, trial,
                      centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5,
+                     bar_colours=c("#F8766D","#7CAE00", "#00BFC4", "#C77CFF"), show_time=FALSE,
                      loop = FALSE, width = 480, height = 480, fps = 10, duration = 10, frames = 100, time_bins = 50,
                      theme_settings = NULL){
 
@@ -114,9 +117,9 @@ barGIF <- function(data, id, day, trial,
               position = position_dodge(0.9), vjust = -1, size=4, fontface="bold") +
     # 25% chance level
     geom_hline(yintercept=25, linetype="dashed", size=0.2) +
+    # adjust bar colours
+    scale_fill_manual(values = bar_colours) +
     # adjust titles
-    labs(title = "Time-bin: {closest_state}") +
-    # scale_fill_manual(values = c("grey", "black", "yellow", "red")) +
     scale_x_discrete(name="Quadrant", breaks=c("TQ","OQ","AL","AR"), labels=c("Target", "Opposite", "Adjacent\nLeft", "Adjacent\nRight")) +
     ylab("Time in quadrant (%)") +
     # transition
@@ -124,8 +127,11 @@ barGIF <- function(data, id, day, trial,
     gganimate::ease_aes('sine-in-out') +
     theme_classic() +
     theme(legend.position = "none", axis.text = element_text(size=12, face = "bold", colour = "black"),
-          axis.title = element_text(size=16, face="bold", colour="black"),  plot.title = element_text(face="bold")) +
+          axis.title = element_text(size=16, face="bold", colour="black"),  plot.subtitle = element_text(face="bold")) +
     if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
+
+  # show time (optional)
+  if(isTRUE(show_time)) {p1 <- p1 + labs(subtitle = "Time-bin: {closest_state}")}
 
   # update animation parameters
   animate(p1, nframes = frames, fps = fps, duration = duration, width=width, height=height, renderer = gifski_renderer(loop = loop))
