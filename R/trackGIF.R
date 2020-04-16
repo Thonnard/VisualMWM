@@ -30,6 +30,7 @@
 #' @param duration Duration of the animation(s), default = 10
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
 #' @param title Add title to GIF. Default = NA
+#' @param show_time Shows trial time (s). Default = FALSE
 #' @param plot_original_platform Plot the original platform (for reversal trials). Default = FALSE
 #' @param original_platformx x coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE
 #' @param original_platformy y coordinate of the center of the original platform (cm). Ignored if plot_original_platform = FALSE
@@ -52,7 +53,7 @@ trackGIF <- function(data, id, day, trial,
                      platform_alpha=1,  platform_colour="black", platform_line_size=0.5, platform_linetype="solid", platform_line_colour="black",
                      track_colour="orange", track_alpha=0.35,
                      loop = FALSE, width = 480, height = 480, fps = 10, duration = 10,
-                     theme_settings = NULL, title = NA,
+                     theme_settings = NULL, title = NA, show_time = FALSE,
                      plot_original_platform = FALSE, original_platformx=NULL, original_platformy=NULL,
                      original_platform_colour="grey", original_platform_alpha=0.4, original_platform_linetype="dotted",
                      original_platform_line_size=0.5, original_platform_line_colour="black"
@@ -141,6 +142,11 @@ trackGIF <- function(data, id, day, trial,
     p1 <- p1 + geom_polygon(data=original_platform_circle, aes(x, y), color=original_platform_line_colour, fill=original_platform_colour, alpha=original_platform_alpha, linetype=original_platform_linetype, size=original_platform_line_size)
     # plot track (again, to plot over template)
     p1 <- p1 + geom_point(data = data, aes(x=x_coord, y=y_coord), color=track_colour, alpha=track_alpha)
+  }
+
+  # show time (optional)
+  if(isTRUE(show_time)) {
+    p1 <- p1 + labs(subtitle = paste("Time: ", "{round(as.numeric(frame_time),1)}","s", sep=""))
   }
 
   # add title (optional)

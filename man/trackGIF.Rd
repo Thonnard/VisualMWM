@@ -32,6 +32,7 @@ trackGIF(
   duration = 10,
   theme_settings = NULL,
   title = NA,
+  show_time = FALSE,
   plot_original_platform = FALSE,
   original_platformx = NULL,
   original_platformy = NULL,
@@ -97,6 +98,8 @@ trackGIF(
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
 
 \item{title}{Add title to GIF. Default = NA}
+
+\item{show_time}{Shows trial time (s). Default = FALSE}
 
 \item{plot_original_platform}{Plot the original platform (for reversal trials). Default = FALSE}
 
