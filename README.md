@@ -5,7 +5,7 @@
 
 This R package provides functions to visualize [Morris water
 maze](https://en.wikipedia.org/wiki/Morris_water_navigation_task)
-tracking data motion-wise\! The goal is to visualize behaviour starting
+tracking data in motion\! The goal is to visualize behaviour starting
 from raw, unprocessed data, i.e. x and y coordinates for every time
 point, that is obtained with tracking software (e.g. Ethovision). This
 package comes with an example data set (track\_data) that can be used to
@@ -43,3 +43,36 @@ head(track_data)
     ## 6 0.20 95.5048 12.1942     1w   1     1     A
 
 ## What else…
+
+## Merge data
+
+VisualMWM also provides a function to merge raw data files (e.g. of
+different subjects, trials,…). This function is written based on
+Ethovision raw data output that contains extra information above the
+actual tracking data. Here is an example for csv files (examples are
+provided in tests/csv\_merge):
+
+``` r
+mergeCOORD(startData=39,rowID=34, rowDay=35, rowTrial=32, rowGroup="FOO", filetype = "csv")
+```
+
+This code produces an csv output file that contains following
+information (group information was added later as an example):
+
+``` r
+head(track_data, n=3)
+```
+
+    ##   Time       x       y Animal Day Trial Group
+    ## 1 0.00 95.4989 12.2106     1w   1     1     A
+    ## 2 0.04      NA      NA     1w   1     1     A
+    ## 3 0.08      NA      NA     1w   1     1     A
+
+``` r
+tail(track_data, n=3)
+```
+
+    ##        Time       x        y Animal Day Trial Group
+    ## 81887 16.04 55.3735 -30.7304    2br   1     4     B
+    ## 81888 16.08 55.3727 -30.7352    2br   1     4     B
+    ## 81889 16.12 55.3988 -30.7719    2br   1     4     B

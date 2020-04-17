@@ -1,11 +1,12 @@
 ---
-output: github_document
+output:
+  github_document
 ---
 
 <!-- README.md is generated from README.Rmd. -->
 
 # VisualMWM <img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" align="right" width="160"/>
-This R package provides functions to visualize [Morris water maze](https://en.wikipedia.org/wiki/Morris_water_navigation_task) tracking data motion-wise! The goal is to visualize behaviour starting from raw, unprocessed data, i.e. x and y coordinates for every time point, that is obtained with tracking software (e.g. Ethovision). This package comes with an example data set (track_data) that can be used to test the various plotting options. Plots are generated with [ggplot2](https://ggplot2.tidyverse.org/), and animations are rendered with [gganimate](https://gganimate.com/articles/gganimate.html) and [gifski](https://gif.ski/). 
+This R package provides functions to visualize [Morris water maze](https://en.wikipedia.org/wiki/Morris_water_navigation_task) tracking data in motion! The goal is to visualize behaviour starting from raw, unprocessed data, i.e. x and y coordinates for every time point, that is obtained with tracking software (e.g. Ethovision). This package comes with an example data set (track_data) that can be used to test the various plotting options. Plots are generated with [ggplot2](https://ggplot2.tidyverse.org/), and animations are rendered with [gganimate](https://gganimate.com/articles/gganimate.html) and [gifski](https://gif.ski/). 
 
 ## Let's start with an example...
 ```{r,  out.width = "10%", include=TRUE, eval=TRUE, echo=FALSE}
@@ -32,3 +33,19 @@ head(track_data)
 ```
 
 ## What else...
+
+## Merge data
+VisualMWM also provides a function to merge raw data files (e.g. of different subjects, trials,...). This function is written based on Ethovision raw data output that contains extra information above the actual tracking data. Here is an example for csv files (examples are provided in tests/csv_merge):
+
+```{r, eval = FALSE, echo = TRUE}
+mergeCOORD(startData=39,rowID=34, rowDay=35, rowTrial=32, rowGroup="FOO", filetype = "csv")
+```
+
+This code produces an csv output file that contains following information (group information was added later as an example):
+
+```{r, eval = TRUE, echo = TRUE}
+head(track_data, n=3)
+tail(track_data, n=3)
+```
+
+
