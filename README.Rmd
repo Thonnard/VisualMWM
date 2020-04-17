@@ -1,7 +1,5 @@
 ---
-output:
-  github_document:
-  css: custom.css
+output: github_document
 ---
 
 
