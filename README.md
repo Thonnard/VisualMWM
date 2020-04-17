@@ -3,15 +3,20 @@
 
 # VisualMWM <img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" align="right" width="160"/>
 
-This R package provides tools to visualize Morris water maze tracking
-data motion-wise\! The goal is to start from raw, unprocessed data,
-i.e. x and y coordinates for every time point, that is obtained with
-tracking software (e.g. Ethovision). This package comes with an example
-data set (track\_data) that can be used to test the various plotting
-options. Plots are generated with
+This R package provides functions to visualize [Morris water
+maze](https://en.wikipedia.org/wiki/Morris_water_navigation_task)
+tracking data motion-wise\! The goal is to visualize behaviour starting
+from raw, unprocessed data, i.e. x and y coordinates for every time
+point, that is obtained with tracking software (e.g. Ethovision). This
+package comes with an example data set (track\_data) that can be used to
+test the various plotting options. Plots are generated with
 [ggplot2](https://ggplot2.tidyverse.org/), and animations are rendered
 with [gganimate](https://gganimate.com/articles/gganimate.html) and
 [gifski](https://gif.ski/).
+
+## Let’s start with an example…
+
+<img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" width="10%" />
 
 ## Installation
 
