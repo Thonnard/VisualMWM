@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. -->
 
-# VisualMWM <img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" align="right" width="160"/>
+# VisualMWM <img src="man/figures/logo.gif" align="right" width="160"/>
 
 This R package provides functions to visualize [Morris water
 maze](https://en.wikipedia.org/wiki/Morris_water_navigation_task)
@@ -14,9 +14,18 @@ test the various plotting options. Plots are generated with
 with [gganimate](https://gganimate.com/articles/gganimate.html) and
 [gifski](https://gif.ski/).
 
+<br><br>
+
 ## Let’s start with an example…
 
-<img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" width="10%" />
+<img src="man/figures/example1.gif" width="100%" />
+
+<br> On the left we see the track of the animal in the maze. This
+example shows the second trial of the first day of reversal, which
+explains the searching behaviour close to the original target (top left
+circle). The GIF in the middle shows the distance to both the original
+as well as the new target. The GIF on the right displays the velocity of
+the animal during the trial.
 
 ## Installation
 

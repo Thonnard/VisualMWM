@@ -5,13 +5,18 @@ output:
 
 <!-- README.md is generated from README.Rmd. -->
 
-# VisualMWM <img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" align="right" width="160"/>
+# VisualMWM <img src="man/figures/logo.gif" align="right" width="160"/>
 This R package provides functions to visualize [Morris water maze](https://en.wikipedia.org/wiki/Morris_water_navigation_task) tracking data in motion! The goal is to visualize behaviour starting from raw, unprocessed data, i.e. x and y coordinates for every time point, that is obtained with tracking software (e.g. Ethovision). This package comes with an example data set (track_data) that can be used to test the various plotting options. Plots are generated with [ggplot2](https://ggplot2.tidyverse.org/), and animations are rendered with [gganimate](https://gganimate.com/articles/gganimate.html) and [gifski](https://gif.ski/). 
 
+<br><br>
+
 ## Let's start with an example...
-```{r,  out.width = "10%", include=TRUE, eval=TRUE, echo=FALSE}
-knitr::include_graphics("man/figures/heatmapGIF_2b-day_1-trial_1.gif") 
+```{r,  out.width = "100%", include=TRUE, eval=TRUE, echo=FALSE}
+knitr::include_graphics("man/figures/example1.gif") 
 ```
+
+<br>
+On the left we see the track of the animal in the maze. This example shows the second trial of the first day of reversal, which explains the searching behaviour close to the original target (top left circle). The GIF in the middle shows the distance to both the original as well as the new target. The GIF on the right displays the velocity of the animal during the trial.
 
 ## Installation
 ```{r, eval = FALSE, include=TRUE}
@@ -47,5 +52,4 @@ This code produces an csv output file that contains following information (group
 head(track_data, n=3)
 tail(track_data, n=3)
 ```
-
 
