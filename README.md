@@ -54,8 +54,8 @@ head(track_data)
 
 ## Heatmaps
 
-There are two different types of heatmaps: raster and contour. Here we
-can see an….
+There are two main types of heatmaps available: raster and contour. Here
+we can see an….
 
 ## Merge data
 

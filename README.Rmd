@@ -39,7 +39,7 @@ head(track_data)
 ```
 
 ## Heatmaps
-There are two different types of heatmaps: raster and contour. Here we can see an....
+There are two main types of heatmaps available: raster and contour. Here we can see an....
 
 ## Merge data
 VisualMWM also provides a function to merge raw data files (e.g. of different subjects, trials,...). This function is written based on Ethovision raw data output that contains extra information above the actual tracking data. Here is an example for csv files (examples are provided in tests/csv_merge):
