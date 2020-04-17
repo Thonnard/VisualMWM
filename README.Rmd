@@ -5,7 +5,7 @@ output:
 
 <!-- README.md is generated from README.Rmd. -->
 
-# VisualMWM <img src="man/figures/logo.gif" align="right" width="160"/>
+# VisualMWM <img src="man/figures/logo.gif" align="right" width="5%"/>
 This R package provides functions to visualize [Morris water maze](https://en.wikipedia.org/wiki/Morris_water_navigation_task) tracking data in motion! The goal is to visualize behaviour starting from raw, unprocessed data, i.e. x and y coordinates for every time point, that is obtained with tracking software (e.g. Ethovision). This package comes with an example data set (track_data) that can be used to test the various plotting options. Plots are generated with [ggplot2](https://ggplot2.tidyverse.org/), and animations are rendered with [gganimate](https://gganimate.com/articles/gganimate.html) and [gifski](https://gif.ski/). 
 
 <br><br>
@@ -40,6 +40,14 @@ head(track_data)
 
 ## Heatmaps
 There are two main types of heatmaps available: raster and contour. Here we can see an....
+
+## Tracking
+
+## Distance to target
+
+## Velocity
+
+## Time spent per quadrant
 
 ## Merge data
 VisualMWM also provides a function to merge raw data files (e.g. of different subjects, trials,...). This function is written based on Ethovision raw data output that contains extra information above the actual tracking data. Here is an example for csv files (examples are provided in tests/csv_merge):

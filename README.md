@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. -->
 
-# VisualMWM <img src="man/figures/logo.gif" align="right" width="160"/>
+# VisualMWM <img src="man/figures/logo.gif" align="right" width="5%"/>
 
 This R package provides functions to visualize [Morris water
 maze](https://en.wikipedia.org/wiki/Morris_water_navigation_task)
@@ -56,6 +56,14 @@ head(track_data)
 
 There are two main types of heatmaps available: raster and contour. Here
 we can see an….
+
+## Tracking
+
+## Distance to target
+
+## Velocity
+
+## Time spent per quadrant
 
 ## Merge data
 
