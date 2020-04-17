@@ -1,9 +1,4 @@
 
-<style>
-body {
-text-align: justify}
-</style>
-
 <!-- README.md is generated from README.Rmd. -->
 
 # VisualMWM <img src="man/figures/heatmapGIF_2b-day_1-trial_1.gif" align="right" width="160"/>

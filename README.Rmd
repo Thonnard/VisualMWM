@@ -1,11 +1,9 @@
 ---
 output: github_document
+css: "custom.css"
 ---
 
-<style>
-body {
-text-align: justify}
-</style>
+
 
 <!-- README.md is generated from README.Rmd. -->
 
