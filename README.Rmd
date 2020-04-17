@@ -1,7 +1,7 @@
 ---
 output:
   github_document:
-  css: "custom.css"
+  css: custom.css
 ---
 
 
