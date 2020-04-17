@@ -16,7 +16,8 @@ knitr::include_graphics("man/figures/example1.gif")
 ```
 
 <br>
-On the left we see the track of the animal in the maze. This example shows the second trial of the first day of reversal, which explains the searching behaviour close to the original target (top left circle). The GIF in the middle shows the distance to both the original as well as the new target. The GIF on the right displays the velocity of the animal during the trial.
+On the left we see the track of the animal in the maze. This example shows the second trial of the first day of reversal, which explains the searching behaviour close to the original target (top left circle). The GIF in the middle shows the distance to both the original as well as the new target. The GIF on the right displays the velocity of the animal during the trial. These GIFs have been stitched together with the appendGIFs function.
+<br> 
 
 ## Installation
 ```{r, eval = FALSE, include=TRUE}
@@ -26,7 +27,7 @@ devtools::install_github("Thonnard/VisualMWM")
 library(VisualMWM)
 ```
 
-## Here we go...
+## Exemplary data set
 ```{r, eval = TRUE, include=FALSE}
 # load some data
 load("data/track_data.RData")
@@ -37,7 +38,8 @@ load("data/track_data.RData")
 head(track_data)
 ```
 
-## What else...
+## Heatmaps
+There are two different types of heatmaps: raster and contour. Here we can see an....
 
 ## Merge data
 VisualMWM also provides a function to merge raw data files (e.g. of different subjects, trials,...). This function is written based on Ethovision raw data output that contains extra information above the actual tracking data. Here is an example for csv files (examples are provided in tests/csv_merge):

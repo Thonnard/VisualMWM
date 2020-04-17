@@ -25,7 +25,8 @@ example shows the second trial of the first day of reversal, which
 explains the searching behaviour close to the original target (top left
 circle). The GIF in the middle shows the distance to both the original
 as well as the new target. The GIF on the right displays the velocity of
-the animal during the trial.
+the animal during the trial. These GIFs have been stitched together with
+the appendGIFs function. <br>
 
 ## Installation
 
@@ -36,7 +37,7 @@ devtools::install_github("Thonnard/VisualMWM")
 library(VisualMWM)
 ```
 
-## Here we go…
+## Exemplary data set
 
 ``` r
 # check data
@@ -51,7 +52,10 @@ head(track_data)
     ## 5 0.16 95.5266 12.0585     1w   1     1     A
     ## 6 0.20 95.5048 12.1942     1w   1     1     A
 
-## What else…
+## Heatmaps
+
+There are two different types of heatmaps: raster and contour. Here we
+can see an….
 
 ## Merge data
 
