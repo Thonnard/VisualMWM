@@ -37,7 +37,7 @@ areaQuadrantTime<- function(data, id, day, trial,
   data <- as.data.frame(data)
 
   # select data
-  data <- data[which(data$Animal == id & data$Trial == trial),]
+  data <- data[which(data$Animal == id & data$Trial == trial & data$Day == day),]
 
   # update coordinates (rescale) and add quadrant information
   data <- updateCOORD(data=data,

@@ -52,7 +52,7 @@ targetdistanceGIF <- function(data, id, day, trial,
   data <- as.data.frame(data)
 
   # select data
-  data <- data[which(data$Animal == id & data$Trial == trial),]
+  data <- data[which(data$Animal == id & data$Trial == trial & data$Day == day),]
 
   # initiate vars
   Time <- NULL
