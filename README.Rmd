@@ -41,11 +41,9 @@ head(track_data)
 ## Heatmaps
 There are two main types of heatmaps available: raster and contour. Here we see an example of a raster heatmap (interpolated) on the left, and a (filled) contour heatmap on the right. 
 
-<center>
-```{r,  out.width = "80%", include=TRUE, eval=TRUE, echo=FALSE}
+```{r,  out.width = "80%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
 knitr::include_graphics("man/figures/heatmap_example.gif") 
 ```
-</center>
 
 
 ## Tracking
