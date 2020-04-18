@@ -118,6 +118,7 @@ areaQuadrantTime<- function(data, id, day, trial,
     ylab("Quadrant Time (%)") +
     viridis::scale_fill_viridis(discrete = TRUE, option = viridis_color_palette) +
     viridis::scale_color_viridis(discrete = TRUE, option = viridis_color_palette) +
+    scale_color_manual(labels = c("Target", "Original target", "Adjacent left", "Adjacent right"), values = c("TQ", "OQ", "AL", "AR")) +
     theme_classic() +
     if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
 
