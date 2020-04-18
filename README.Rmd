@@ -131,10 +131,19 @@ barGIF(data=track_data, id="2rb", day=1, trial=1, loop = TRUE
        centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34)
 ```
 
-VisualMWM also provides functions to display behaviour in static graphs. Next example shows two area plots of time spent per quadrant. Here we can clearly see that during the fourth trial of reversal, compared to the first trial, relatively more time is spent in the target quadrant.
+VisualMWM also provides functions to display behaviour in static graphs. Next example shows two area plots of time spent per quadrant. Here we can clearly see that during the fourth trial of reversal (right), compared to the first trial (left), relatively more time is spent in the target quadrant ([viridis colour scales](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)).
 
-```{r,  out.width = "80%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
-knitr::include_graphics("man/figures/velocity.gif") 
+<img width="45%" src="man/figures/areaQuadrantTime_trial_1.jpeg"/>
+<img width="45%" src="man/figures/areaQuadrantTime_trial_4.jpeg"/>
+
+```{r, eval = FALSE, echo = TRUE}
+# Reversal, trial 1
+areaQuadrantTime(data=track_data, id="1w", day=1, trial=1, device="jpeg",
+                 centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5)
+
+# Reveral, trial 4
+areaQuadrantTime(data=track_data, id="1w", day=1, trial=4, device="jpeg",
+                 centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5)
 ```
 
 ## Merge data
@@ -150,4 +159,7 @@ This code produces an csv output file that contains following information (group
 head(track_data, n=3)
 tail(track_data, n=3)
 ```
+
+## Workflow
+(under construction...)
 
