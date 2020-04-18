@@ -60,7 +60,7 @@ we see an example of a (interpolated) raster heatmap on the left, and a
 
 <center>
 
-<img src="man/figures/heatmap_example1.gif" width="40%" /><img src="man/figures/heatmap_example2.gif" width="40%" />
+<img src="man/figures/heatmap_example.gif" width="80%" />
 
 </center>
 
