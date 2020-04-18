@@ -103,6 +103,21 @@ targetdistanceGIF(data=track_data, id="2rb", day=1, trial=4,
 ```
 
 ## Velocity
+Floating or freezing behaviour can be demonstrated in velocity graphs. Following GIF shows the difference between normal swimming behaviour (left) and floating (right). 
+
+```{r,  out.width = "80%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
+knitr::include_graphics("man/figures/velocity.gif") 
+```
+
+```{r, eval = FALSE, echo = TRUE}
+# Normal swimming behaviour
+velocityGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4, 
+            platformx=50.60, platformy=-33.34, title = "Animal: 2b", loop = TRUE)
+
+# Floating
+velocityGIF(data=track_data, id="1rg", day=1, trial=4, centerx=19.4, centery=-1.4, 
+            platformx=50.60, platformy=-33.34, title = "Animal: 1rg (floating)", loop = TRUE)
+```
 
 ## Time spent per quadrant
 
