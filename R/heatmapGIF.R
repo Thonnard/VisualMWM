@@ -160,7 +160,7 @@ heatmapGIF <- function(data, id, day, trial,
 
       # show time (optional)
       if(isTRUE(show_time)) {
-        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
+        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)],"s", sep=""))
       }
 
       # add original platform (optional)
@@ -222,7 +222,7 @@ heatmapGIF <- function(data, id, day, trial,
 
       # show time (optional)
       if(isTRUE(show_time)) {
-        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
+        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)],"s", sep=""))
       }
 
       # add original platform (optional)
@@ -282,7 +282,7 @@ heatmapGIF <- function(data, id, day, trial,
 
       # show time (optional)
       if(isTRUE(show_time)) {
-        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
+        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)],"s", sep=""))
       }
 
       # add original platform (optional)
@@ -344,7 +344,7 @@ heatmapGIF <- function(data, id, day, trial,
 
       # show time (optional)
       if(isTRUE(show_time)) {
-        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)]))
+        plot <- plot + labs(subtitle = paste("Time: ", mydata$Time[nrow(mydata)],"s", sep=""))
       }
 
       # add original platform (optional)
