@@ -116,9 +116,8 @@ areaQuadrantTime<- function(data, id, day, trial,
     ggtitle(paste("Trial ", trial, sep="")) +
     xlab("Trial duration (s)") +
     ylab("Quadrant Time (%)") +
-    viridis::scale_fill_viridis(discrete = TRUE, option = viridis_color_palette) +
-    viridis::scale_color_viridis(discrete = TRUE, option = viridis_color_palette) +
-    scale_color_manual(labels = c("Target", "Original target", "Adjacent left", "Adjacent right"), values = c("TQ", "OQ", "AL", "AR")) +
+    viridis::scale_fill_viridis(discrete = TRUE, option = viridis_color_palette, labels = c("Target", "Original target", "Adjacent left", "Adjacent right")) +
+    viridis::scale_color_viridis(discrete = TRUE, option = viridis_color_palette, labels = c("Target", "Original target", "Adjacent left", "Adjacent right")) +
     theme_classic() +
     if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
 
