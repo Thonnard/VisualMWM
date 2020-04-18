@@ -136,6 +136,11 @@ VisualMWM also provides functions to display behaviour in static graphs. Next ex
 <img width="40%" src="man/figures/areaQuadrantTime_trial_1.jpeg"/>
 <img width="40%" src="man/figures/areaQuadrantTime_trial_4.jpeg"/>
 
+```{r,  out.width = "40%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
+knitr::include_graphics("man/figures/areaQuadrantTime_trial_1.jpeg") 
+knitr::include_graphics("man/figures/areaQuadrantTime_trial_4.jpeg") 
+```
+
 ```{r, eval = FALSE, echo = TRUE}
 # Reversal, trial 1
 areaQuadrantTime(data=track_data, id="1w", day=1, trial=1, device="jpeg",

@@ -168,6 +168,8 @@ scales](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-virid
 <img width="40%" src="man/figures/areaQuadrantTime_trial_1.jpeg"/>
 <img width="40%" src="man/figures/areaQuadrantTime_trial_4.jpeg"/>
 
+<img src="man/figures/areaQuadrantTime_trial_1.jpeg" width="40%" style="display: block; margin: auto;" /><img src="man/figures/areaQuadrantTime_trial_4.jpeg" width="40%" style="display: block; margin: auto;" />
+
 ``` r
 # Reversal, trial 1
 areaQuadrantTime(data=track_data, id="1w", day=1, trial=1, device="jpeg",
