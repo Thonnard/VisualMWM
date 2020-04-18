@@ -39,11 +39,19 @@ head(track_data)
 ```
 
 ## Heatmaps
-There are two main types of heatmaps available: raster and contour. Here we see an example of a raster heatmap (interpolated) on the left, and a (filled) contour heatmap on the right. 
+There are two main types of heatmaps available: raster and contour. Here we see an example of a raster heatmap (interpolated) on the left, and a (filled) contour heatmap on the right. Heatmaps are plotted 2D [kernel density estimations](https://en.wikipedia.org/wiki/Kernel_density_estimation). 
 
 ```{r,  out.width = "80%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
 knitr::include_graphics("man/figures/heatmap_example.gif") 
 ```
+
+<br>
+Several other options are available to plot heatmaps. 
+
+```{r, eval = FALSE, echo = TRUE}
+
+```
+
 
 
 ## Tracking
