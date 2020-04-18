@@ -45,7 +45,6 @@ There are two main types of heatmaps available: raster and contour. Here we see 
 knitr::include_graphics("man/figures/heatmap_example.gif") 
 ```
 
-<br>
 
 ### Another example...
 Several other options are available to plot heatmaps. Documentation of all VisualMWM functions can be found [here](https://rdrr.io/github/Thonnard/VisualMWM/man/).

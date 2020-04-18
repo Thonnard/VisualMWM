@@ -62,8 +62,6 @@ estimations](https://en.wikipedia.org/wiki/Kernel_density_estimation).
 
 <img src="man/figures/heatmap_example.gif" width="80%" style="display: block; margin: auto;" />
 
-<br>
-
 ### Another example…
 
 Several other options are available to plot heatmaps. Documentation of
