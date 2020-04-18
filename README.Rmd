@@ -64,9 +64,25 @@ heatmapGIF(data=track_data, id="2b", day=1, trial=1,
 
 
 ## Tracking
-Track GIFs display the animal's track over time. Several parameters can be adjusted (e.g. quadrant colours, track colour, etc.).
+Track GIFs display the animal's track over time. Several parameters can be adjusted (e.g. quadrant colours, platform linestyle, track colour, etc.).
+
+```{r,  out.width = "40%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
+knitr::include_graphics("man/figures/track_example1.gif") 
+```
+
+```{r, eval = FALSE, echo = TRUE}
+trackGIF(data=track_data, id="2b", day=1, trial=2,
+         centerx=19.4, centery=-1.49, platformx=50.60, platformy=-33.34, 
+         platform_alpha=1, platform_colour="grey", track_colour="darkblue", track_alpha=0.35, 
+         quadrant_colours=c("white", "white", "white", "lightblue"), quadrants_alpha = 0.4,
+         theme_settings =list(axis.text = element_text(face="bold", color="black", size=16)),
+         plot_original_platform = TRUE, original_platform_colour=NA, loop = TRUE)
+```
 
 ## Distance to target
+Typically, trial duration (latency to target) is the first behavioural readout that is checked when analyzing Morris water maze data. However, this parameter is correlated with the animal's velocity. In case there is a group difference in velocity, it is a good idea to check the distance to target. 
+
+
 
 ## Velocity
 
