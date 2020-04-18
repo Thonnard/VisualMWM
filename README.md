@@ -55,7 +55,14 @@ head(track_data)
 ## Heatmaps
 
 There are two main types of heatmaps available: raster and contour. Here
-we can see an….
+we see an example of a (interpolated) raster heatmap on the left, and a
+(filled) contour heatmap on the right.
+
+<center>
+
+<img src="man/figures/heatmap_example1.gif" width="40%" /><img src="man/figures/heatmap_example2.gif" width="40%" />
+
+</center>
 
 ## Tracking
 
