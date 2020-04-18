@@ -14,7 +14,7 @@ test the various plotting options. Plots are generated with
 with [gganimate](https://gganimate.com/articles/gganimate.html) and
 [gifski](https://gif.ski/).
 
-<br><br>
+<br>
 
 ## Let’s start with an example…
 
@@ -70,6 +70,8 @@ Several other options are available to plot heatmaps. Documentation of
 all VisualMWM functions can be found
 [here](https://rdrr.io/github/Thonnard/VisualMWM/man/).
 
+<img src="man/figures/heatmap_example2.gif" width="40%" style="display: block; margin: auto;" />
+
 ``` r
 heatmapGIF(data=track_data, id="2b", day=1, trial=1, 
            centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
@@ -79,11 +81,9 @@ heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            loop = TRUE)
 ```
 
-<img src="man/figures/heatmap_example2.gif" width="40%" style="display: block; margin: auto;" />
-
 ## Tracking
 
-Track GIFs display the animals track over time. Several parameters can
+Track GIFs display the animal’s track over time. Several parameters can
 be adjusted (e.g. quadrant colours, track colour, etc.).
 
 ## Distance to target

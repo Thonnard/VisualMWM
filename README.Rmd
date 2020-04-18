@@ -8,7 +8,7 @@ output:
 # VisualMWM <img src="man/figures/logo.gif" align="right" width="5%"/>
 This R package provides functions to visualize [Morris water maze](https://en.wikipedia.org/wiki/Morris_water_navigation_task) tracking data in motion! The goal is to visualize behaviour starting from raw, unprocessed data, i.e. x and y coordinates for every time point, that is obtained with tracking software (e.g. Ethovision). This package comes with an example data set (track_data) that can be used to test the various plotting options. Plots are generated with [ggplot2](https://ggplot2.tidyverse.org/), and animations are rendered with [gganimate](https://gganimate.com/articles/gganimate.html) and [gifski](https://gif.ski/). 
 
-<br><br>
+<br>
 
 ## Let's start with an example...
 ```{r,  out.width = "100%", include=TRUE, eval=TRUE, echo=FALSE}
@@ -50,6 +50,10 @@ knitr::include_graphics("man/figures/heatmap_example.gif")
 ### Another example...
 Several other options are available to plot heatmaps. Documentation of all VisualMWM functions can be found [here](https://rdrr.io/github/Thonnard/VisualMWM/man/).
 
+```{r,  out.width = "40%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
+knitr::include_graphics("man/figures/heatmap_example2.gif") 
+```
+
 ```{r, eval = FALSE, echo = TRUE}
 heatmapGIF(data=track_data, id="2b", day=1, trial=1, 
            centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
@@ -59,13 +63,9 @@ heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            loop = TRUE)
 ```
 
-```{r,  out.width = "40%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
-knitr::include_graphics("man/figures/heatmap_example2.gif") 
-```
-
 
 ## Tracking
-Track GIFs display the animals track over time. Several parameters can be adjusted (e.g. quadrant colours, track colour, etc.).
+Track GIFs display the animal's track over time. Several parameters can be adjusted (e.g. quadrant colours, track colour, etc.).
 
 ## Distance to target
 
