@@ -71,7 +71,8 @@ all VisualMWM functions can be found
 [here](https://rdrr.io/github/Thonnard/VisualMWM/man/).
 
 ``` r
-heatmapGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
+heatmapGIF(data=track_data, id="2b", day=1, trial=1, 
+           centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34,
            type="contour", contour_filled=FALSE, contour_colour_scaled=TRUE, 
            heatmap_low = "brown", heatmap_high = "blue",
            theme_settings = list(axis.text = element_text(face="bold", color="brown", size=16)),
