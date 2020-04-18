@@ -133,8 +133,8 @@ barGIF(data=track_data, id="2rb", day=1, trial=1, loop = TRUE
 
 VisualMWM also provides functions to display behaviour in static graphs. Next example shows two area plots of time spent per quadrant. Here we can clearly see that during the fourth trial of reversal (right), compared to the first trial (left), relatively more time is spent in the target quadrant ([viridis colour scales](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)).
 
-<img width="45%" src="man/figures/areaQuadrantTime_trial_1.jpeg"/>
-<img width="45%" src="man/figures/areaQuadrantTime_trial_4.jpeg"/>
+<img width="40%" src="man/figures/areaQuadrantTime_trial_1.jpeg"/>
+<img width="40%" src="man/figures/areaQuadrantTime_trial_4.jpeg"/>
 
 ```{r, eval = FALSE, echo = TRUE}
 # Reversal, trial 1

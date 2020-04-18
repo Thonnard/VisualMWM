@@ -165,8 +165,8 @@ compared to the first trial (left), relatively more time is spent in the
 target quadrant ([viridis colour
 scales](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)).
 
-<img width="45%" src="man/figures/areaQuadrantTime_trial_1.jpeg"/>
-<img width="45%" src="man/figures/areaQuadrantTime_trial_4.jpeg"/>
+<img width="40%" src="man/figures/areaQuadrantTime_trial_1.jpeg"/>
+<img width="40%" src="man/figures/areaQuadrantTime_trial_4.jpeg"/>
 
 ``` r
 # Reversal, trial 1
