@@ -113,8 +113,7 @@ areaQuadrantTime<- function(data, id, day, trial,
   # create plot
   p1 <- ggplot(data = data_long, aes(x=Time, y=Time_Quadrant, fill=Quadrant, color=Quadrant)) +
     geom_area() +
-    ggtitle(paste("Trial ", trial, sep="")) +
-    xlab("Trial duration (s)") +
+    xlab("Duration (s)") +
     ylab("Quadrant Time (%)") +
     viridis::scale_fill_viridis(discrete = TRUE, option = viridis_color_palette, labels = c("Target", "Original target", "Adjacent left", "Adjacent right")) +
     viridis::scale_color_viridis(discrete = TRUE, option = viridis_color_palette, labels = c("Target", "Original target", "Adjacent left", "Adjacent right")) +
