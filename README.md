@@ -92,7 +92,7 @@ trackGIF(data=track_data, id="2b", day=1, trial=2,
          centerx=19.4, centery=-1.49, platformx=50.60, platformy=-33.34, 
          platform_alpha=1, platform_colour="grey", track_colour="darkblue", track_alpha=0.35, 
          quadrant_colours=c("white", "white", "white", "lightblue"), quadrants_alpha = 0.4,
-         theme_settings =list(axis.text = element_text(face="bold", color="black", size=16)),
+         theme_settings = list(axis.text = element_text(face="bold", color="black", size=16)),
          plot_original_platform = TRUE, original_platform_colour=NA, loop = TRUE)
 ```
 
@@ -145,6 +145,25 @@ velocityGIF(data=track_data, id="1rg", day=1, trial=4, centerx=19.4, centery=-1.
 ```
 
 ## Time spent per quadrant
+
+Time spent per quadrant can be a good indicator of the learning process.
+For instance, during probe trials (i.e., trials where the platform is
+absent), the position of the animal is a good measure of reference
+memory.
+
+<img src="man/figures/bargraph.gif" width="40%" style="display: block; margin: auto;" />
+
+``` r
+barGIF(data=track_data, id="2rb", day=1, trial=1, loop = TRUE
+       centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34)
+```
+
+VisualMWM also provides functions to display behaviour in static graphs.
+Next example shows two area plots of time spent per quadrant. Here we
+can clearly see that during the fourth trial of reversal, compared to
+the first trial, relatively more time is spent in the target quadrant.
+
+<img src="man/figures/velocity.gif" width="80%" style="display: block; margin: auto;" />
 
 ## Merge data
 
