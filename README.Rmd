@@ -80,9 +80,27 @@ trackGIF(data=track_data, id="2b", day=1, trial=2,
 ```
 
 ## Distance to target
-Typically, trial duration (latency to target) is the first behavioural readout that is checked when analyzing Morris water maze data. However, this parameter is correlated with the animal's velocity. In case there is a group difference in velocity, it is a good idea to check the distance to target. 
+Typically, trial duration (latency to target) is the first behavioural readout that is checked when analyzing Morris water maze data. However, this parameter is correlated with the animal's velocity. In case there is a group difference in velocity, it is a good idea to check the distance to target as well. 
 
+Next example shows the distance to target on the first and fourth trial during the first day of reversal. These GIFs clearly show that the animal spent more time in the vicinity of the original platform, compared to the reversal platform, on the first trial, but not on the fourth.
 
+```{r,  out.width = "80%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
+knitr::include_graphics("man/figures/distance_example.gif") 
+```
+
+```{r, eval = FALSE, echo = TRUE}
+# First day of reversal, trial 1
+targetdistanceGIF(data=track_data, id="2rb", day=1, trial=1, 
+                  centerx=19.4, centery=-1.49, platformx=50.60, platformy=-33.34,
+                  show_time = TRUE, plot_original_target = TRUE, loop = TRUE,
+                  title="Distance to target (reversal, day 1, trial 1)")
+
+# First day of reversal, trial 4
+targetdistanceGIF(data=track_data, id="2rb", day=1, trial=4, 
+                  centerx=19.4, centery=-1.49, platformx=50.60, platformy=-33.34,
+                  show_time = TRUE, plot_original_target = TRUE, loop = TRUE,
+                  title="Distance to target (reversal, day 1, trial 4)")
+```
 
 ## Velocity
 
