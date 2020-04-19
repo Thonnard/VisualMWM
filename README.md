@@ -165,17 +165,33 @@ compared to the first trial (left), relatively more time is spent in the
 target quadrant ([viridis colour
 scales](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)).
 
-<img src="man/figures/areaQuadrantTime_trial_1.jpeg" width="50%" style="display: block; margin: auto;" /><img src="man/figures/areaQuadrantTime_trial_4.jpeg" width="50%" style="display: block; margin: auto;" />
+<img src="man/figures/areaQuadrantTime_trial.jpeg" width="80%" style="display: block; margin: auto;" />
 
 ``` r
 # Reversal, trial 1
-areaQuadrantTime(data=track_data, id="1w", day=1, trial=1, device="jpeg",
-                 centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5)
+p1 <- areaQuadrantTime(data=track_data, id="1w", day=1, trial=1, device="jpeg", 
+                       centerx=19.4, centery=-1.4, radius=75, platformx=50.60, 
+                       platformy=-33.34,platformradius=7.5, 
+                       title = "Reversal, day 1, trial 1", 
+                       theme_settings = list(legend.title = element_text(face="bold", size=14)))
 
 # Reveral, trial 4
-areaQuadrantTime(data=track_data, id="1w", day=1, trial=4, device="jpeg",
-                 centerx=19.4, centery=-1.4, radius=75, platformx=50.60, platformy=-33.34, platformradius=7.5)
+p2 <- areaQuadrantTime(data=track_data, id="1w", day=1, trial=4, device="jpeg",
+                      centerx=19.4, centery=-1.4, radius=75, platformx=50.60, 
+                      platformy=-33.34, platformradius=7.5,
+                      title = "Reversal, day 1, trial 4",
+                      theme_settings = list(legend.title = element_text(face="bold", size=14)))
+
+# arrange plots with commong legend
+plot <- ggpubr::ggarrange(p1, p2, ncol=2, common.legend = TRUE, legend="bottom")
+
+# save
+ggplot2::ggsave(filename = "areaQuadrantTime_trial.jpeg", plot = plot, width = 10, height=5)
 ```
+
+Plots are saved automatically when areaQuadrantTime is called, but this
+function also returns the plot as a ggplot object that can be used for
+other purposes (e.g. arranging mutliple plots).
 
 ## Merge data
 
