@@ -120,7 +120,9 @@ areaQuadrantTime<- function(data, id, day, trial,
     viridis::scale_color_viridis(discrete = TRUE, option = viridis_color_palette, labels = c("Target", "Original target", "Adjacent left", "Adjacent right")) +
     theme_bw() +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-          axis.title = element_text(face="bold", colour="black", size="14"), plot.title = element_text(face="bold", colour="black", size="14"))
+          axis.title = element_text(face="bold", colour="black", size="14"),
+          axis.text = element_text(face="bold", colour="black", size="12"),
+          plot.title = element_text(face="bold", colour="black", size="14"))
 
   # add title (optional)
   if(!is.na(title)) {p1 <- p1 + ggtitle(title)}
