@@ -21,7 +21,8 @@ areaQuadrantTime(
   units = "cm",
   dpi = 300,
   viridis_color_palette = "D",
-  theme_settings = NULL
+  theme_settings = NULL,
+  title = NA
 )
 }
 \arguments{
@@ -59,6 +60,8 @@ areaQuadrantTime(
 \item{viridis_color_palette}{Viridus color palette. Options: "A", "B", "C", "D", "E". Default = "D".}
 
 \item{theme_settings}{Optional parameter that passes list of arguments to ggplot2's theme() function.}
+
+\item{title}{Add title to GIF. Default = NA}
 }
 \description{
 areaQuadrantTime creates a geom_area plot showing the percentage of time spent per quadrant for a specific trial of one animal, visualized in a stacked area plot.

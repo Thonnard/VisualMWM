@@ -21,6 +21,7 @@
 #' @param dpi Resolution. Default = 300
 #' @param viridis_color_palette Viridus color palette. Options: "A", "B", "C", "D", "E". Default = "D".
 #' @param theme_settings Optional parameter that passes list of arguments to ggplot2's theme() function.
+#' @param title Add title to GIF. Default = NA
 #' @keywords area stacked graph quadrant time percentage
 #' @export
 #' @import ggplot2
@@ -31,7 +32,7 @@
 areaQuadrantTime<- function(data, id, day, trial,
                    centerx, centery, radius = 75, platformx, platformy, platformradius = 7.5,
                    device="jpeg", width=18, height=12, units="cm", dpi=300, viridis_color_palette = "D",
-                   theme_settings = NULL){
+                   theme_settings = NULL, title = NA){
 
   # read data
   data <- as.data.frame(data)
@@ -117,8 +118,16 @@ areaQuadrantTime<- function(data, id, day, trial,
     ylab("Quadrant Time (%)") +
     viridis::scale_fill_viridis(discrete = TRUE, option = viridis_color_palette, labels = c("Target", "Original target", "Adjacent left", "Adjacent right")) +
     viridis::scale_color_viridis(discrete = TRUE, option = viridis_color_palette, labels = c("Target", "Original target", "Adjacent left", "Adjacent right")) +
-    theme_classic() +
-    if(!is.null(theme_settings)) {do.call(theme,theme_settings)}
+    theme_bw() +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+          axis.title = element_text(face="bold", colour="black", size="14"), plot.title = element_text(face="bold", colour="black", size="14"))
+
+  # add title (optional)
+  if(!is.na(title)) {p1 <- p1 + ggtitle(title)}
+
+  # update theme settings (optional)
+  if(!is.null(theme_settings)) {
+    p1 <- p1 + do.call(theme,theme_settings)}
 
   # save plot
   filename <- paste("areaQuadrantTime_", id, "-day_", day, "-trial_", trial , ".", device, sep="")
