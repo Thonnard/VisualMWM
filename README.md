@@ -52,6 +52,8 @@ head(track_data)
     ## 5 0.16 95.5266 12.0585     1w   1     1     A
     ## 6 0.20 95.5048 12.1942     1w   1     1     A
 
+<br>
+
 ## Heatmaps
 
 There are two main types of heatmaps available: raster and contour. Here
@@ -79,6 +81,8 @@ heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            loop = TRUE)
 ```
 
+<br>
+
 ## Tracking
 
 Track GIFs display the animal’s track over time. Several parameters can
@@ -95,6 +99,8 @@ trackGIF(data=track_data, id="2b", day=1, trial=2,
          theme_settings = list(axis.text = element_text(face="bold", color="black", size=16)),
          plot_original_platform = TRUE, original_platform_colour=NA, loop = TRUE)
 ```
+
+<br>
 
 ## Distance to target
 
@@ -126,6 +132,8 @@ targetdistanceGIF(data=track_data, id="2rb", day=1, trial=4,
                   title="Distance to target (reversal, day 1, trial 4)")
 ```
 
+<br>
+
 ## Velocity
 
 Floating or freezing behaviour can be demonstrated in velocity graphs.
@@ -143,6 +151,8 @@ velocityGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4
 velocityGIF(data=track_data, id="1rg", day=1, trial=4, centerx=19.4, centery=-1.4, 
             platformx=50.60, platformy=-33.34, title = "Animal: 1rg (floating)", loop = TRUE)
 ```
+
+<br>
 
 ## Time spent per quadrant
 
@@ -193,6 +203,8 @@ Plots are saved automatically when areaQuadrantTime is called, but this
 function also returns the plot as a ggplot object that can be used for
 other purposes (e.g. arranging mutliple plots).
 
+<br>
+
 ## Merge data
 
 VisualMWM also provides a function to merge raw data files (e.g. of
@@ -225,6 +237,8 @@ tail(track_data, n=3)
     ## 81887 16.04 55.3735 -30.7304    2br   1     4     B
     ## 81888 16.08 55.3727 -30.7352    2br   1     4     B
     ## 81889 16.12 55.3988 -30.7719    2br   1     4     B
+
+<br>
 
 ## Workflow
 

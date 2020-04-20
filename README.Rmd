@@ -38,6 +38,8 @@ load("data/track_data.RData")
 head(track_data)
 ```
 
+<br>
+
 ## Heatmaps
 There are two main types of heatmaps available: raster and contour. Here we see an example of a raster heatmap (interpolated) on the left, and a (filled) contour heatmap on the right. Heatmaps are plotted 2D [kernel density estimations](https://en.wikipedia.org/wiki/Kernel_density_estimation). 
 
@@ -62,6 +64,7 @@ heatmapGIF(data=track_data, id="2b", day=1, trial=1,
            loop = TRUE)
 ```
 
+<br>
 
 ## Tracking
 Track GIFs display the animal's track over time. Several parameters can be adjusted (e.g. quadrant colours, platform linestyle, track colour, etc.).
@@ -78,6 +81,8 @@ trackGIF(data=track_data, id="2b", day=1, trial=2,
          theme_settings = list(axis.text = element_text(face="bold", color="black", size=16)),
          plot_original_platform = TRUE, original_platform_colour=NA, loop = TRUE)
 ```
+
+<br>
 
 ## Distance to target
 Typically, trial duration (latency to target) is the first behavioural readout that is checked when analyzing Morris water maze data. However, this parameter is correlated with the animal's velocity. In case there is a group difference in velocity, it is a good idea to check the distance to target as well. 
@@ -102,6 +107,8 @@ targetdistanceGIF(data=track_data, id="2rb", day=1, trial=4,
                   title="Distance to target (reversal, day 1, trial 4)")
 ```
 
+<br>
+
 ## Velocity
 Floating or freezing behaviour can be demonstrated in velocity graphs. Following GIF shows the difference between normal swimming behaviour (left) and floating (right). 
 
@@ -118,6 +125,8 @@ velocityGIF(data=track_data, id="2b", day=1, trial=1, centerx=19.4, centery=-1.4
 velocityGIF(data=track_data, id="1rg", day=1, trial=4, centerx=19.4, centery=-1.4, 
             platformx=50.60, platformy=-33.34, title = "Animal: 1rg (floating)", loop = TRUE)
 ```
+
+<br>
 
 ## Time spent per quadrant
 Time spent per quadrant can be a good indicator of the learning process. For instance, during probe trials (i.e., trials where the platform is absent), the position of the animal is a good measure of reference memory. 
@@ -161,6 +170,8 @@ ggplot2::ggsave(filename = "areaQuadrantTime_trial.jpeg", plot = plot, width = 1
 
 Plots are saved automatically when areaQuadrantTime is called, but this function also returns the plot as a ggplot object that can be used for other purposes (e.g. arranging mutliple plots).
 
+<br>
+
 ## Merge data
 VisualMWM also provides a function to merge raw data files (e.g. of different subjects, trials,...). This function is written based on Ethovision raw data output that contains extra information above the actual tracking data. Here is an example for csv files (examples are provided in tests/csv_merge):
 
@@ -174,6 +185,8 @@ This code produces an csv output file that contains following information (group
 head(track_data, n=3)
 tail(track_data, n=3)
 ```
+
+<br>
 
 ## Workflow
 (under construction...)
