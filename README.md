@@ -161,10 +161,16 @@ For instance, during probe trials (i.e., trials where the platform is
 absent), the position of the animal is a good measure of reference
 memory.
 
-<img src="man/figures/bargraph.gif" width="40%" style="display: block; margin: auto;" />
+<img src="man/figures/barGIFexample.gif" width="80%" style="display: block; margin: auto;" />
 
 ``` r
-barGIF(data=track_data, id="2rb", day=1, trial=1, loop = TRUE
+# Track
+trackGIF(data=track_data, id="2rb", day=1, trial=2, centerx=19.4, 
+         centery=-1.49, platformx=50.60, platformy=-33.34,
+         plot_original_platform = TRUE, show_time = TRUE, loop = TRUE)
+
+# Time spent per quadrant
+barGIF(data=track_data, id="2rb", day=1, trial=2, loop = TRUE, 
        centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34)
 ```
 

@@ -131,12 +131,18 @@ velocityGIF(data=track_data, id="1rg", day=1, trial=4, centerx=19.4, centery=-1.
 ## Time spent per quadrant
 Time spent per quadrant can be a good indicator of the learning process. For instance, during probe trials (i.e., trials where the platform is absent), the position of the animal is a good measure of reference memory. 
 
-```{r,  out.width = "40%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
-knitr::include_graphics("man/figures/bargraph.gif") 
+```{r,  out.width = "80%", include=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
+knitr::include_graphics("man/figures/barGIFexample.gif") 
 ```
 
 ```{r, eval = FALSE, echo = TRUE}
-barGIF(data=track_data, id="2rb", day=1, trial=1, loop = TRUE
+# Track
+trackGIF(data=track_data, id="2rb", day=1, trial=2, centerx=19.4, 
+         centery=-1.49, platformx=50.60, platformy=-33.34,
+         plot_original_platform = TRUE, show_time = TRUE, loop = TRUE)
+
+# Time spent per quadrant
+barGIF(data=track_data, id="2rb", day=1, trial=2, loop = TRUE, 
        centerx=19.4, centery=-1.4, platformx=50.60, platformy=-33.34)
 ```
 
