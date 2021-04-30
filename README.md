@@ -161,7 +161,7 @@ For instance, during probe trials (i.e., trials where the platform is
 absent), the position of the animal is a good measure of reference
 memory.
 
-<img src="man/figures/barGIFexample.gif" width="80%" style="display: block; margin: auto;" />
+<img src="man/figures/combined_gif.gif" width="80%" style="display: block; margin: auto;" />
 
 ``` r
 # Track
