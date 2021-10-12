@@ -246,6 +246,6 @@ tail(track_data, n=3)
 
 <br>
 
-## Workflow
-
-(under construction…)
+## ToDo
+- integrate automatic data smoothing
+- gif output to objects
