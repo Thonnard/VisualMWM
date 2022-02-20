@@ -1,4 +1,4 @@
-#' @title Bar chart for percentage of quadrant time
+#' @title Bar chart for percentage of quadrant time test
 #'
 #' @description The barGIF function creates a GIF showing the percentage of time spent per quadrant for a specific trial of one animal.
 #'
