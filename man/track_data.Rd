@@ -8,13 +8,13 @@
 A data frame with 81889 rows and 7 columns.
 \describe{
 \itemize{
-  \item Time: Timestamp
-  \item x: x coordinate in Morris water maze setup
-  \item y: y coordinate in Morris water maze setup
-  \item Animal: Animal ID
-  \item Day: Day of experiment (numeric)
-  \item Trial: Trial number
-  \item Group: Group information (NA)
+\item Time: Timestamp
+\item x: x coordinate in Morris water maze setup
+\item y: y coordinate in Morris water maze setup
+\item Animal: Animal ID
+\item Day: Day of experiment (numeric)
+\item Trial: Trial number
+\item Group: Group information (NA)
 }
 }
 }

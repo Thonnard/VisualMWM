@@ -31,5 +31,5 @@ The mergeCOORD function reads all xlsx/csv files in a specific folder and create
 Input: xlsx files or csv files created with Ethovision: Analysis > Export > Raw data...(export settings for csv: File type: ANSI text, delimiter: ",").
 The output file contains a data set with time, x and y coordinates, animal id, trial info and group (when available)
 
- WARNING: depending on the number of xlsx/CSV files, this might take several minutes.
+WARNING: depending on the number of xlsx/CSV files, this might take several minutes.
 }
