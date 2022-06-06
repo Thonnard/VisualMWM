@@ -1,7 +1,7 @@
 Package: VisualMWM
 Type: Package
 Title: R functions to visualize Morris water maze data
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: 
     person(given = "David",
            family = "Thonnard",
