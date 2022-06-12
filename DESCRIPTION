@@ -10,7 +10,7 @@ Authors@R:
 Maintainer: David Thonnard <thonnard.david@gmail.com>
 Description: This R package provides functions to visualize Morris water maze tracking data in motion! 
     The goal is to visualize behaviour starting from raw, unprocessed data, i.e. x and y coordinates for every time point, 
-    that is obtained with tracking software (e.g. Ethovision). 
+    that is obtained with tracking software (e.g. Ethovision). Test
 Depends: 
     R (>= 4.2.0),
     ggplot2 (>= 3.3.6)
