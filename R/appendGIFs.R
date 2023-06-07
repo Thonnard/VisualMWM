@@ -1,4 +1,4 @@
-#' @title Append two GIFs / test
+#' @title Append two GIFs
 #'
 #' @description The appendGIFs function reads and appends two GIFs, and saves the appended gif in your wd.
 #'
